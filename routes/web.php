@@ -16,4 +16,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+// Website/Frontend Routes
+
+/// If the view is in a folder: folder.view-name
+/// You don't need to include the full file name ("about.blade.php")
+Route::get('/about', function () {
+    return view('website.about');
+});
+
 require __DIR__.'/settings.php';

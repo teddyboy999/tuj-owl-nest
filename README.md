@@ -32,6 +32,7 @@ cd tuj-owl-nest/
 cp .env.example .env
 ```
 _(necessary details are to be provided in-person, can't share here)_
+
 3. Finally to run the project, please open two separate terminals (in the same folder), and type the following commands:
 Backend Server (npm):
 ```console

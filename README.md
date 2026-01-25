@@ -1,6 +1,7 @@
 # tuj-owl-nest
 A community platform for clubs, student organizations, academic societies, and any student who wants to organize meetups.
 
+---
 # Clone this Git Repository
 1. Clone via HTTPS
 ```console
@@ -20,6 +21,28 @@ git commit -m "first commit to my branch"
 git push origin yourBranchName
 ```
 
+---
+# Running the Project in your Local Environment
+1. After successfully cloning the repository, please cd into the folder.
+```console
+cd tuj-owl-nest/
+```
+2. Now make a copy of the .env.example file to .env, and add in the necessary details:
+```console
+cp .env.example .env
+```
+_(necessary details are to be provided in-person, can't share here)_
+3. Finally to run the project, please open two separate terminals (in the same folder), and type the following commands:
+Backend Server (npm):
+```console
+npm run dev
+```
+Frontend Assets (php artisan):
+```console
+php artisan serve
+```
+
+---
 # General Project Structure (NEEDS UPDATE)
 Note: There's a lot of information to fill out here, I'll need some time, because some topics are complex. For now, the basics are already here, you're good to start coding.
 

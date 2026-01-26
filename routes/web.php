@@ -17,4 +17,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// MAIN WEBSITE ROUTES
+Route::get('/about', function () {
+    return view('website.about');
+});
+
+Route::get('/contact', function () {
+    return view('website.contact');
+});
+
 require __DIR__.'/auth.php';

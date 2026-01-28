@@ -7,9 +7,7 @@
     <title>Welcome</title>
 </head>
 <body>
-    <div id="top-nav-bar">
-
-    </div>
+    <div id="top-nav-bar"></div>
 
     <h1>WELCOME BLYAT</h1>
     

@@ -97,3 +97,16 @@ Route::get('/page-name', function () {
 ```
 
 5. Notice how you don't have to include the full page name, you can just call it by the first name: **"contact" instead of "contact.blade.php"**
+
+### STEPS FOR INSTALLING AND PREPPING PHP ON WINDOWS:
+1. Download php 8.5.1 in a zip
+2. Extract files from zip, ideally to your C drive and not your downloads
+3. Copy path to php.exe
+4. Go to environment variables and edit the Path variable in User variables
+5. Click "New" and paste the path and save
+
+
+### How to Log into MySQL account
+1. run mysql -u root -p
+2. Enter Password 
+3. You can then use "SHOW DATABASES;" To display the current databases

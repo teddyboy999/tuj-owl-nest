@@ -44,6 +44,7 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+        <div id = "top-nav-bar"></div>
         @inertia
     </body>
 </html>

@@ -10,6 +10,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
 </head>
 <body>
+
     {{-- NAVBAR COMPONENT: TESTING --}}
     <div id="top-nav-bar"></div>
 

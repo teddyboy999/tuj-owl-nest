@@ -1,4 +1,5 @@
 import '../css/app.css';
+//import './bootstrap';
 
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -6,6 +7,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import { initializeTheme } from './hooks/use-appearance';
+
+// Import your component
+import TopNavBar from './components/frontend/top-nav-bar';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -21,7 +25,7 @@ createInertiaApp({
 
         root.render(
             <StrictMode>
-                <App {...props} />
+                <App {...props} />x
             </StrictMode>,
         );
     },
@@ -32,3 +36,16 @@ createInertiaApp({
 
 // This will set light / dark mode on load...
 initializeTheme();
+
+// Make a new function to render your component upon use
+/// NavBar Component
+const navbarElement = document.getElementById('top-nav-bar');
+if (navbarElement)
+{
+    const navBarRoot = createRoot(navbarElement);
+    navBarRoot.render(
+        <StrictMode>
+            <TopNavBar/>
+        </StrictMode>
+    );
+}

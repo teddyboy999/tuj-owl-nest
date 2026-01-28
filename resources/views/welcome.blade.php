@@ -14,6 +14,12 @@
     <div id="top-nav-bar"></div>
 
     <h1>WELCOME BLYAT</h1>
-    
+
+    <div name= "sliding-images" id="club-images"></div>
+
+    <div name= "submit-button" id= "form-button"></div>
+
+    <div name="dropdown" id="dropdown"></div>
+
 </body>
 </html>

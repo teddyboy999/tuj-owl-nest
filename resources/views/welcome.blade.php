@@ -14,7 +14,9 @@
     {{-- NAVBAR COMPONENT: TESTING --}}
     <div id="top-nav-bar"></div>
 
-    <h1>WELCOME BLYAT</h1>
+    <div>
+        <h1 class="text-2xl bg-blue-500">WELCOME BLYAT</h1>
+    </div>
 
     <div name= "sliding-images" id="club-images"></div>
 

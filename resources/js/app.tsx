@@ -10,6 +10,7 @@ import { initializeTheme } from './hooks/use-appearance';
 
 // Import your component
 import DropDown from './components/frontend/dropdown-function';
+import CreateSvgIcon from './components/frontend/home-icon';
 import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
 import TopNavBar from './components/frontend/top-nav-bar';
@@ -75,6 +76,15 @@ for (let i = 0; i < DropDownElements.length; i++) {
     createRoot(DropDownElements[i]).render(
         <StrictMode>
             <DropDown />
+        </StrictMode>,
+    );
+}
+
+const HomeIcon = document.getElementsByName('home-icon');
+for (let i = 0; i < HomeIcon.length; i++) {
+    createRoot(HomeIcon[i]).render(
+        <StrictMode>
+            <CreateSvgIcon />
         </StrictMode>,
     );
 }

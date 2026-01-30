@@ -12,6 +12,7 @@
 <body>
     {{-- NAVBAR COMPONENT: TESTING --}}
     <div id="top-nav-bar"></div>
+    <div name="home-icon" id= "home-icon"></div>
 
     <h1>WELCOME BLYAT</h1>
 

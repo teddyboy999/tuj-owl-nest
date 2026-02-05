@@ -9,6 +9,7 @@ import { createRoot } from 'react-dom/client';
 import { initializeTheme } from './hooks/use-appearance';
 
 // Import your component
+import BottomNavBar from './components/frontend/bottom-bar';
 import DropDown from './components/frontend/dropdown-function';
 import CreateSvgIcon from './components/frontend/home-icon';
 import TitlebarImageList from './components/frontend/sliding-images';
@@ -85,6 +86,15 @@ for (let i = 0; i < HomeIcon.length; i++) {
     createRoot(HomeIcon[i]).render(
         <StrictMode>
             <CreateSvgIcon />
+        </StrictMode>,
+    );
+}
+
+const BottomNavBarElement = document.getElementsByName('bottom-nav-bar');
+for (let i = 0; i < BottomNavBarElement.length; i++) {
+    createRoot(BottomNavBarElement[i]).render(
+        <StrictMode>
+            <BottomNavBar />
         </StrictMode>,
     );
 }

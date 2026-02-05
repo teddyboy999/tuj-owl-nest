@@ -25,5 +25,7 @@
 
     <div name="dropdown" id="dropdown"></div>
 
+    <div name="bottom-nav-bar"></div>
+
 </body>
 </html>

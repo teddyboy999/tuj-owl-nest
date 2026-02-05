@@ -141,3 +141,22 @@
         @apply bg-background text-foreground;
     }
 }
+
+a {
+    text-decoration: underline;
+}
+
+.bottom-nav-elements {
+    justify-content: flex-start;
+    font-size: 0.5rem;
+}
+
+.Border {
+    border: 100px gray solid;
+}
+
+.bottom-right-nav-element {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.5rem;
+}

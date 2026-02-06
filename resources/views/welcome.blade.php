@@ -13,6 +13,7 @@
 
     {{-- NAVBAR COMPONENT: TESTING --}}
     <div id="top-nav-bar"></div>
+    <div name="home-icon" id= "home-icon"></div>
 
     <div>
         <h1 class="text-2xl bg-blue-500">WELCOME BLYAT</h1>
@@ -23,6 +24,8 @@
     <div name= "submit-button" id= "form-button"></div>
 
     <div name="dropdown" id="dropdown"></div>
+
+    <div name="bottom-nav-bar"></div>
 
 </body>
 </html>

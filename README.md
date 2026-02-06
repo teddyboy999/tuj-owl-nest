@@ -114,3 +114,11 @@ Route::get('/page-name', function () {
 ```
 
 5. Notice how you don't have to include the full page name, you can just call it by the first name: **"contact" instead of "contact.blade.php"**
+
+### Git Hub process in making changes
+
+1. git add . (add all your files)
+2. git commit -m "" (make the commit)
+3. git push (ensure you're on the branch u need to be, use git branch to check and git checkout to move)
+4. git fetch origin (to get the current rebase of the remote repo)
+5. git pull origin main

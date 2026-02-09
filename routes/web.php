@@ -26,4 +26,8 @@ Route::get('/contact', function () {
     return view('website.contact');
 });
 
+Route::get("/profile", function () {
+    return view('website.profile');
+});
+
 require __DIR__.'/auth.php';

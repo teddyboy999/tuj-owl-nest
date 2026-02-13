@@ -47,8 +47,6 @@ const BottomNavBar = () => {
                     <li>TUJ HOME</li>
                     <li>Admissions</li>
                     <li>Student Services</li>
-                    <li>Sample</li>
-                    <li>Sample</li>
                 </ul>
             </div>
         </div>

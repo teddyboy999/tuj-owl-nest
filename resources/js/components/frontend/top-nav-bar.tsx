@@ -3,7 +3,6 @@ const TopNavBar = () => {
     // <a href="{{ route('about.page') }}">About Us</a>
     return (
         <div>
-            <h1 className="bg-blue-500">Hello Blyat</h1>
             <ul>
                 <li>
                     <a href="/"> Home</a>

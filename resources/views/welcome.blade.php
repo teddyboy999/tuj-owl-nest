@@ -10,10 +10,12 @@
     @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
 </head>
 <body>
-
-    {{-- NAVBAR COMPONENT: TESTING --}}
-    <div id="top-nav-bar"></div>
-    <div name="home-icon" id= "home-icon"></div>
+    <header>
+        <nav>
+            {{-- NAVBAR COMPONENT: TESTING --}}
+            <div id="top-nav-bar"></div>
+        </nav>
+    </header>
 
     <div>
         <h1 class="text-2xl bg-blue-500">WELCOME BLYAT</h1>

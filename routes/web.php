@@ -26,8 +26,12 @@ Route::get('/contact', function () {
     return view('website.contact');
 });
 
-Route::get("/profile", function () {
-    return view('website.profile');
+Route::get("/user-profile", function () {
+    return view('website.user-profile');
+});
+
+Route::get("/club-edit", function (){
+    return view('website.club-edit');
 });
 
 require __DIR__.'/auth.php';

@@ -32,7 +32,7 @@ createInertiaApp({
 
         root.render(
             <StrictMode>
-                <App {...props} />x
+                <App {...props} />
             </StrictMode>,
         );
     },

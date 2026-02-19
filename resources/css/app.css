@@ -164,15 +164,28 @@ h2 {
     font-size: 1.5rem;
 }
 #top-border {
-    background-color: rgb(179, 4, 4);
-    border-radius: 10px;
+    background-color: #be233d;
+    border-radius: 5px;
+    font-size: 1rem;
+    height: 45px;
+}
+/* Temp Fix, come back to determine why tailwind underline isn't working */
+a:hover {
+    text-decoration: underline;
 }
 body {
     background-color: rgb(246, 226, 226);
 }
+.social-icon {
+    fill: white;
+    transition: fill 0.3s ease;
+}
+.social-link:hover .social-icon {
+    fill: #be233d !important;
+}
 /* welcome.blade.php */
 #welcome {
-    color: rgb(190, 13, 13);
+    color: #be233d;
     text-align: center;
     font-weight: bolder;
     font-size: 2.5rem;
@@ -181,7 +194,7 @@ body {
 
 /* about.blade.php */
 #about {
-    color: rgb(190, 13, 13);
+    color: #be233d;
     text-align: center;
     font-weight: bolder;
     font-size: 2.5rem;
@@ -190,11 +203,47 @@ body {
 
 /*contact.blade.php */
 #contact {
-    color: rgb(190, 13, 13);
+    color: #be233d;
     text-align: center;
     font-weight: bolder;
     font-size: 2.5rem;
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+/* event-list.blade.php */
+#events {
+    color: #be233d;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
+/*club-list.blade.php */
+#clubs {
+    color: #be233d;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+#club-create {
+    color: white;
+}
+/* If we want to move elements within a page and let our footer grow, USE POSTION: STATIC AND MARGINS */
+.club-create {
+    cursor: pointer;
+    background-color: #be233d;
+    border-radius: 2px;
+    font-family:
+        'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
+        Arial, sans-serif;
+    font-size: 1.5rem;
+    position: relative;
+    margin-top: 400px;
+    margin-left: 500px;
+}
+.club-create:hover {
+    background-color: #ff3355;
 }
 
 /* user-profile.blade.php */

@@ -34,4 +34,12 @@ Route::get("/club-edit", function (){
     return view('website.club-edit');
 });
 
+Route::get("/event-list", function() {
+    return view("website.event-list");
+});
+
+Route::get("/club-list", function() {
+    return view("website.club-list");
+});
+
 require __DIR__.'/auth.php';

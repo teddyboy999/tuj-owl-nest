@@ -19,6 +19,9 @@ const TopNavBar = () => {
                 <li className="hover:underline">
                     <a href="/contact"> Contact</a>
                 </li>
+                <li className="hover:underline">
+                    <a href="/login">Login</a>
+                </li>
             </ul>
         </div>
     );

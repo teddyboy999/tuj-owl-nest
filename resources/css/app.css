@@ -142,10 +142,6 @@
     }
 }
 
-a {
-    text-decoration: underline;
-}
-
 .bottom-nav-elements {
     justify-content: flex-start;
     font-size: 0.5rem;

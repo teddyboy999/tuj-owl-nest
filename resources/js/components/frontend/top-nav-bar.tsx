@@ -1,23 +1,29 @@
 const TopNavBar = () => {
-    // Sample->
-    // <a href="{{ route('about.page') }}">About Us</a>
     return (
-        <div className="mt-2 mr-2 mb-2 ml-2 h-8 justify-center px-2 py-2 align-middle">
-            <ul className="flex justify-end space-x-6 align-middle">
+        <div className="m-2 flex h-12 items-center justify-between px-4">
+            <div className="flex items-center">
+                <img
+                    src="https://www.tuj.ac.jp/modules/custom/tu_layout/images/brand/t-cherry.svg"
+                    alt="temple-logo"
+                    className="h-10 w-10 object-contain"
+                />
+            </div>
+
+            <ul className="flex space-x-6">
                 <li className="hover:underline">
-                    <a href="/"> Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li className="hover:underline">
-                    <a href="/event-list"> Event List</a>
+                    <a href="/event-list">Event List</a>
                 </li>
                 <li className="hover:underline">
-                    <a href="/club-list"> Club List</a>
+                    <a href="/club-list">Club List</a>
                 </li>
                 <li className="hover:underline">
-                    <a href="/about"> About Us</a>
+                    <a href="/about">About Us</a>
                 </li>
                 <li className="hover:underline">
-                    <a href="/contact"> Contact</a>
+                    <a href="/contact">Contact</a>
                 </li>
                 <li className="hover:underline">
                     <a href="/login">Login</a>

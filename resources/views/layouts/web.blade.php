@@ -41,12 +41,13 @@
                     </a>
                 </div>
             </div>
-                    <div class="text-right">
+                    <div class="copyright-text">
                         <p class="text-white italic">
                             Copyright 2026, Temple University, Japan Campus. All
                             rights reserved.
                         </p>
                     </div>
+                    <img src="https://www.tuj.ac.jp/modules/custom/tu_layout/images/brand/temple-logo-japan.png" alt="temple-logo-footer" class="temple-logo-footer"/>
                 </div>
             </footer>
         </div>

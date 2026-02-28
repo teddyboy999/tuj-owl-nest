@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->foreignId("parent_post_id")->constrained(table: "post", column: "id");
+            $table->foreignId("parent_post_id")->constrained(table: "posts", column: "post_id");
             $table->string("reply_author");
             $table->string("reply_author_email");
             $table->longText("reply_content");

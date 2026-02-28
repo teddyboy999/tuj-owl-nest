@@ -4,6 +4,7 @@
 
 @section('content')
   {{-- TODO: MOVE THIS TO web.blade.php --}}
+  {{-- TODO: ADD PAGINATION TO FORUM REPLIES/POSTS PLEASE --}}
   {{-- Top Navigation and stuff --}}
   <div id = "top-border">
   <div id = "top-nav-bar"></div>

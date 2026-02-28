@@ -13,7 +13,6 @@ class EventController extends Controller
         $event = new Event();
         $events = $event->getPaginatedEvents(15);
 
-
         return view('website.event-list', ['events' => $events]);
     }
 }

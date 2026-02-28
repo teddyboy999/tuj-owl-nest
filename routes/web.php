@@ -39,10 +39,6 @@ Route::get("/club-edit", function (){
     return view('website.club-edit');
 });
 
-Route::get("/event-list", function() {
-    return view("website.event-list");
-});
-
 Route::get("/club-list", function() {
     return view("website.club-list");
 });
@@ -53,7 +49,7 @@ Route::get('/forums', [ForumsController::class, "index"])->name("website.forums"
 Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
 
 // EVENTS
-Route::get('/events', [EventController::class, "index"])->name("website.event-list");
+Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
 
 
 require __DIR__.'/auth.php';

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ForumsController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +44,10 @@ Route::get("/club-list", function() {
     return view("website.club-list");
 });
 
+// ROUTES FOR FORUMS
 // Please follow Controller Function Notation
 Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
+Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
 
 
 require __DIR__.'/auth.php';

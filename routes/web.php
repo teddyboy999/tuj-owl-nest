@@ -1,9 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+// Custome controllers
 use App\Http\Controllers\ForumsController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,6 +51,9 @@ Route::get("/club-list", function() {
 // Please follow Controller Function Notation
 Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
 Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
+
+// EVENTS
+Route::get('/events', [EventController::class, "index"])->name("website.event-list");
 
 
 require __DIR__.'/auth.php';

@@ -43,9 +43,9 @@ Route::get("/club-list", function() {
 });
 
 // TESTING FUNCTIONS
-Route::get("/forum", function() 
+Route::get("/forums", function() 
 {   
-    return view("website.forum");
+    return view("website.forums");
 });
 
 

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string("post_author");
             $table->string("post_author_email");
             $table->longText("post_content");
-            $table->integer("post_likes");
-            $table->integer("post_dislikes");
+            $table->integer("post_likes")->default(0);
+            $table->integer("post_dislikes")->default(0);
         });
     }
 

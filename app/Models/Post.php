@@ -14,12 +14,6 @@ class Post extends Model
 
     public function getPostByParentForumId($forum_id)
     {
-        // REMOVE: NO NEED
-        if ($this->where('parent_forum_id', $forum_id)->exists() == false)
-        {
-            return null;
-        }
-
-        return $this->where("parent_forum_id", $forum_id)->first();
+        return $this->where("parent_forum_id", $forum_id)->get();
     }
 }

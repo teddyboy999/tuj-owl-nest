@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forums', function (Blueprint $table) {
-            $table->id();
-            $table->string("forum_author");
-            $table->string("forum_author_email");
-            $table->longText("forum_content");
-            $table->integer("forum_likes");
-            $table->integer("forum_dislikes");
-
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id("post_id");
             $table->timestamps();
+
+            $table->string("post_author");
+            $table->string("post_author_email");
+            $table->longText("post_content");
+            $table->integer("post_likes");
+            $table->integer("post_dislikes");
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('forums');
+        Schema::dropIfExists('posts');
     }
 };

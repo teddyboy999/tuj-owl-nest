@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForumsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,11 +43,8 @@ Route::get("/club-list", function() {
     return view("website.club-list");
 });
 
-// TESTING FUNCTIONS
-Route::get("/forums", function() 
-{   
-    return view("website.forums");
-});
+// Please follow Controller Function Notation
+Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
 
 
 require __DIR__.'/auth.php';

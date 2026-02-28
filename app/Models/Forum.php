@@ -20,6 +20,11 @@ class Forum extends Model
         return $this->paginate($paginate_num);
     }
 
+    public function getLatestPaginatedForums($paginate_num)
+    {
+        return $this->orderBy("created_at", "desc")->paginate($paginate_num);
+    }
+
     public function getAllForums()
     {
         return $this->all();

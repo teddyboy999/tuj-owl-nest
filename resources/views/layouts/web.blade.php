@@ -7,16 +7,16 @@
         @viteReactRefresh
         @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
     </head>
-    <body class="h-full bg-white">
+    <body class="h-screen bg-white">
         <div class="flex flex-col min-h-screen">
-            <main class="flex flex-col min-h-screen">
+            <main class="grow">
                 @yield('content')
             </main>
 
-            {{-- Push content to end with class = "flex flex-col min-h-screen" --}}
+            {{-- Push content to the bottom with = "flex flex-col min-h-screen" or "fixed inset-x-0 bottom-0"--}}
             <footer class="bg-[#272727] text-white py-8">
                 <div
-                    class="mx-auto flex max-w-7xl flex-col space-y-8 px-4 sm:px-6 lg:px-8"
+                    class="mx-auto max-w-7xl flex-col space-y-8 px-4 sm:px-6 lg:px-8"
                 >
                     <div class="text-left font-bold text-white">
                         <p>Temple University, Japan Campus</p>
@@ -24,7 +24,7 @@
                         <p>Tokyo, Japan 154-0004</p>
                     </div>
 
-               <div class="flex space-x-4">
+                <div class="flex space-x-4">
                     <a href="https://www.tiktok.com/@templeunivjapan" class="social-link" target="__blank" alt="TikTok">
                         <svg class="h-6 w-6 social-icon" viewBox="0 0 24 24">
                             <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.6-4.12-1.31a6.34 6.34 0 01-2.02-1.84v6.27c.02 1.47-.32 3-.13 4.41-.4 3.03-3.1 5.48-6.12 5.48-3.03 0-5.48-2.45-5.48-5.48 0-3.03 2.45-5.48 5.48-5.48.33 0 .66.03.98.08v4.03c-1.31-.41-2.73.23-3.21 1.49-.48 1.26.04 2.78 1.24 3.4.74.38 1.63.38 2.37 0 1.2-.62 1.72-2.14 1.24-3.4-.08-.2-.18-.4-.3-.58V.02z"/>
@@ -41,7 +41,7 @@
                         </svg>
                     </a>
                 </div>
-            </div>
+                </div>
                     <div class="copyright-text">
                         <p class="text-white italic">
                             Copyright 2026, Temple University, Japan Campus. All

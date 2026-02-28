@@ -42,4 +42,12 @@ Route::get("/club-list", function() {
     return view("website.club-list");
 });
 
+// TESTING FUNCTIONS
+Route::get("/forum", function() 
+{   
+    return view("website.forum");
+});
+
+
 require __DIR__.'/auth.php';
+

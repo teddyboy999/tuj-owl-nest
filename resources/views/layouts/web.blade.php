@@ -8,12 +8,14 @@
         @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
     </head>
     <body class="h-screen bg-white">
-        <div class="flex flex-col min-h-screen">
-            <main class="grow">
-                @yield('content')
-            </main>
-
+        <div class="flex flex-col min-h-screen"> 
+            <div class="flex flex-col min-h-screen">   
+                <main class="grow">
+                    @yield('content')
+                </main>
+            </div>
             {{-- Push content to the bottom with = "flex flex-col min-h-screen" or "fixed inset-x-0 bottom-0"--}}
+            
             <footer class="bg-[#272727] text-white py-8">
                 <div
                     class="mx-auto max-w-7xl flex-col space-y-8 px-4 sm:px-6 lg:px-8"

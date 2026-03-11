@@ -16,6 +16,7 @@ import CreateSvgIcon from './components/frontend/home-icon';
 import NotificationIcon from './components/frontend/notification-icon';
 import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
+import CreateForum from './components/frontend/submit-forum';
 import TopNavBar from './components/frontend/top-nav-bar';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -115,6 +116,15 @@ for (let i = 0; i < NotificationIconElement.length; i++) {
     createRoot(NotificationIconElement[i]).render(
         <StrictMode>
             <NotificationIcon />
+        </StrictMode>,
+    );
+}
+
+const CreateForumElement = document.getElementsByName('create-forum');
+for (let i = 0; i < CreateForumElement.length; i++) {
+    createRoot(CreateForumElement[i]).render(
+        <StrictMode>
+            <CreateForum />
         </StrictMode>,
     );
 }

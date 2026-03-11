@@ -23,6 +23,9 @@ const TopNavBar = () => {
                     <a href="/about">About Us</a>
                 </li>
                 <li className="hover:underline">
+                    <a href="/forums">Forums</a>
+                </li>
+                <li className="hover:underline">
                     <a href="/contact">Contact</a>
                 </li>
                 <li className="hover:underline">

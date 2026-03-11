@@ -11,7 +11,9 @@ import { initializeTheme } from './hooks/use-appearance';
 // Import your component
 import BottomNavBar from './components/frontend/bottom-bar';
 import DropDown from './components/frontend/dropdown-function';
+import FileUpload from './components/frontend/file-upload';
 import CreateSvgIcon from './components/frontend/home-icon';
+import NotificationIcon from './components/frontend/notification-icon';
 import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
 import TopNavBar from './components/frontend/top-nav-bar';
@@ -30,7 +32,7 @@ createInertiaApp({
 
         root.render(
             <StrictMode>
-                <App {...props} />x
+                <App {...props} />
             </StrictMode>,
         );
     },
@@ -95,6 +97,24 @@ for (let i = 0; i < BottomNavBarElement.length; i++) {
     createRoot(BottomNavBarElement[i]).render(
         <StrictMode>
             <BottomNavBar />
+        </StrictMode>,
+    );
+}
+
+const FileUploadElement = document.getElementsByName('file-upload');
+for (let i = 0; i < FileUploadElement.length; i++) {
+    createRoot(FileUploadElement[i]).render(
+        <StrictMode>
+            <FileUpload />
+        </StrictMode>,
+    );
+}
+
+const NotificationIconElement = document.getElementsByName('notification-icon');
+for (let i = 0; i < NotificationIconElement.length; i++) {
+    createRoot(NotificationIconElement[i]).render(
+        <StrictMode>
+            <NotificationIcon />
         </StrictMode>,
     );
 }

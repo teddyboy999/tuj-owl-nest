@@ -1,7 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+// Custome controllers
+use App\Http\Controllers\ForumsController;
+use App\Http\Controllers\ForumController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,4 +31,26 @@ Route::get('/contact', function () {
     return view('website.contact');
 });
 
+Route::get("/user-profile", function () {
+    return view('website.user-profile');
+});
+
+Route::get("/club-edit", function (){
+    return view('website.club-edit');
+});
+
+Route::get("/club-list", function() {
+    return view("website.club-list");
+});
+
+// ROUTES FOR FORUMS
+// Please follow Controller Function Notation
+Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
+Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
+
+// EVENTS
+Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
+
+
 require __DIR__.'/auth.php';
+

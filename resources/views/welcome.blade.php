@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TUJ Owl Nest</title>
+@extends('layouts.web')
 
-    @viteReactRefresh
-    @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
-</head>
-<body>
-
-    {{-- NAVBAR COMPONENT: TESTING --}}
-    <div id="top-nav-bar"></div>
-    <div name="home-icon" id= "home-icon"></div>
-
-    <div>
-        <h1 class="text-2xl bg-blue-500">WELCOME BLYAT</h1>
+@section('content')
+    <div id="top-border">
+        <div id="top-nav-bar"></div>
     </div>
-
-    <div name= "sliding-images" id="club-images"></div>
-
-    <div name= "submit-button" id= "form-button"></div>
-
-    <div name="dropdown" id="dropdown"></div>
-
-    <div name="bottom-nav-bar"></div>
-
-</body>
-</html>
+    <div id="welcome">
+        <h1>TUJ Owl Nest</h1>
+    </div>
+@endsection

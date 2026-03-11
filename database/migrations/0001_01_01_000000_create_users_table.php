@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('user_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            // External fields
+            $table->string("user_temple_id");
+            $table->string("user_full_name");
+            $table->string("user_year")->nullable(); // not all users have a student year
+            $table->string("user_role"); // club leader || user / member
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

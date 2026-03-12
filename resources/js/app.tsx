@@ -16,6 +16,7 @@ import CreateSvgIcon from './components/frontend/home-icon';
 import NotificationIcon from './components/frontend/notification-icon';
 import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
+import CreateEvent from './components/frontend/submit-event';
 import CreateForum from './components/frontend/submit-forum';
 import TopNavBar from './components/frontend/top-nav-bar';
 
@@ -125,6 +126,15 @@ for (let i = 0; i < CreateForumElement.length; i++) {
     createRoot(CreateForumElement[i]).render(
         <StrictMode>
             <CreateForum />
+        </StrictMode>,
+    );
+}
+
+const CreateEventElement = document.getElementsByName('create-event');
+for (let i = 0; i < CreateEventElement.length; i++) {
+    createRoot(CreateEventElement[i]).render(
+        <StrictMode>
+            <CreateEvent />
         </StrictMode>,
     );
 }

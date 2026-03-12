@@ -43,7 +43,7 @@ export default function BasicPopover() {
                 variant="contained"
                 onClick={handleClick}
             >
-                Create New Forum
+                Create New Event
             </Button>
             <Popover
                 id={id}
@@ -72,11 +72,11 @@ export default function BasicPopover() {
                         <CloseIcon />
                     </IconButton>
                     <Box>
-                        <Typography variant="h6">Title of Post</Typography>
+                        <Typography variant="h6">Title of Event</Typography>
                         <TextField
                             fullWidth
                             size="small"
-                            placeholder="I want to know..."
+                            placeholder="Event Name"
                             style={{ backgroundColor: 'rgb(235, 235, 235)' }}
                         />
                     </Box>
@@ -118,12 +118,12 @@ export default function BasicPopover() {
                         </Box>
                     </Box>
                     <Box>
-                        <Typography variant="subtitle2">Message</Typography>
+                        <Typography variant="subtitle2">Description</Typography>
                         <TextField
                             multiline
                             rows={4}
                             fullWidth
-                            placeholder="Write whats on your mind"
+                            placeholder="Whats going on"
                             sx={{ backgroundColor: 'rgb(235, 235, 235)' }}
                         />
                     </Box>

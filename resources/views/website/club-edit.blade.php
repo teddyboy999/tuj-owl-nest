@@ -4,7 +4,12 @@
         <div id="top-border">
         <div id="top-nav-bar"></div>
         </div>
-        <label for="club-name">Club Name:</label>
+        <div class="page-container">
+        <div class="form-container">
+        <form action="" method="" autocomplete="on">
+            <fieldset class="club-form-fieldset">
+        <label for="club-name" class="club-label">Club Name:</label>
+        
         <div id="club-name">
             <input
                 type="text"
@@ -14,7 +19,7 @@
             />
         </div>
         <br />
-        <label for="club-desc">Description for your Club</label>
+        <label for="club-desc" class="club-label">Description for your Club</label>
         <div id="club-desc">
             <textarea
                 id="club-desc-input"
@@ -25,17 +30,41 @@
             ></textarea>
         </div>
         <br />
-        <label for="socials">List any socials!</label>
-        <div id="socials">
+        <div class="input-align">
+        <label for="leader-input" class="club-label">Club leader:</label>
+        <label for="semester" class="club-label">For semester:</label>
+        <br>
+            <input 
+                type="text" 
+                id="leader-input" 
+                name="leader-input"
+                placeholder="Sota Takeda"/>
+        
+            <select name="semester" id="semester">
+                <option value="20262">Summer '26</option>
+                <option value="20263">Fall '26</option>
+                <option value="20271">Spring '27</option>
+            </select>
+        <br>
+        <label for="coleader-input" class="club-label">Co-leader:</label>
+            <input 
+                type="text" 
+                id="coleader-input" 
+                name="coleader-input"
+                placeholder="Belle Delphine"/>
+        <br>
+        <label for="socials" class="club-label">List any socials!</label>
             <input
                 type="text"
                 id="socials-input"
                 name="socials-input"
                 placeholder="Instagram: alonzo_rico"
             />
-        </div>
+        
         <br />
-        <label for="club-pics">Upload any photos of your Club</label>
+        <label for=""></label>
+    </div>
+        <label for="club-pics" class="club-label">Upload any photos of your Club</label>
         <div id="club-pics">
             <div name="file-upload">
                 <input
@@ -49,7 +78,7 @@
         </div>
         <br />
         <br />
-        <label for="club-banner">Upload Club Logo</label>
+        <label for="club-banner" class="club-label">Upload Club Logo</label>
         <div id="club-banner">
             <div name="file-upload">
                 <input
@@ -63,4 +92,5 @@
         <br />
         <br />
         <div name="submit-button" id="submit-button"></div>
+        </fieldset></div></div>
 @endsection

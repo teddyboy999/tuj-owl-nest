@@ -10,6 +10,7 @@ import { initializeTheme } from './hooks/use-appearance';
 
 // Import your component
 import BottomNavBar from './components/frontend/bottom-bar';
+import DatePick from './components/frontend/date-set';
 import DropDown from './components/frontend/dropdown-function';
 import FileUpload from './components/frontend/file-upload';
 import CreateSvgIcon from './components/frontend/home-icon';
@@ -18,6 +19,7 @@ import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
 import CreateEvent from './components/frontend/submit-event';
 import CreateForum from './components/frontend/submit-forum';
+import TimePicker from './components/frontend/time-picker';
 import TopNavBar from './components/frontend/top-nav-bar';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -135,6 +137,24 @@ for (let i = 0; i < CreateEventElement.length; i++) {
     createRoot(CreateEventElement[i]).render(
         <StrictMode>
             <CreateEvent />
+        </StrictMode>,
+    );
+}
+
+const DateSetElement = document.getElementsByName('date-set');
+for (let i = 0; i < DateSetElement.length; i++) {
+    createRoot(DateSetElement[i]).render(
+        <StrictMode>
+            <DatePick />
+        </StrictMode>,
+    );
+}
+
+const TimeSetElement = document.getElementsByName('time-set');
+for (let i = 0; i < TimeSetElement.length; i++) {
+    createRoot(TimeSetElement[i]).render(
+        <StrictMode>
+            <TimePicker />
         </StrictMode>,
     );
 }

@@ -5,6 +5,9 @@ import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useState } from 'react';
+import BasicDatePicker from './date-set';
+import DropDown from './dropdown-function';
+import ResponsiveTimePickers from './time-picker';
 
 export default function BasicPopover() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
@@ -58,7 +61,8 @@ export default function BasicPopover() {
             >
                 <Box
                     sx={{
-                        p: 3,
+                        p: 2,
+                        width: '550px',
                         backgroundColor: 'rgb(230, 219, 171)',
                         display: 'flex',
                         flexDirection: 'column',
@@ -72,7 +76,9 @@ export default function BasicPopover() {
                         <CloseIcon />
                     </IconButton>
                     <Box>
-                        <Typography variant="h6">Title of Event</Typography>
+                        <Typography variant="h6" fontWeight={'bold'}>
+                            Title of Event
+                        </Typography>
                         <TextField
                             fullWidth
                             size="small"
@@ -81,7 +87,15 @@ export default function BasicPopover() {
                         />
                     </Box>
                     <Box>
-                        <Typography variant="subtitle2">Tags</Typography>
+                        <Typography variant="subtitle2" fontWeight={'bold'}>
+                            Affliation
+                        </Typography>
+                        <DropDown></DropDown>
+                    </Box>
+                    <Box>
+                        <Typography variant="subtitle2" fontWeight={'bold'}>
+                            Tags
+                        </Typography>
                         <Box
                             sx={{
                                 display: 'flex',
@@ -118,7 +132,9 @@ export default function BasicPopover() {
                         </Box>
                     </Box>
                     <Box>
-                        <Typography variant="subtitle2">Description</Typography>
+                        <Typography variant="subtitle2" fontWeight={'bold'}>
+                            Description
+                        </Typography>
                         <TextField
                             multiline
                             rows={4}
@@ -126,6 +142,45 @@ export default function BasicPopover() {
                             placeholder="Whats going on"
                             sx={{ backgroundColor: 'rgb(235, 235, 235)' }}
                         />
+                    </Box>
+                    <Box>
+                        <Typography variant="subtitle2" fontWeight={'bold'}>
+                            Event Date
+                        </Typography>
+                        <BasicDatePicker />
+                    </Box>
+
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            gap: 4,
+                            alignItems: 'flex-start',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 1,
+                            }}
+                        >
+                            <Typography variant="subtitle2" fontWeight="bold">
+                                Event Start Time
+                            </Typography>
+                            <ResponsiveTimePickers />
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 1,
+                            }}
+                        >
+                            <Typography variant="subtitle2" fontWeight="bold">
+                                Event End Time
+                            </Typography>
+                            <ResponsiveTimePickers />
+                        </Box>
                     </Box>
 
                     <Box>

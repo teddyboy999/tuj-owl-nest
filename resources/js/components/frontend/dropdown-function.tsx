@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import * as React from 'react';
 
-const options = ['Clubs', 'Announcements', 'Chat'];
+const options = ['Club', 'Society', 'Organization'];
 
 const DropDown = () => {
     const [open, setOpen] = React.useState(false);
@@ -86,7 +86,6 @@ const DropDown = () => {
                                     {options.map((option, index) => (
                                         <MenuItem
                                             key={option}
-                                            disabled={index === 2}
                                             selected={index === selectedIndex}
                                             onClick={(event) =>
                                                 handleMenuItemClick(

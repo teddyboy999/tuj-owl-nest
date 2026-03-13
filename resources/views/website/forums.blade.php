@@ -11,6 +11,8 @@
     <div class="my-2 mt-4 mb-4 flex grow p-6">
         <p class="text-6xl font-bold text-black">TUJ Owl Nest Forum</p>
     </div>
+    {{-- Create Forum Button --}}
+    <div name="create-forum"></div>
     {{-- Box for all forum posts to show up --}}
     <div class="mx-4 my-2 border p-4">
         @foreach ($forum_posts as $forum_post)
@@ -50,6 +52,4 @@
         {{-- Show links to the next pages returned by paginate --}}
         {{ $forum_posts->links() }}
     </div>
-
-    <div name="create-forum"></div>
 @endsection

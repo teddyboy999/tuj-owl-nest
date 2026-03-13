@@ -13,6 +13,9 @@
     {{-- TODO: Ask Prof. Farid if we can have TAGS (for event types / event affiliation = org || society || etc) as a database element --}}
 
     {{-- Box for all events to show up --}}
+
+    <div name="create-event"></div>
+
     <div class="mx-4 rounded-sm border-2 p-4 indent-4">
         @foreach ($events as $event)
             {{-- Card Layout for each event to be displayed --}}
@@ -85,6 +88,4 @@
         {{-- Show the pages for other events --}}
         {{ $events->links() }}
     </div>
-
-    <div name="create-event"></div>
 @endsection

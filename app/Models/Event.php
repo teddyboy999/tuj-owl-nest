@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    // So, to get started, you should define which model attributes you want to make mass assignable. 
+    // You may do this using the $fillable property on the model
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<
+     */
+    protected $fillable = ['name']
+
     // getAllEvents(): returns all events
     public function getAllEvents()
     {
@@ -47,4 +56,5 @@ class Event extends Model
     {
         return $this->orderBy("event_date", "asc")->get();
     }
+
 }

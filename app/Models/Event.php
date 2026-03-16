@@ -13,7 +13,17 @@ class Event extends Model
      *
      * @var array<
      */
-    protected $fillable = ['name']
+    protected $fillable = [
+        "event_organizer", 
+        "event_organizer_email", 
+        "event_affiliation", 
+        "event_category", 
+        "event_title", 
+        "event_description", 
+        "event_date", 
+        "start_time", 
+        "end_time"
+    ];
 
     // getAllEvents(): returns all events
     public function getAllEvents()
@@ -31,6 +41,11 @@ class Event extends Model
     public function getEventById($event_id)
     {
         return $this->where("id", $event_id);
+    }
+
+    public function getEventByTitle($event_title)
+    {
+        return $this->where("event_title", $event_title);
     }
 
     // getEventsByCategory($category): get all events by category

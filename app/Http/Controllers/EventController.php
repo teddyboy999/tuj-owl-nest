@@ -15,4 +15,14 @@ class EventController extends Controller
 
         return view('website.event-list', ['events' => $events]);
     }
+
+
+    // CREATING NEW EVENTS
+    /// Adds an event to the table if it doesn't already exist
+    public function addEvent(Request $request)
+    {
+        $event = new Event();
+
+
+    }
 }

@@ -79,7 +79,8 @@
                 </div>
 
                 {{-- Event Description --}}
-                <p class="text-gray-600">
+                <span class="mx-2 mb-1 p-2 text-lg text-black underline font-semibold">Description:</span>
+                <p class = "text-gray-600">
                     {{ $event->event_description }}
                 </p>
             </div>

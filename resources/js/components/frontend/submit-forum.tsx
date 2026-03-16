@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { useState } from 'react';
 
-export default function BasicPopover() {
+function BasicPopover() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
         null,
     );
@@ -138,3 +138,5 @@ export default function BasicPopover() {
         </div>
     );
 }
+
+export default BasicPopover;

@@ -9,7 +9,7 @@ import BasicDatePicker from './date-set';
 import DropDown from './dropdown-function';
 import ResponsiveTimePickers from './time-picker';
 
-export default function BasicPopover() {
+function BasicPopover() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
         null,
     );
@@ -193,3 +193,5 @@ export default function BasicPopover() {
         </div>
     );
 }
+
+export default BasicPopover;

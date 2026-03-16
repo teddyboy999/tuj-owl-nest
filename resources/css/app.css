@@ -385,3 +385,70 @@ label[for='club-banner'] {
     align-items: center;
     flex-direction: column;
 }
+
+/* about.blade.php */
+form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 10px;
+}
+#contact-msg {
+    color: black;
+    text-align: center;
+    font-family: inherit;
+    font-weight: bold;
+}
+#contact-message {
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    padding: 3px 6px;
+}
+#email {
+    color: black;
+}
+#category {
+    color: black;
+}
+#content {
+    color: black;
+}
+fieldset {
+    flex-grow: 1;
+    border: 2px solid black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#contact-email {
+    display: flex;
+    color: black;
+    background-color: rgb(204, 194, 194);
+}
+#contact-email:hover {
+    display: flex;
+    color: black;
+    background-color: rgb(206, 199, 199);
+}
+#contact-content {
+    color: black;
+    background-color: rgb(204, 194, 194);
+}
+#contact-content:hover {
+    color: black;
+    background-color: rgb(206, 199, 199);
+}
+
+/* about.blade.php */
+#first-paragraph-title {
+    font-weight: bolder;
+    color: black;
+    font-family: inherit;
+    font-size: 2rem;
+}
+#first-paragraph {
+    color: black;
+    font-weight: bold;
+}

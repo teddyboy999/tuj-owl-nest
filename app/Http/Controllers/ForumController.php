@@ -24,4 +24,40 @@ class ForumController extends Controller
         // syntax: return view('view_name', data=['key'=>'value'], mergeData = [])
         return view('website.forum', ['forum_post' => $forumPost, 'posts' => $postsUnderForum]);
     }
+
+    // CREATES a forum post
+    public function createForumPost(Request $request)
+    {
+        // Validate request data
+        $validatedData = $request->validate([
+            "post_author" => "required",
+            "post_author_email" => "required",
+            "post_content" => "required",
+        ]);
+
+        // add to posts table
+        $posts = new Post();
+        $posts->create($validatedData);
+
+        return view('website.forum', ['posts' => $posts]);
+    }
+
+    // UPDATING existing forum post
+    public function updateForumPost(Request $request, Post $post)
+    {
+        // TODO: add id in the route (pass event id)
+        $validatedData = $request->validate([
+            "name" => "required|unique",
+            "description" => "required",
+            "date" => "required|date",
+            "start_time" => "required",
+            "end_time" => "required"
+        ]);
+
+        $post->fill($validatedData);
+
+        $post->save();
+
+        return redirect()->route('website.forum', ['post' => $post])->with('success', 'Event updated successfully.');
+    }
 }

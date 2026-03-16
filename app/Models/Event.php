@@ -6,6 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    // So, to get started, you should define which model attributes you want to make mass assignable. 
+    // You may do this using the $fillable property on the model
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<
+     */
+    protected $fillable = [
+        "event_organizer", 
+        "event_organizer_email", 
+        "event_affiliation", 
+        "event_category", 
+        "event_title", 
+        "event_description", 
+        "event_date", 
+        "start_time", 
+        "end_time"
+    ];
+
     // getAllEvents(): returns all events
     public function getAllEvents()
     {
@@ -22,6 +41,11 @@ class Event extends Model
     public function getEventById($event_id)
     {
         return $this->where("id", $event_id);
+    }
+
+    public function getEventByTitle($event_title)
+    {
+        return $this->where("event_title", $event_title);
     }
 
     // getEventsByCategory($category): get all events by category
@@ -47,4 +71,5 @@ class Event extends Model
     {
         return $this->orderBy("event_date", "asc")->get();
     }
+
 }

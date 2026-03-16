@@ -10,6 +10,7 @@ import { initializeTheme } from './hooks/use-appearance';
 
 // Import your component
 import BottomNavBar from './components/frontend/bottom-bar';
+import ContactDropDown from './components/frontend/contact-dropdown';
 import DatePick from './components/frontend/date-set';
 import DropDown from './components/frontend/dropdown-function';
 import FileUpload from './components/frontend/file-upload';
@@ -83,6 +84,15 @@ for (let i = 0; i < DropDownElements.length; i++) {
     createRoot(DropDownElements[i]).render(
         <StrictMode>
             <DropDown />
+        </StrictMode>,
+    );
+}
+
+const ContactDropDownElements = document.getElementsByName('contact-dropdown');
+for (let i = 0; i < ContactDropDownElements.length; i++) {
+    createRoot(ContactDropDownElements[i]).render(
+        <StrictMode>
+            <ContactDropDown />
         </StrictMode>,
     );
 }

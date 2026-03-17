@@ -169,7 +169,7 @@ h2 {
     font-size: 1rem;
     height: 45px;
 }
-/* Temp Fix, come back to determine why tailwind underline isn't working */
+
 a:hover {
     text-decoration: underline;
 }
@@ -182,11 +182,6 @@ body {
 }
 .social-link:hover .social-icon {
     fill: #be233d !important;
-}
-.copyright-text {
-    position: relative;
-    top: 100px;
-    left: 950px;
 }
 .temple-logo-footer {
     position: relative;
@@ -253,6 +248,9 @@ body {
     position: relative;
     margin-top: 400px;
     margin-left: 500px;
+    width: 200px;
+    height: 50px;
+    border-radius: 20px;
 }
 .club-create:hover {
     background-color: #ff3355;
@@ -451,4 +449,27 @@ fieldset {
 #first-paragraph {
     color: black;
     font-weight: bold;
+}
+#second-paragraph-title {
+    font-weight: bolder;
+    color: black;
+    font-family: inherit;
+    font-size: 2rem;
+    text-align: right;
+}
+#second-paragraph {
+    color: black;
+    text-align: right;
+    font-weight: bolder;
+    text-indent: 50%;
+}
+#third-paragraph-title {
+    font-weight: bolder;
+    color: black;
+    font-family: inherit;
+    font-size: 2rem;
+}
+#third-paragraph {
+    color: black;
+    font-weight: bolder;
 }

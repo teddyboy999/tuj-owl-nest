@@ -8,8 +8,8 @@
     </div>
 
     {{-- Title Box --}}
-    <div class="my-2 mt-4 mb-4 flex grow p-6">
-        <p class="text-6xl font-bold text-black">TUJ Owl Nest Forum</p>
+    <div id="forum" class="fade-in">
+        <p>Forums</p>
     </div>
     {{-- Create Forum Button --}}
     <div name="create-forum"></div>

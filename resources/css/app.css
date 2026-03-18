@@ -190,6 +190,9 @@ body {
     top: 0;
     left: 90px;
 }
+input::placeholder {
+    font-size: 12px;
+}
 /* welcome.blade.php */
 #welcome {
     color: #be233d;
@@ -198,7 +201,194 @@ body {
     font-size: 2.5rem;
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
+.fade-in {
+    color: #be233d;
+    opacity: 0;
+    animation-name: fadein;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(10px);
+    }
+}
 
+#title-text {
+    color: #be233d;
+    text-align: center;
+    text-shadow: 1.5px 1.5px 1.5px rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+#event-text {
+    color: black;
+    font-weight: bold;
+    font-family:
+        'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
+        Arial, sans-serif;
+}
+#event-button {
+    position: absolute;
+    left: 30%;
+    width: 100px;
+    height: 50px;
+    background-color: #be233d;
+    border-radius: 20px;
+}
+
+#event-button:hover {
+    width: 100px;
+    height: 50px;
+    background-color: #ff3355;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#forum-text {
+    color: black;
+    font-weight: bold;
+    font-family:
+        'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
+        Arial, sans-serif;
+}
+
+#forum-button {
+    position: absolute;
+    left: 30%;
+    width: 100px;
+    height: 50px;
+    background-color: #be233d;
+    border-radius: 20px;
+}
+#forum-button:hover {
+    width: 100px;
+    height: 50px;
+    background-color: #ff3355;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#contact-text {
+    color: black;
+    font-weight: bold;
+    font-family:
+        'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
+        Arial, sans-serif;
+}
+
+#contact-button {
+    position: absolute;
+    left: 30%;
+    width: 100px;
+    height: 50px;
+    background-color: #be233d;
+    border-radius: 20px;
+}
+#contact-button:hover {
+    width: 100px;
+    height: 50px;
+    background-color: #ff3355;
+    border-radius: 20px;
+}
+#mission-container {
+    margin-top: 50px;
+    text-align: center;
+}
+#mission-title {
+    color: #be233d;
+    font-weight: bolder;
+    text-shadow: 1px 1px 1px black;
+    animation:
+        typewriter 5s steps(50) 1s 1 normal both,
+        blinkingCursor 500ms steps(10) normal both;
+    position: relative;
+    width: 24em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
+}
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+@keyframes blinkingCursor {
+    from {
+        border-right-color: #be233d;
+    }
+    to {
+        border-right-color: transparent;
+    }
+}
+#mission-text {
+    color: black;
+    font-weight: bold;
+    animation:
+        typewriter 5s steps(50) 1s 1 normal both,
+        blinkingCursor 500ms steps(10) normal both;
+    position: relative;
+    width: 24em;
+    top: 10px;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255, 255, 255, 0.75);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-20%);
+    animation-delay: 2s;
+}
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+@keyframes blinkingCursor {
+    from {
+        border-right-color: #000000;
+    }
+    to {
+        border-right-color: transparent;
+    }
+}
+
+#event-container {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+}
+#forum-container {
+    position: absolute;
+    top: 45%;
+    left: 75%;
+}
+#contact-container {
+    position: absolute;
+    top: 65%;
+    left: 41.5%;
+}
+#middle-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45%;
+    height: auto;
+}
 /* about.blade.php */
 #about {
     color: #be233d;
@@ -224,7 +414,14 @@ body {
     font-size: 2.5rem;
     text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }
-
+/* forums.blade.php */
+#forum {
+    color: #be233d;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
 /*club-list.blade.php */
 #clubs {
     color: #be233d;

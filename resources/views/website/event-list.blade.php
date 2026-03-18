@@ -4,7 +4,7 @@
     <div id="top-border">
         <div id="top-nav-bar"></div>
     </div>
-    <div id="events">
+    <div id="events" class="fade-in">
         <h1>Events</h1>
     </div>
 
@@ -79,8 +79,12 @@
                 </div>
 
                 {{-- Event Description --}}
-                <span class="mx-2 mb-1 p-2 text-lg text-black underline font-semibold">Description:</span>
-                <p class = "text-gray-600">
+                <span
+                    class="mx-2 mb-1 p-2 text-lg font-semibold text-black underline"
+                >
+                    Description:
+                </span>
+                <p class="text-gray-600">
                     {{ $event->event_description }}
                 </p>
             </div>

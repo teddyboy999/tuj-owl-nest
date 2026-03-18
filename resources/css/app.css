@@ -433,6 +433,29 @@ input::placeholder {
 #club-create {
     color: white;
 }
+#cards {
+    max-width: 700px;
+    margin: 0.5em;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-gap: 20px;
+}
+#club-pic-1 {
+    max-width: 57%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+/* For each card */
+#card {
+    border: 1px solid #999999;
+    border-radius: 3px;
+
+    display: grid;
+    grid-template-rows: max-content 20px 1fr;
+}
 /* If we want to move elements within a page and let our footer grow, USE POSTION: STATIC AND MARGINS */
 .club-create {
     cursor: pointer;
@@ -442,9 +465,6 @@ input::placeholder {
         'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
         Arial, sans-serif;
     font-size: 1.5rem;
-    position: relative;
-    margin-top: 400px;
-    margin-left: 500px;
     width: 200px;
     height: 50px;
     border-radius: 20px;

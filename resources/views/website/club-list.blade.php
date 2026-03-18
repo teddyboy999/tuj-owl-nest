@@ -4,7 +4,7 @@
     <div id="top-border">
         <div id="top-nav-bar"></div>
     </div>
-    <div id="clubs">
+    <div id="clubs" class="fade-in">
         <h1>Clubs</h1>
     </div>
 

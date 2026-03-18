@@ -4,7 +4,7 @@
     <div id="top-border">
         <div id="top-nav-bar"></div>
     </div>
-    <div id="contact">
+    <div id="contact" class="fade-in">
         <h1>Contact Us</h1>
     </div>
 
@@ -19,7 +19,7 @@
                 <input
                     type="text"
                     id="contact-email"
-                    placeholder="tus52183@temple.edu"
+                    placeholder="eg. tus52183@temple.edu"
                 />
 
                 <label for="contact-category" id="category">Category</label>

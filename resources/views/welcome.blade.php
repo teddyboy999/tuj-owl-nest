@@ -44,7 +44,7 @@
     </div>
 
     <div id="contact-container">
-        <div id="contact-text">Reach out to us for any questions</div>
+        <div id="contact-text">Reach out to us for any questions!</div>
         <img src="{{ asset('Website_Images/contact.jpg') }}" />
         <button onclick="window.location.href = '/contact'" id="contact-button">
             Learn More

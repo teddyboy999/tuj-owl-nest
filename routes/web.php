@@ -39,6 +39,10 @@ Route::get("/club-edit", function (){
     return view('website.club-edit');
 });
 
+Route::get("/new-club", function (){
+    return view('website.new-club');
+});
+
 Route::get("/club-list", function() {
     return view("website.club-list");
 });

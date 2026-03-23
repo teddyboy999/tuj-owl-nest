@@ -53,7 +53,7 @@ Route::get('/event-list', [EventController::class, "index"])->name("website.even
 Route::post("/event-add", [EventController::class, "createEvent"])->name("events.create"); // add event
 
 // Routes for CLUBS
-// TODO: Route::post("/club-edd", [])
+// TODO: Route::post("/club-add", [])
 
 
 require __DIR__.'/auth.php';

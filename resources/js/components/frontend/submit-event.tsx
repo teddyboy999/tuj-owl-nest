@@ -3,6 +3,7 @@ import { Box, Chip, IconButton, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
 import BasicDatePicker from './date-set';
@@ -16,6 +17,44 @@ function BasicPopover() {
 
     const [tags, setTags] = useState<string[]>(['Test']);
     const [currValue, setCurrValue] = useState('');
+
+    const [formData, setFormData] = useState({
+        eventName: '',
+        event_organizer: '',
+        event_email: '',
+        description: '',
+    });
+    const [affiliation, setAffiliation] = useState('');
+    const [eventDate, setEventDate] = useState<any>(null);
+    const [startTime, setStartTime] = useState<any>(null);
+    const [endTime, setEndTime] = useState<any>(null);
+
+    const handleSubmit = async (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+
+        const submissionData = {
+            eventName: formData.eventName,
+            event_organizer: formData.event_organizer,
+            event_email: formData.event_email,
+            description: formData.description,
+            affiliation: affiliation,
+            tags: tags,
+            eventDate: eventDate?.format('YYYY-MM-DD'),
+            startTime: startTime?.format('HH:mm:ss'),
+            endTime: endTime?.format('HH:mm:ss'),
+        };
+        try {
+            const response = await axios.post('/event-add', submissionData);
+
+            if (response.status === 200 || response.status === 201) {
+                alert('Event Created');
+                handleClose();
+            }
+        } catch (error) {
+            const axiosError = error as any;
+            console.log('Error', axiosError.response?.data);
+        }
+    };
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
@@ -36,6 +75,10 @@ function BasicPopover() {
         setTags((chips) => chips.filter((chip) => chip !== tagToDelete));
     };
 
+    const handleChange = (event: { target: { name: any; value: any } }) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
+    };
+
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
@@ -48,6 +91,7 @@ function BasicPopover() {
             >
                 Create New Event
             </Button>
+
             <Popover
                 id={id}
                 open={open}
@@ -60,6 +104,8 @@ function BasicPopover() {
                 }}
             >
                 <Box
+                    component="form"
+                    onSubmit={handleSubmit}
                     sx={{
                         p: 2,
                         width: '550px',
@@ -81,16 +127,47 @@ function BasicPopover() {
                         </Typography>
                         <TextField
                             fullWidth
+                            name="eventName"
+                            value={formData.eventName}
+                            onChange={handleChange}
                             size="small"
                             placeholder="Event Name"
                             style={{ backgroundColor: 'rgb(235, 235, 235)' }}
                         />
                     </Box>
                     <Box>
-                        <Typography variant="subtitle2" fontWeight={'bold'}>
-                            Affliation
+                        <Typography variant="h6" fontWeight={'bold'}>
+                            Organizer
                         </Typography>
-                        <DropDown></DropDown>
+                        <TextField
+                            fullWidth
+                            name="event_organizer"
+                            value={formData.event_organizer}
+                            onChange={handleChange}
+                            size="small"
+                            placeholder="John Smith"
+                            style={{ backgroundColor: 'rgb(235, 235, 235)' }}
+                        />
+                    </Box>
+                    <Box>
+                        <Typography variant="h6" fontWeight={'bold'}>
+                            Email
+                        </Typography>
+                        <TextField
+                            fullWidth
+                            name="event_email"
+                            value={formData.event_email}
+                            onChange={handleChange}
+                            size="small"
+                            placeholder="tus52183@temple.edu"
+                            style={{ backgroundColor: 'rgb(235, 235, 235)' }}
+                        />
+                    </Box>
+                    <Box>
+                        <Typography variant="subtitle2" fontWeight={'bold'}>
+                            Affiliation
+                        </Typography>
+                        <DropDown onChange={(value) => setAffiliation(value)} />
                     </Box>
                     <Box>
                         <Typography variant="subtitle2" fontWeight={'bold'}>
@@ -136,6 +213,9 @@ function BasicPopover() {
                             Description
                         </Typography>
                         <TextField
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
                             multiline
                             rows={4}
                             fullWidth
@@ -147,7 +227,10 @@ function BasicPopover() {
                         <Typography variant="subtitle2" fontWeight={'bold'}>
                             Event Date
                         </Typography>
-                        <BasicDatePicker />
+                        <BasicDatePicker
+                            value={eventDate}
+                            onChange={(newValue) => setEventDate(newValue)}
+                        />
                     </Box>
 
                     <Box
@@ -167,7 +250,10 @@ function BasicPopover() {
                             <Typography variant="subtitle2" fontWeight="bold">
                                 Event Start Time
                             </Typography>
-                            <ResponsiveTimePickers />
+                            <ResponsiveTimePickers
+                                value={startTime}
+                                onChange={(newValue) => setStartTime(newValue)}
+                            />
                         </Box>
                         <Box
                             sx={{
@@ -179,12 +265,15 @@ function BasicPopover() {
                             <Typography variant="subtitle2" fontWeight="bold">
                                 Event End Time
                             </Typography>
-                            <ResponsiveTimePickers />
+                            <ResponsiveTimePickers
+                                value={endTime}
+                                onChange={(newValue) => setEndTime(newValue)}
+                            />
                         </Box>
                     </Box>
 
                     <Box>
-                        <Button variant="contained" fullWidth>
+                        <Button type="submit" variant="contained" fullWidth>
                             Submit
                         </Button>
                     </Box>

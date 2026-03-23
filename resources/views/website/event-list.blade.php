@@ -43,9 +43,7 @@
                     {{-- Event Affiliation: Club / Society / Org / etc. --}}
                     @if ($event->event_affiliation != null)
                         ,
-                        <span class="font-bold underline">
-                            in Affiliation with:
-                        </span>
+                        <span class="font-bold underline">Affiliation:</span>
                         {{ $event->event_affiliation }}
                     @endif
                 </p>
@@ -61,7 +59,19 @@
                     <ul class="list-inside text-black">
                         <li>
                             <span class="font-semibold">Category:</span>
-                            {{ $event->event_category }}
+                            @if ($event->tags)
+                                @foreach ($event->tags as $tag)
+                                    <span
+                                        class="rounded-full border border-blue-200 bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800"
+                                    >
+                                        {{ $tag }}
+                                    </span>
+                                @endforeach
+                            @else
+                                <span class="text-sm text-gray-400 italic">
+                                    None
+                                </span>
+                            @endif
                         </li>
                         <li>
                             <span class="font-semibold">Date:</span>

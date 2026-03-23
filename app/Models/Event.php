@@ -17,12 +17,16 @@ class Event extends Model
         "event_organizer", 
         "event_organizer_email", 
         "event_affiliation", 
-        "event_category", 
+        "tags", 
         "event_title", 
         "event_description", 
         "event_date", 
         "start_time", 
         "end_time"
+    ];
+
+    protected $casts = [
+    'tags' => 'array', // This turns the JSON string into a React-friendly array
     ];
 
     // getAllEvents(): returns all events

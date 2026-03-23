@@ -37,7 +37,8 @@ function BasicPopover() {
                 handleClose();
             }
         } catch (error) {
-            console.log('Error', error);
+            const axiosError = error as any;
+            console.log('Error', axiosError?.response.data);
         }
     };
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

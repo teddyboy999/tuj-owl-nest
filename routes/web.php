@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 // Custome controllers
 use App\Http\Controllers\ForumsController;
-use App\Http\Controllers\ForumController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 
@@ -46,8 +46,8 @@ Route::get("/club-list", function() {
 // Routes for FORUMS
 // Please follow Controller Function Notation
 Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
-Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
-Route::post("/forum-add", [ForumController::class, "createForumPost"])->name('forums.create');
+Route::get('/forum', [PostController::class, "index"])->name("website.forum");
+Route::post("/forum-add", [PostController::class, "createForumPost"])->name('forums.create');
 
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");

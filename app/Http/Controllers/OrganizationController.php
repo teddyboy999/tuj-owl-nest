@@ -7,6 +7,25 @@ use App\Models\Organization;
 
 class OrganizationController extends Controller
 {
+    // SHOW all clubs / organizations - paginated by 15
+    public function index()
+    {
+        $organization = new Organization;
+        $clubs = $organization->getPaginatedOrganizations(15);
+
+        return view('club-list', ['clubs' => $clubs]);
+    }
+
+    // SHOW individual clubs / organizations based on ID and details about them
+    public function show($postId)
+    {
+        // If your filter is the primary key of your table, you can just use find() to find the record
+        $organization = Organization::find($postId);
+
+        // compact("var_name") is same as ["var_name" => value]
+        return view("organization", ["club" => $organization]);
+    }
+
     // CREATING new Clubs / Organizations
     public function createOrganization(Request $request)
     {

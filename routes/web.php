@@ -43,13 +43,17 @@ Route::get("/club-list", function() {
     return view("website.club-list");
 });
 
-// ROUTES FOR FORUMS
+// Routes for FORUMS
 // Please follow Controller Function Notation
 Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
 Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
 
-// EVENTS
+// Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
+Route::post("/event-add", [EventController::class, "createEvent"])->name("events.create"); // add event
+
+// Routes for CLUBS
+// TODO: Route::post("/club-edd", [])
 
 
 require __DIR__.'/auth.php';

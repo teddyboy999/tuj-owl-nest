@@ -3,6 +3,7 @@ import { Box, Chip, IconButton, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
 
@@ -14,6 +15,31 @@ function BasicPopover() {
     const [tags, setTags] = useState<string[]>(['Test']);
     const [currValue, setCurrValue] = useState('');
 
+    const [formData, setFormData] = useState({
+        forumTitle: '',
+        description: '',
+    });
+
+    const handleSubmit = async (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+
+        const submissionData = {
+            post_title: formData.forumTitle,
+            post_content: formData.description,
+            tags: tags,
+        };
+
+        try {
+            const response = await axios.post('/forum-add', submissionData);
+
+            if (response.status === 201 || response.status === 200) {
+                alert('Forum post created!');
+                handleClose();
+            }
+        } catch (error) {
+            console.log('Error', error);
+        }
+    };
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -31,6 +57,10 @@ function BasicPopover() {
 
     const handleDelete = (tagToDelete: string) => {
         setTags((chips) => chips.filter((chip) => chip !== tagToDelete));
+    };
+
+    const handleChange = (event: { target: { name: any; value: any } }) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
     const open = Boolean(anchorEl);
@@ -57,6 +87,8 @@ function BasicPopover() {
                 }}
             >
                 <Box
+                    component="form"
+                    onSubmit={handleSubmit}
                     sx={{
                         p: 3,
                         backgroundColor: 'rgb(230, 219, 171)',
@@ -75,6 +107,9 @@ function BasicPopover() {
                         <Typography variant="h6">Title of Post</Typography>
                         <TextField
                             fullWidth
+                            name="forumTitle"
+                            value={formData.forumTitle}
+                            onChange={handleChange}
                             size="small"
                             placeholder="I want to know..."
                             style={{ backgroundColor: 'rgb(235, 235, 235)' }}
@@ -121,6 +156,9 @@ function BasicPopover() {
                         <Typography variant="subtitle2">Message</Typography>
                         <TextField
                             multiline
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
                             rows={4}
                             fullWidth
                             placeholder="Write whats on your mind"
@@ -129,7 +167,7 @@ function BasicPopover() {
                     </Box>
 
                     <Box>
-                        <Button variant="contained" fullWidth>
+                        <Button type="submit" variant="contained" fullWidth>
                             Submit
                         </Button>
                     </Box>

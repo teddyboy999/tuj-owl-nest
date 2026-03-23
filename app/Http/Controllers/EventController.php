@@ -50,6 +50,8 @@ class EventController extends Controller
 
         $event->save();
 
+        // TODO: fix make it refresh  the page
+        // return redirect('/events-list')->with('success', 'Event created successfully!');
         return response()->json([
         'message' => 'Event created successfully!',
         'event'   => $event

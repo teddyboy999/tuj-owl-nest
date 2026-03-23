@@ -47,6 +47,7 @@ Route::get("/club-list", function() {
 // Please follow Controller Function Notation
 Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
 Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
+Route::post("/forum-add", [ForumController::class, "createForumPost"])->name('forums.create');
 
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");

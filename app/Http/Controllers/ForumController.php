@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use App\Models\Post;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 // Forum controller only to return forum posts of a specific id
@@ -30,16 +31,30 @@ class ForumController extends Controller
     {
         // Validate request data
         $validatedData = $request->validate([
-            "post_author" => "required",
-            "post_author_email" => "required",
-            "post_content" => "required",
+            "post_title" => "required|string",
+            "post_author" => "nullable",
+            "post_author_email" => "nullable", // TODO: Use logged in user's email here, same for name
+            "post_content" => "required|string",
+            'tags' => "nullable|array",
         ]);
 
-        // add to posts table
-        $posts = new Post();
-        $posts->create($validatedData);
+        // add to Forum table
+        $forum = new Forum();
 
-        return view('website.forum', ['posts' => $posts]);
+        $forum->forum_title = $validatedData['post_title'];
+        $forum->forum_content = $validatedData['post_content'];
+        $forum->tags = $validatedData['tags']; 
+        
+        $forum->forum_author = "Alonzo";
+        $forum->forum_author_email = "test@gmail.com";
+    
+    
+
+        $forum->save();
+        return response()->json([
+        'message' => 'Post created successfully!',
+        'event'   => $forum
+    ], 201);
     }
 
     // UPDATING existing forum post

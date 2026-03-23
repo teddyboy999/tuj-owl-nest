@@ -17,6 +17,7 @@
         </button>
     </div>
     <div id="cards">
+        {{-- Template for Club Cards --}}
         <article id="card">
             <img
                 src="{{ asset('Website_Images/Club_images/coding-club-logo.png') }}"
@@ -45,6 +46,20 @@
                 Organization that serves to bring together all those interested
                 in the CS space
             </p>
+        </article>
+
+        {{-- Get All Clubs / Organizations --}}
+        @foreach ()
+        <article id="card">
+            <img
+                src="{{ asset('Website_Images/Club_images/TUJ_CS_Society.jpg') }}"
+                id="club-pic-1"
+            />
+            <hr />
+            <h1 class="text-center text-2xl font-bold text-black">
+                TUJ CS Society
+            </h1>
+            <p class="truncate p-6 text-center text-black"></p>
         </article>
     </div>
 @endsection

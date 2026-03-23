@@ -51,9 +51,9 @@ Route::get("/club-edit", function (){
     return view('website.club-edit');
 });
 
-Route::get("/club-list", [OrganizationController::class, "index"])->name("club-list");
+Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
+Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show"); // for individual club pages
 
-Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show");
 
 
 require __DIR__.'/auth.php';

@@ -13,17 +13,12 @@ class PostController extends Controller
     // getForumPostByID($forum_post_id)
     public function index()
     {
-        // TODO: DYNAMIC FORUM POST LOADING BASED ON WHAT USER CLICKS
-        $forum_id = 1; // TESTING
 
-        $forum = new Forum(); // create a new instance of the Model
-        $forumPost = $forum->getForumById($forum_id); 
+        $forumPosts = Post::latest()->paginate(10);
 
-        $posts = new Post();
-        $postsUnderForum = $posts->getPostByParentForumId($forum_id);
-
-        // syntax: return view('view_name', data=['key'=>'value'], mergeData = [])
-        return view('website.forum', ['forum_post' => $forumPost, 'posts' => $postsUnderForum]);
+    return view('website.forums', [
+        'forum_posts' => $forumPosts // This must match the @foreach ($forum_posts...)
+    ]);
     }
 
     // CREATES a forum post
@@ -39,21 +34,22 @@ class PostController extends Controller
         ]);
 
         // add to Forum table
-        $forum = new Forum();
+        $post = new Post();
 
-        $forum->forum_title = $validatedData['post_title'];
-        $forum->forum_content = $validatedData['post_content'];
-        $forum->tags = $validatedData['tags']; 
+        $post->post_title = $validatedData['post_title'];
+        $post->post_content = $validatedData['post_content'];
+        $post->tags = $validatedData['tags']; 
         
-        $forum->forum_author = "Alonzo";
-        $forum->forum_author_email = "test@gmail.com";
+        $post->parent_forum_id = 1;
+        $post->post_author = "Alonzo";
+        $post->post_author_email = "test@gmail.com";
     
     
 
-        $forum->save();
+        $post->save();
         return response()->json([
         'message' => 'Post created successfully!',
-        'event'   => $forum
+        'event'   => $post
     ], 201);
     }
 

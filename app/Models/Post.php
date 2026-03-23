@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-    "forum_author",
-    "forum_author_email",
-    "forum_title",
-    "forum_content",
-    "tags"
+     "post_id",
+     "parent_forum_id",
+     "post_author",
+     "post_author_email",
+     "post_content",
+     "tags"
     ];
     protected $casts = [
         'tags' => 'array', // This turns the JSON string into a React-friendly array

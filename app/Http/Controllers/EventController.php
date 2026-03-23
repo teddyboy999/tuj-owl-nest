@@ -76,6 +76,6 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events-list.show', $event->id)->with('success', 'Event updated successfully.');
+        return redirect()->route('events-list', $event->id)->with('success', 'Event updated successfully.');
     }
 }

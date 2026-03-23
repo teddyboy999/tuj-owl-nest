@@ -8,7 +8,7 @@ use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 // Forum controller only to return forum posts of a specific id
-class ForumController extends Controller
+class PostController extends Controller
 {
     // getForumPostByID($forum_post_id)
     public function index()

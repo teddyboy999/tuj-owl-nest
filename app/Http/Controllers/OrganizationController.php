@@ -13,7 +13,7 @@ class OrganizationController extends Controller
         $organization = new Organization;
         $clubs = $organization->getPaginatedOrganizations(15);
 
-        return view('club-list', ['clubs' => $clubs]);
+        return view('website.club-list', ['clubs' => $clubs]);
     }
 
     // SHOW individual clubs / organizations based on ID and details about them
@@ -23,7 +23,7 @@ class OrganizationController extends Controller
         $organization = Organization::find($postId);
 
         // compact("var_name") is same as ["var_name" => value]
-        return view("organization", ["club" => $organization]);
+        return view("website.club", ["club" => $organization]);
     }
 
     // CREATING new Clubs / Organizations

@@ -23,17 +23,37 @@ class EventController extends Controller
     {
         // Validate request data
         $validatedData = $request->validate([
-            "name" => "required|unique",
-            "description" => "required",
-            "date" => "required|date",
-            "start_time" => "required",
-            "end_time" => "required"
+            'eventName' => 'required|string|max:255',
+            'event_organizer'  => 'required|string|max:255',
+            'event_email' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'affiliation' => 'required|string',
+            'tags' => 'array',
+            'eventDate' => 'required|date',
+            'startTime' => 'required',
+            'endTime' => 'required',
         ]);  
 
-        // add to event table
-        $event = Event::create($validatedData);
+        
+        $event = new Event();
 
-        return redirect('/events-list')->with('success', 'Event created successfully!');
+
+        $event->event_title = $validatedData['eventName'];
+        $event->event_organizer = $validatedData['event_organizer'];
+        $event->event_description = $validatedData['description'];
+        $event->event_affiliation = $validatedData['affiliation'];
+        $event->event_date = $validatedData['eventDate'];
+        $event->start_time = $validatedData['startTime'];
+        $event->end_time = $validatedData['endTime'];
+        $event->tags = $validatedData['tags'];
+        $event->event_organizer_email = $validatedData['event_email'];
+
+        $event->save();
+
+        return response()->json([
+        'message' => 'Event created successfully!',
+        'event'   => $event
+    ], 201);
 
     }
 

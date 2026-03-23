@@ -11,7 +11,10 @@ import * as React from 'react';
 
 const options = ['Club', 'Society', 'Organization'];
 
-const DropDown = () => {
+interface DropDownProps {
+    onChange: (selectedValue: string) => void;
+}
+const DropDown = ({ onChange }: DropDownProps) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -26,6 +29,7 @@ const DropDown = () => {
     ) => {
         setSelectedIndex(index);
         setOpen(false);
+        onChange(options[index]);
     };
 
     const handleToggle = () => {

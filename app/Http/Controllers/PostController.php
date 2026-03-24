@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use App\Models\Post;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 
 // Forum controller only to return forum posts of a specific id
@@ -12,17 +13,12 @@ class PostController extends Controller
     // getForumPostByID($forum_post_id)
     public function index()
     {
-        // TODO: DYNAMIC FORUM POST LOADING BASED ON WHAT USER CLICKS
-        $forum_id = 1; // TESTING
 
-        $forum = new Forum(); // create a new instance of the Model
-        $forumPost = $forum->getForumById($forum_id); 
+        $forumPosts = Post::latest()->paginate(10);
 
-        $posts = new Post();
-        $postsUnderForum = $posts->getPostByParentForumId($forum_id);
-
-        // syntax: return view('view_name', data=['key'=>'value'], mergeData = [])
-        return view('website.forum', ['forum_post' => $forumPost, 'posts' => $postsUnderForum]);
+    return view('website.forums', [
+        'forum_posts' => $forumPosts // This must match the @foreach ($forum_posts...)
+    ]);
     }
 
     // CREATES a forum post
@@ -30,16 +26,31 @@ class PostController extends Controller
     {
         // Validate request data
         $validatedData = $request->validate([
-            "post_author" => "required",
-            "post_author_email" => "required",
-            "post_content" => "required",
+            "post_title" => "required|string",
+            "post_author" => "nullable",
+            "post_author_email" => "nullable", // TODO: Use logged in user's email here, same for name
+            "post_content" => "required|string",
+            'tags' => "nullable|array",
         ]);
 
-        // add to posts table
-        $posts = new Post();
-        $posts->create($validatedData);
+        // add to Forum table
+        $post = new Post();
 
-        return view('website.forum', ['posts' => $posts]);
+        $post->post_title = $validatedData['post_title'];
+        $post->post_content = $validatedData['post_content'];
+        $post->tags = $validatedData['tags']; 
+        
+        $post->parent_forum_id = 1;
+        $post->post_author = "Alonzo";
+        $post->post_author_email = "test@gmail.com";
+    
+    
+
+        $post->save();
+        return response()->json([
+        'message' => 'Post created successfully!',
+        'event'   => $post
+    ], 201);
     }
 
     // UPDATING existing forum post

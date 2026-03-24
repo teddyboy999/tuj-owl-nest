@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id("post_id");
             $table->timestamps();
 
-            $table->foreignId("parent_forum_id")->constrained(table: "forums", column: "id");
+            $table->foreignId("parent_forum_id")->nullable()->constrained();
+            $table->string("post_title");
             $table->string("post_author");
             $table->string("post_author_email");
             $table->longText("post_content");
+            $table->json("tags")->nullable();
             $table->integer("post_likes")->default(0);
             $table->integer("post_dislikes")->default(0);
         });

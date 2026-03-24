@@ -1,55 +1,71 @@
 @extends('layouts.web')
 
 @section('content')
-    {{-- TODO: MOVE THIS TO web.blade.php --}}
-    {{-- Top Navigation and stuff --}}
     <div id="top-border">
         <div id="top-nav-bar"></div>
     </div>
 
-    {{-- Title Box --}}
     <div id="forum" class="fade-in">
-        <p>Forums</p>
+        <p class="p-4 text-3xl font-bold">Forums</p>
     </div>
-    {{-- Create Forum Button --}}
+
     <div name="create-forum"></div>
-    {{-- Box for all forum posts to show up --}}
+
     <div class="mx-4 my-2 border p-4">
         @foreach ($forum_posts as $forum_post)
-            {{-- Forum Post Preview Box --}}
             <div
-                class="mt-2 mb-2 grid w-full grid-cols-1 grid-rows-2 bg-red-200 px-2 py-2"
+                class="mt-2 mb-2 flex w-full flex-col border-l-4 border-red-300 bg-red-50 px-4 py-3 shadow-sm"
             >
-                {{-- Title --}}
-                <p class="text-2xl font-semibold text-black">
-                    {{ $forum_post->forum_title }}
-                </p>
-                {{-- Author and Author Email --}}
-                <p class="mt-0.5 mb-0.5 indent-3 text-gray-600">
-                    <span class="font-light underline">By:</span>
-                    {{ $forum_post->forum_author }} (
+                {{-- Title and Tags --}}
+                <div class="flex items-start justify-between">
+                    <p class="text-2xl font-semibold text-black">
+                        {{ $forum_post->post_title }}
+                    </p>
+
+                    {{-- Displaying the Tags Array from your DB --}}
+                    <div class="flex gap-1">
+                        @if ($forum_post->tags)
+                            @foreach ($forum_post->tags as $tag)
+                                <span
+                                    class="rounded-full bg-red-200 px-2 py-0.5 text-xs text-red-800"
+                                >
+                                    {{ $tag }}
+                                </span>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+
+                {{-- Author Details --}}
+                <p class="mt-1 text-sm text-gray-600">
+                    <span class="font-medium">By:</span>
+                    {{ $forum_post->post_author }}
+                    <span class="text-gray-400">|</span>
                     <a
-                        class="hover:text-black hover:underline"
-                        href="mailto:{{ $forum_post->forum_author_email }}"
+                        href="mailto:{{ $forum_post->post_author_email }}"
+                        class="text-blue-500 hover:underline"
                     >
-                        {{ $forum_post->forum_author_email }}
+                        {{ $forum_post->post_author_email }}
                     </a>
-                    ),
-                    <span class="font-light underline">Created at:</span>
-                    {{ $forum_post->created_at }}
                 </p>
 
-                {{-- Created At (Timestamps) --}}
-                <p class="mt-0.5 mb-1 indent-3 text-gray-400"></p>
+                {{-- Created At --}}
+                <p class="mt-1 text-xs text-gray-400">
+                    Posted on:
+                    {{ $forum_post->created_at->format('M d, Y @ g:i A') }}
+                </p>
 
-                {{-- Description / Forum Post Content --}}
-                <p class="w-full truncate pt-1 text-gray-500">
-                    {{ $forum_post->forum_content }}
+                {{-- Content Preview --}}
+                <p
+                    class="mt-3 border-t border-red-100 pt-2 leading-relaxed text-gray-700"
+                >
+                    {{ $forum_post->post_content }}
                 </p>
             </div>
-        @endforeach()
+        @endforeach
 
-        {{-- Show links to the next pages returned by paginate --}}
-        {{ $forum_posts->links() }}
+        <div class="mt-4">
+            {{ $forum_posts->links() }}
+        </div>
     </div>
 @endsection

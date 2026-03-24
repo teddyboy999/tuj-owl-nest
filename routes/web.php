@@ -38,8 +38,9 @@ Route::get("/user-profile", function () {
 
 // Routes for FORUMS
 // Please follow Controller Function Notation
-Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
-//Route::get('/forum', [ForumController::class, "index"])->name("website.forum"); // TODO: Fix route to show individual forum
+Route::get('/forums', [PostController::class, "index"])->name("website.forums");
+ // TODO: Fix route to show individual forum
+Route::post('/forum-add', [PostController::class, "createForumPost"])->name("post.create");
 
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");

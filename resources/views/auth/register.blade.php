@@ -56,6 +56,24 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Temple ID -->
+        <div class="mt-4">
+            <x-input-label for="user_temple_id" :value="__('Temple ID')" />
+            <x-text-input
+                id="user_temple_id"
+                class="mt-1 block w-full"
+                type="string"
+                name="user_temple_id"
+                :value="old('user_temple_id')"
+                required
+                autocomplete="user_temple_id"
+            />
+            <x-input-error
+                :messages="$errors->get('user_temple_id')"
+                class="mt-2"
+            />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

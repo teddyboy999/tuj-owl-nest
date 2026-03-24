@@ -16,41 +16,34 @@ class PostController extends Controller
 
         $forumPosts = Forum::latest()->paginate(10);
 
-    return view('website.forums', [
-        'forum_posts' => $forumPosts 
-    ]);
+        return view('website.forums', [
+            'forum_posts' => $forumPosts 
+        ]);
     }
 
     // CREATES a forum post
-    public function createForumPost(Request $request)
+    public function createPost(Request $request)
     {
-        // Validate request data
+        // TODO: add id in the route (pass event id)
         $validatedData = $request->validate([
-            "forum_title" => "required|string",
-            "forum_author" => "nullable",
-            "forum_author_email" => "nullable", // TODO: Use logged in user's email here, same for name
-            "forum_content" => "required|string",
-            'tags' => "nullable|array",
+            "name" => "required|unique",
+            "description" => "required",
+            "date" => "required|date",
+            "start_time" => "required",
+            "end_time" => "required"
         ]);
 
-        // add to Forum table
-        $forums = new Forum();
+        $post = new Post;
 
-        $forums->forum_title = $validatedData['forum_title'];
-        $forums->forum_content = $validatedData['forum_content'];
-        $forums->tags = $validatedData['tags'];         
-        $forums->forum_author = "Alonzo";
-        $forums->forum_author_email = "test@gmail.com";    
+        $post->fill($validatedData);
 
-        $forums->save();
-        return response()->json([
-        'message' => 'Forum created successfully!',
-        'event'   => $forums
-    ], 201);
+        $post->save();
+
+        return redirect()->route('website.forum', ['post' => $post])->with('success', 'Event updated successfully.');
     }
 
     // UPDATING existing forum post
-    public function updateForumPost(Request $request, Post $post)
+    public function updatePost(Request $request, Post $post)
     {
         // TODO: add id in the route (pass event id)
         $validatedData = $request->validate([

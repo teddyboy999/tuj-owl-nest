@@ -42,19 +42,19 @@ Route::get("/new-club", function() {
 
 // Routes for FORUMS
 // Please follow Controller Function Notation
-Route::get('/forums', [PostController::class, "index"])->name("website.forums");
- // TODO: Fix route to show individual forum
-Route::post('/forum-add', [PostController::class, "createForumPost"])->name("post.create");
+Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
+Route::get("/forums/{forumId}", [ForumsController::class, "show"])->name("forums.show"); // individual forum post
+Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
 
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
-Route::post("/event-add", [EventController::class, "createEvent"])->name("events.create"); // add event
+Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
 
 // Routes for CLUBS / ORGANIZATIONS
 // TODO: Route::post("/club-add", [])
 Route::get("/club-edit", function (){
     return view('website.club-edit');
-});
+})->middleware('auth');
 
 Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
 Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show"); // for individual club pages

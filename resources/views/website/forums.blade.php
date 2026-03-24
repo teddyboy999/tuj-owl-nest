@@ -12,20 +12,20 @@
     <div name="create-forum"></div>
 
     <div class="mx-4 my-2 border p-4">
-        @foreach ($forum_posts as $forum_post)
+        @foreach ($forum_posts as $forum)
             <div
                 class="mt-2 mb-2 flex w-full flex-col border-l-4 border-red-300 bg-red-50 px-4 py-3 shadow-sm"
             >
                 {{-- Title and Tags --}}
                 <div class="flex items-start justify-between">
                     <p class="text-2xl font-semibold text-black">
-                        {{ $forum_post->forum_title }}
+                        {{ $forum->forum_title }}
                     </p>
 
                     {{-- Displaying the Tags Array from your DB --}}
                     <div class="flex gap-1">
-                        @if ($forum_post->tags)
-                            @foreach ($forum_post->tags as $tag)
+                        @if ($forum->tags)
+                            @foreach ($forum->tags as $tag)
                                 <span
                                     class="rounded-full bg-red-200 px-2 py-0.5 text-xs text-red-800"
                                 >
@@ -39,33 +39,39 @@
                 {{-- Author Details --}}
                 <p class="mt-1 text-sm text-gray-600">
                     <span class="font-medium">By:</span>
-                    {{ $forum_post->forum_author }}
+                    {{ $forum->forum_author }}
                     <span class="text-gray-400">|</span>
                     <a
-                        href="mailto:{{ $forum_post->forum_author_email }}"
+                        href="mailto:{{ $forum->forum_author_email }}"
                         class="text-blue-500 hover:underline"
                     >
-                        {{ $forum_post->forum_author_email }}
+                        {{ $forum->forum_author_email }}
                     </a>
                 </p>
 
                 {{-- Created At --}}
                 <p class="mt-1 text-xs text-gray-400">
                     Posted on:
-                    {{ $forum_post->created_at->format('M d, Y @ g:i A') }}
+                    {{ $forum->created_at->format('M d, Y @ g:i A') }}
                 </p>
 
                 {{-- Content Preview --}}
                 <p
-                    class="mt-3 border-t border-red-100 pt-2 leading-relaxed text-gray-700"
+                    class="mt-3 w-3/4 truncate border-t border-red-100 pt-2 leading-relaxed text-gray-700"
                 >
-                    {{ $forum_post->forum_content }}
+                    {{ $forum->forum_content }}
                 </p>
+                <a
+                    class="text-blue-900 underline visited:text-purple-500 hover:text-blue-500 hover:underline"
+                    href="{{ route('forums.show', ['forumId' => $forum->id]) }}"
+                >
+                    ...Read more.
+                </a>
             </div>
         @endforeach
 
         <div class="mt-4">
-            {{ $forum_posts->links() }}
+            {{ $forum->links }}
         </div>
     </div>
 @endsection

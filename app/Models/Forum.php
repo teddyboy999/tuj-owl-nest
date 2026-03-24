@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
@@ -15,9 +16,11 @@ class Forum extends Model
      "forum_content",
      "tags"
     ];
+
      protected $casts = [
         'tags' => 'array', 
     ];
+
     // getForumById($forum_id): returns forum post title and description by id provided
     public function getForumById($forum_id)
     {
@@ -40,5 +43,14 @@ class Forum extends Model
     public function getAllForums()
     {
         return $this->all();
+    }
+
+    // Get all the posts related to this forum (paginated)
+    public function getChildPosts($forumId, $paginate_num)
+    {
+        // get all posts where the forum id matches
+        $posts = Post::where("parent_forum_id", $forumId)->paginate($paginate_num);
+
+        return $posts;
     }
 }

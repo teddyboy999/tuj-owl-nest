@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $fillable = [
      "post_id",
-     "parent_forum_id",
+     "forum_id",
      "post_author",
      "post_author_email",
      "post_content",
@@ -21,6 +21,6 @@ class Post extends Model
 
     public function getPostByParentForumId($forum_id)
     {
-        return $this->where("parent_forum_id", $forum_id)->get();
+        return $this->where("forum_id", $forum_id)->get();
     }
 }

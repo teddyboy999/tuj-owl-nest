@@ -9,12 +9,9 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import * as React from 'react';
 
-const options = ['Club', 'Society', 'Organization'];
+const options = ['General', 'Club Related', 'Organization Related', 'Other'];
 
-interface DropDownProps {
-    onChange: (selectedValue: string) => void;
-}
-const DropDown = ({ onChange }: DropDownProps) => {
+const DropDown = () => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef<HTMLDivElement>(null);
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -29,7 +26,6 @@ const DropDown = ({ onChange }: DropDownProps) => {
     ) => {
         setSelectedIndex(index);
         setOpen(false);
-        onChange(options[index]);
     };
 
     const handleToggle = () => {

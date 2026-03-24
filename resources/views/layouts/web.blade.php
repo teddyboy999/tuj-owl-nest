@@ -8,12 +8,13 @@
         @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
     </head>
     <body class="h-screen bg-white">
-        <div class="flex flex-col min-h-screen"> 
-            <div class="flex flex-col min-h-screen">   
+        <div class="flex flex-col min-h-screen">
+            <div class="flex flex-col min-h-screen">
                 <main class="grow">
                     @yield('content')
-                </main>
+                </main>    
             </div>
+
             {{-- Push content to the bottom with = "flex flex-col min-h-screen" or "fixed inset-x-0 bottom-0"--}}
             
             <footer class="bg-[#272727] text-white py-8">
@@ -44,12 +45,14 @@
                     </a>
                 </div>
                 </div>
-                    <div class="copyright-text">
+                <div class="flex flex-col">
+                    <div class="copyright-text ml-auto text-right">
                         <p class="text-white italic">
                             Copyright 2026, Temple University, Japan Campus. All
                             rights reserved.
                         </p>
                     </div>
+                </div>
                     <img src="https://www.tuj.ac.jp/modules/custom/tu_layout/images/brand/temple-logo-japan.png" alt="temple-logo-footer" class="temple-logo-footer"/>
                 </div>
             </footer>

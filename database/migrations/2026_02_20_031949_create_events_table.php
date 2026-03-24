@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("event_organizer"); // user 
             $table->string("event_organizer_email");
             $table->string("event_affiliation")->nullable(); // club || society || organization
-            $table->string("event_category");
+            $table->json("tags")->nullable();
             $table->string("event_title");
             $table->longText("event_description");
             $table->date("event_date");

@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
+    protected $fillable = [
+     "id",
+     "forum_title",
+     "parent_forum_id",
+     "forum_author",
+     "forum_author_email",
+     "forum_content",
+     "tags"
+    ];
+     protected $casts = [
+        'tags' => 'array', 
+    ];
     // getForumById($forum_id): returns forum post title and description by id provided
     public function getForumById($forum_id)
     {

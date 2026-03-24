@@ -36,6 +36,10 @@ Route::get("/user-profile", function () {
     return view('website.user-profile');
 });
 
+Route::get("/new-club", function() {
+    return view('website.new-club');
+});
+
 // Routes for FORUMS
 // Please follow Controller Function Notation
 Route::get('/forums', [PostController::class, "index"])->name("website.forums");

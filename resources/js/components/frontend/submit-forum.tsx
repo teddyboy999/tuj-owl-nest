@@ -16,16 +16,16 @@ function BasicPopover() {
     const [currValue, setCurrValue] = useState('');
 
     const [formData, setFormData] = useState({
-        postTitle: '',
-        postDescription: '',
+        forumTitle: '',
+        forumDescription: '',
     });
 
     const handleSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
         const submissionData = {
-            post_title: formData.postTitle,
-            post_content: formData.postDescription,
+            forum_title: formData.forumTitle,
+            forum_content: formData.forumDescription,
             tags: tags,
         };
 
@@ -108,8 +108,8 @@ function BasicPopover() {
                         <Typography variant="h6">Title of Post</Typography>
                         <TextField
                             fullWidth
-                            name="postTitle"
-                            value={formData.postTitle}
+                            name="forumTitle"
+                            value={formData.forumTitle}
                             onChange={handleChange}
                             size="small"
                             placeholder="I want to know..."
@@ -157,8 +157,8 @@ function BasicPopover() {
                         <Typography variant="subtitle2">Message</Typography>
                         <TextField
                             multiline
-                            name="postDescription"
-                            value={formData.postDescription}
+                            name="forumDescription"
+                            value={formData.forumDescription}
                             onChange={handleChange}
                             rows={4}
                             fullWidth

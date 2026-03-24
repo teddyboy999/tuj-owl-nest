@@ -8,7 +8,7 @@
         <div class="form-container">
             <form action="" method="" autocomplete="on">
                 <fieldset class="club-form-fieldset">
-                    <h2 style="text-align: center;">Edit Club Information</h2>
+                    <h2 style="text-align: center;">Create a New Club</h2>
                     <div id="club-name" class="club-name">
                         <label for="club-name-input" class="club-label">Club Name:</label>
                         <input type="text" id="club-name-input" name="club-name-input" placeholder="Ex. Coding Club" class="club-input"/>

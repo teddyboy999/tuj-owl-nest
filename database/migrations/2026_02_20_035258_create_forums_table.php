@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("forum_author");
             $table->string("forum_author_email");
             $table->string("forum_title");
+            $table->json("tags")->nullable();
             $table->longText("forum_content");
             $table->integer("forum_likes")->default(0);
             $table->integer("forum_dislikes")->default(0);

@@ -12,10 +12,6 @@ class Post extends Model
      "post_author",
      "post_author_email",
      "post_content",
-     "tags"
-    ];
-    protected $casts = [
-        'tags' => 'array', // This turns the JSON string into a React-friendly array
     ];
     // getPostById($post_id): returns post by the specified id
     public function getPostById($post_id)

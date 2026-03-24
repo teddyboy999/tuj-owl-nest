@@ -1,6 +1,9 @@
 @extends('layouts.web')
 
 @section('content')
+    <div id="top-border">
+        <div id="top-nav-bar"></div>
+    </div>
     {{-- Outer Container for entire page --}}
     <div class="p-6">
         {{-- Banner / Image Scroll layer --}}

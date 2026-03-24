@@ -14,10 +14,10 @@ class PostController extends Controller
     public function index()
     {
 
-        $forumPosts = Post::latest()->paginate(10);
+        $forumPosts = Forum::latest()->paginate(10);
 
     return view('website.forums', [
-        'forum_posts' => $forumPosts // This must match the @foreach ($forum_posts...)
+        'forum_posts' => $forumPosts 
     ]);
     }
 
@@ -26,30 +26,30 @@ class PostController extends Controller
     {
         // Validate request data
         $validatedData = $request->validate([
-            "post_title" => "required|string",
-            "post_author" => "nullable",
-            "post_author_email" => "nullable", // TODO: Use logged in user's email here, same for name
-            "post_content" => "required|string",
+            "forum_title" => "required|string",
+            "forum_author" => "nullable",
+            "forum_author_email" => "nullable", // TODO: Use logged in user's email here, same for name
+            "forum_content" => "required|string",
             'tags' => "nullable|array",
         ]);
 
         // add to Forum table
-        $post = new Post();
+        $forums = new Forum();
 
-        $post->post_title = $validatedData['post_title'];
-        $post->post_content = $validatedData['post_content'];
-        $post->tags = $validatedData['tags']; 
+        $forums->forum_title = $validatedData['forum_title'];
+        $forums->forum_content = $validatedData['forum_content'];
+        $forums->tags = $validatedData['tags']; 
         
-        $post->parent_forum_id = 1;
-        $post->post_author = "Alonzo";
-        $post->post_author_email = "test@gmail.com";
+        
+        $forums->forum_author = "Alonzo";
+        $forums->forum_author_email = "test@gmail.com";
     
     
 
-        $post->save();
+        $forums->save();
         return response()->json([
-        'message' => 'Post created successfully!',
-        'event'   => $post
+        'message' => 'Forum created successfully!',
+        'event'   => $forums
     ], 201);
     }
 

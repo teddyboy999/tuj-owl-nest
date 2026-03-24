@@ -19,7 +19,7 @@
                 {{-- Title and Tags --}}
                 <div class="flex items-start justify-between">
                     <p class="text-2xl font-semibold text-black">
-                        {{ $forum_post->post_title }}
+                        {{ $forum_post->forum_title }}
                     </p>
 
                     {{-- Displaying the Tags Array from your DB --}}
@@ -39,13 +39,13 @@
                 {{-- Author Details --}}
                 <p class="mt-1 text-sm text-gray-600">
                     <span class="font-medium">By:</span>
-                    {{ $forum_post->post_author }}
+                    {{ $forum_post->forum_author }}
                     <span class="text-gray-400">|</span>
                     <a
-                        href="mailto:{{ $forum_post->post_author_email }}"
+                        href="mailto:{{ $forum_post->forum_author_email }}"
                         class="text-blue-500 hover:underline"
                     >
-                        {{ $forum_post->post_author_email }}
+                        {{ $forum_post->forum_author_email }}
                     </a>
                 </p>
 
@@ -59,7 +59,7 @@
                 <p
                     class="mt-3 border-t border-red-100 pt-2 leading-relaxed text-gray-700"
                 >
-                    {{ $forum_post->post_content }}
+                    {{ $forum_post->forum_content }}
                 </p>
             </div>
         @endforeach

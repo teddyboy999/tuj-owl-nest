@@ -9,7 +9,7 @@
         <p class="p-4 text-3xl font-bold">Forums</p>
     </div>
 
-    <div name="create-forum"></div>
+    <div name="create-forum" class="px-6 py-4"></div>
 
     <div class="mx-4 my-2 border p-4">
         @foreach ($forum_posts as $forum)
@@ -68,10 +68,9 @@
                     ...Read more.
                 </a>
             </div>
+            <div class="mt-4">
+                {{ $forum->links }}
+            </div>
         @endforeach
-
-        <div class="mt-4">
-            {{ $forum->links }}
-        </div>
     </div>
 @endsection

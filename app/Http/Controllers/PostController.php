@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use App\Models\Post;
-use Illuminate\Contracts\Support\ValidatedData;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 // Forum controller only to return forum posts of a specific id
@@ -14,10 +14,21 @@ class PostController extends Controller
     public function index()
     {
 
-        $forumPosts = Forum::latest()->paginate(10);
+        $post = new Post();
+        $posts = $post->getLatestPaginatedForums(15);
 
-        return view('website.forums', [
-            'forum_posts' => $forumPosts 
+        return view('website.forum', ['forum_reply' => $posts]);
+    }
+
+   public function show($id)
+    {
+        $forum = Forum::findOrFail($id);
+
+        $posts = Post::where('parent_forum_id', $id)->get();
+
+        return view('website.forum', [
+            'forum' => $forum,
+            'posts' => $posts
         ]);
     }
 
@@ -26,20 +37,29 @@ class PostController extends Controller
     {
         // TODO: add id in the route (pass event id)
         $validatedData = $request->validate([
-            "name" => "required|unique",
-            "description" => "required",
-            "date" => "required|date",
-            "start_time" => "required",
-            "end_time" => "required"
+            "post_author" => "string",
+            "post_content" => "required",
+            "post_author_email" => "string",
+            "parent_forum_id" => "required|integer",
         ]);
 
-        $post = new Post;
+        $user = Auth::user();
 
-        $post->fill($validatedData);
+        $posts = new Post();
 
-        $post->save();
+        $posts->post_content = $validatedData['post_content'];
+        $posts->parent_forum_id = $validatedData['parent_forum_id'];
 
-        return redirect()->route('website.forum', ['post' => $post])->with('success', 'Event updated successfully.');
+        $posts->post_author = $user->name;
+        $posts->post_author_email = $user->email;
+       
+
+        $posts->save();
+
+        return response()->json([
+            'message' => 'Forum created successfully!',
+            'event'   => $posts
+        ], 201);
     }
 
     // UPDATING existing forum post

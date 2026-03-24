@@ -14,7 +14,7 @@
 
     {{-- Box for all events to show up --}}
 
-    <div name="create-event"></div>
+    <div name="create-event" class="px-6 py-4"></div>
 
     <div class="mx-4 rounded-sm border-2 p-4 indent-4">
         @foreach ($events as $event)

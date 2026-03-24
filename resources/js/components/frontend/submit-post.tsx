@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Box, Chip, IconButton, TextField } from '@mui/material';
+import { Box, IconButton, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
@@ -16,21 +16,24 @@ function BasicPopover() {
     const [currValue, setCurrValue] = useState('');
 
     const [formData, setFormData] = useState({
-        forumTitle: '',
-        forumDescription: '',
+        postContent: '',
     });
 
     const handleSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
+        const rootElement = document.getElementById('create-post-root');
+        const forumId = rootElement
+            ? rootElement.getAttribute('data-forum-id')
+            : null;
+
         const submissionData = {
-            forum_title: formData.forumTitle,
-            forum_content: formData.forumDescription,
-            tags: tags,
+            post_content: formData.postContent,
+            parent_forum_id: forumId,
         };
 
         try {
-            const response = await axios.post('/forum-add', submissionData);
+            const response = await axios.post('/post-add', submissionData);
 
             if (response.status === 201 || response.status === 200) {
                 handleClose();
@@ -49,17 +52,6 @@ function BasicPopover() {
         setAnchorEl(null);
     };
 
-    const handleKeyUp = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' && currValue.trim() !== '') {
-            setTags([...tags, currValue.trim()]);
-            setCurrValue('');
-        }
-    };
-
-    const handleDelete = (tagToDelete: string) => {
-        setTags((chips) => chips.filter((chip) => chip !== tagToDelete));
-    };
-
     const handleChange = (event: { target: { name: any; value: any } }) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
@@ -74,7 +66,7 @@ function BasicPopover() {
                 variant="contained"
                 onClick={handleClick}
             >
-                Create New Forum
+                Create a Post Reply
             </Button>
             <Popover
                 id={id}
@@ -105,60 +97,11 @@ function BasicPopover() {
                         <CloseIcon />
                     </IconButton>
                     <Box>
-                        <Typography variant="h6">Title of Post</Typography>
-                        <TextField
-                            fullWidth
-                            name="forumTitle"
-                            value={formData.forumTitle}
-                            onChange={handleChange}
-                            size="small"
-                            placeholder="I want to know..."
-                            style={{ backgroundColor: 'rgb(235, 235, 235)' }}
-                        />
-                    </Box>
-                    <Box>
-                        <Typography variant="subtitle2">Tags</Typography>
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                bgcolor: 'rgb(235, 235, 235}',
-                                borderRadius: 1,
-                                gap: 1,
-                                minHeight: '32px',
-                            }}
-                        >
-                            {tags.map((tag) => (
-                                <Chip
-                                    key={tag}
-                                    label={tag}
-                                    onDelete={() => handleDelete(tag)}
-                                    size="small"
-                                    color="primary"
-                                />
-                            ))}
-                            <input
-                                value={currValue}
-                                onChange={(e) => setCurrValue(e.target.value)}
-                                onKeyUp={handleKeyUp}
-                                placeholder="Add Tag"
-                                style={{
-                                    border: 'none',
-                                    outline: 'none',
-                                    backgroundColor: 'whitesmoke',
-                                    flexGrow: 1,
-                                    width: '100%',
-                                    padding: '8px',
-                                }}
-                            />
-                        </Box>
-                    </Box>
-                    <Box>
-                        <Typography variant="subtitle2">Message</Typography>
+                        <Typography variant="subtitle2">Reply</Typography>
                         <TextField
                             multiline
-                            name="forumDescription"
-                            value={formData.forumDescription}
+                            name="postContent"
+                            value={formData.postContent}
                             onChange={handleChange}
                             rows={4}
                             fullWidth

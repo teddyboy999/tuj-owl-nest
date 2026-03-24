@@ -46,6 +46,11 @@ Route::get('/forums', [ForumsController::class, "index"])->name("website.forums"
 Route::get("/forums/{forumId}", [ForumsController::class, "show"])->name("forums.show"); // individual forum post
 Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
 
+// Routes for POSTS
+Route::get("/forums/{forumId}", [PostController::class, "show"])->name("forums.show");
+// For replies to show for each post
+Route::post('/post-add', [PostController::class, "createPost"])->middleware('auth')->name("post.create");
+
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event

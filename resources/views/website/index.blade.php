@@ -11,7 +11,7 @@
     <header>
       <nav>
         <ul>
-          <li><a href="">Events</a></li>
+          <li><a href="events.blade.php">Events</a></li>
           <li><a href="">Forum</a></li>
           <li><a href="">Clubs</a></li>
           <li><a href="">Login</a></li>

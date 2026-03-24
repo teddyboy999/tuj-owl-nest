@@ -95,7 +95,7 @@ Note: There's a lot of information to fill out here, I'll need some time, becaus
 1. Work with blade + HTML templates.
 2. Every new file will be of the format: **app.blade.php**
 3. You can write pure HTML code in these files, don't worry.
-4. **Brave:** You can also use Blade Directives for extra functionality, but there's really no need to. You can format it as a Pure HTML file.
+4. **Blade:** You can also use Blade Directives for extra functionality, but there's really no need to. You can format it as a Pure HTML file.
 
 ## Database: /database/
 

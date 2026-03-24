@@ -38,13 +38,9 @@ class PostController extends Controller
 
         $forums->forum_title = $validatedData['forum_title'];
         $forums->forum_content = $validatedData['forum_content'];
-        $forums->tags = $validatedData['tags']; 
-        
-        
+        $forums->tags = $validatedData['tags'];         
         $forums->forum_author = "Alonzo";
-        $forums->forum_author_email = "test@gmail.com";
-    
-    
+        $forums->forum_author_email = "test@gmail.com";    
 
         $forums->save();
         return response()->json([

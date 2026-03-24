@@ -47,8 +47,8 @@ function BasicPopover() {
             const response = await axios.post('/event-add', submissionData);
 
             if (response.status === 200 || response.status === 201) {
-                alert('Event Created');
                 handleClose();
+                window.location.reload();
             }
         } catch (error) {
             const axiosError = error as any;

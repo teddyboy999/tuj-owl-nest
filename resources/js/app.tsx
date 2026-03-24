@@ -20,6 +20,7 @@ import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
 import CreateEvent from './components/frontend/submit-event';
 import CreateForum from './components/frontend/submit-forum';
+import CreatePost from './components/frontend/submit-post';
 import TimePicker from './components/frontend/time-picker';
 import TopNavBar from './components/frontend/top-nav-bar';
 
@@ -147,6 +148,15 @@ for (let i = 0; i < CreateEventElement.length; i++) {
     createRoot(CreateEventElement[i]).render(
         <StrictMode>
             <CreateEvent />
+        </StrictMode>,
+    );
+}
+
+const CreatePostElement = document.getElementsByName('create-post');
+for (let i = 0; i < CreatePostElement.length; i++) {
+    createRoot(CreatePostElement[i]).render(
+        <StrictMode>
+            <CreatePost />
         </StrictMode>,
     );
 }

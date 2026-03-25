@@ -46,8 +46,6 @@ Route::get('/forums', [ForumsController::class, "index"])->name("website.forums"
 Route::get("/forums/{forumId}", [ForumsController::class, "show"])->name("forums.show"); // individual forum post
 Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
 
-// Routes for POSTS
-Route::get("/forums/{forumId}", [PostController::class, "show"])->name("forums.show");
 // For replies to show for each post
 Route::post('/post-add', [PostController::class, "createPost"])->middleware('auth')->name("post.create");
 
@@ -56,13 +54,17 @@ Route::get('/event-list', [EventController::class, "index"])->name("website.even
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
 
 // Routes for CLUBS / ORGANIZATIONS
-// TODO: Route::post("/club-add", [])
-Route::get("/club-edit", function (){
-    return view('website.club-edit');
-})->middleware('auth');
-
 Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
 Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show"); // for individual club pages
+
+Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware("auth")->name("clubs.add");
+
+// TODO: Club - edit route in OrgController
+Route::get("/club-edit", function (){
+    return view('website.club-edit');
+})->middleware('auth')->name("clubs.edit");
+
+
 
 
 

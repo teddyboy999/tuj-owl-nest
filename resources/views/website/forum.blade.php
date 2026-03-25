@@ -24,7 +24,7 @@
                 />
             </svg>
             <a
-                href="/foru"
+                href=" {{ route("website.forums") }}"
                 class="text-gray-500 hover:text-gray-600 hover:underline"
             >
                 Back
@@ -121,5 +121,9 @@
                 </div>
             </div>
         @endforeach
+
+        <div class="mt-4">
+            {{ $posts->links() }}
+        </div>
     </div>
 @endsection

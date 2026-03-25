@@ -49,8 +49,8 @@ class Forum extends Model
     public function getChildPosts($forumId, $paginate_num)
     {
         // get all posts where the forum id matches
-        $posts = Post::where("parent_forum_id", $forumId)->paginate($paginate_num);
-
+        $posts = Post::where("parent_forum_id", $forumId)->orderByDesc('created_at')->paginate($paginate_num);
+ 
         return $posts;
     }
 }

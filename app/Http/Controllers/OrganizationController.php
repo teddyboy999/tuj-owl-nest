@@ -29,6 +29,9 @@ class OrganizationController extends Controller
     // CREATING new Clubs / Organizations
     public function createOrganization(Request $request)
     {
+        echo "Create orgy request";
+        echo $request;
+        
         $validatedData = $this->validateRequest($request);    
 
         $organization = new Organization;

@@ -27,7 +27,9 @@ class ForumsController extends Controller
 
         $forums = new Forum;
         $posts = $forums->getChildPosts($forumId, 15);
-
+        // print_r("<pre>".json_encode($posts, JSON_PRETTY_PRINT)."</pre>");
+        // die();
+        // die();
         // compact("var_name") is same as ["var_name" => value]
         return view("website.forum", ["forum" => $forum, "posts" => $posts]);
     }

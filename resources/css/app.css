@@ -539,7 +539,14 @@ input::placeholder {
     margin-bottom: 50px;
     height: auto;
 }
+.submitbtncontainer {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 3rem;
+}
 .club-form-fieldset {
+    position: relative;
     padding: 20px;
     border-width: 3px;
     color: black;
@@ -569,8 +576,7 @@ input::placeholder {
         'g f'
         'h i'
         'j k'
-        'l m'
-        'n n';
+        'l m';
     align-items: start;
 }
 
@@ -611,7 +617,16 @@ input::placeholder {
     grid-area: l;
 }
 .submit-club-button {
-    grid-area: n;
+    background-color: #ae2038;
+    color: white;
+    padding: 2px;
+    border: 2px solid black;
+    display: block;
+    margin: 0 auto;
+}
+.submit-club-button:hover {
+    background-color: #ff3355;
+    color: black;
 }
 #num-members {
     width: 69px;

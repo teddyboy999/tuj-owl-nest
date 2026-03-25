@@ -121,5 +121,9 @@
                 </div>
             </div>
         @endforeach
+
+        <div class="temp-class mt-4">
+            {{ $posts->links() }}
+        </div>
     </div>
 @endsection

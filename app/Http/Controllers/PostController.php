@@ -17,7 +17,7 @@ class PostController extends Controller
         $post = new Post();
         $posts = $post->getLatestPaginatedForums(15);
 
-        return view('website.forum', ['forum_reply' => $posts]);
+        return view('website.forums', ['forum_reply' => $posts]);
     }
 
    public function show($id)

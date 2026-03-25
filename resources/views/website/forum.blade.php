@@ -24,7 +24,7 @@
                 />
             </svg>
             <a
-                href=" {{ route("website.forums") }}"
+                href="{{ route("website.forums")}}"
                 class="text-gray-500 hover:text-gray-600 hover:underline"
             >
                 Back
@@ -118,7 +118,7 @@
                     <p class="indent-1 text-gray-600">
                         {{ $post->post_content }}
                     </p>
-                </div>
+                </div>                
             </div>
         @endforeach
 

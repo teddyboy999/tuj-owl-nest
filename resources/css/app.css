@@ -234,20 +234,24 @@ input::placeholder {
         'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
         Arial, sans-serif;
 }
-#event-button {
-    position: absolute;
-    left: 30%;
-    width: 100px;
-    height: 50px;
-    background-color: #be233d;
-    border-radius: 20px;
+
+#learn-more {
+    background-color: #9d2235; /* Temple Cherry Red */
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
 }
 
-#event-button:hover {
-    width: 100px;
-    height: 50px;
-    background-color: #ff3355;
-    border-radius: 20px;
+#learn-more:hover {
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    margin-top: 15px;
+    background-color: #d45064;
+    border-radius: 50px;
     cursor: pointer;
 }
 
@@ -259,43 +263,12 @@ input::placeholder {
         Arial, sans-serif;
 }
 
-#forum-button {
-    position: absolute;
-    left: 30%;
-    width: 100px;
-    height: 50px;
-    background-color: #be233d;
-    border-radius: 20px;
-}
-#forum-button:hover {
-    width: 100px;
-    height: 50px;
-    background-color: #ff3355;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
 #contact-text {
     color: black;
     font-weight: bold;
     font-family:
         'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans',
         Arial, sans-serif;
-}
-
-#contact-button {
-    position: absolute;
-    left: 30%;
-    width: 100px;
-    height: 50px;
-    background-color: #be233d;
-    border-radius: 20px;
-}
-#contact-button:hover {
-    width: 100px;
-    height: 50px;
-    background-color: #ff3355;
-    border-radius: 20px;
 }
 #mission-container {
     margin-top: 50px;
@@ -388,6 +361,21 @@ input::placeholder {
     margin-right: auto;
     max-width: 45%;
     height: auto;
+}
+#test-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 40px;
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 1200px;
+}
+#container-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 /* about.blade.php */
 #about {

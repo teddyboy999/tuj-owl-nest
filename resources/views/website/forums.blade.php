@@ -70,7 +70,7 @@
             </div>
         @endforeach
 
-        <div class="temp-class mt-4">
+        <div class="mt-4">
             {{ $forum_posts->links() }}
         </div>
     </div>

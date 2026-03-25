@@ -19,35 +19,47 @@
             to provide convenience to students in finding communities with ease
         </div>
     </div>
-    <div id="event-container">
-        <div id="event-text">See what events are going on!</div>
-        <img src="{{ asset('Website_Images/events.jpg') }}" />
-        <button
-            onclick="window.location.href = '/event-list'"
-            id="event-button"
-        >
-            Learn More
-        </button>
-    </div>
-    <div id="middle-img">
-        <img
-            src="{{ asset('Website_Images/Owl-logo.png') }}"
-            id="middle-img"
-        />
-    </div>
-    <div id="forum-container">
-        <div id="forum-text">Reach out to other Temple students!</div>
-        <img src="{{ asset('Website_Images/students.jpg') }}" />
-        <button onclick="window.location.href = '/forums'" id="forum-button">
-            Learn More
-        </button>
-    </div>
+    <div id="test-container">
+        <div id="container-item">
+            <div id="event-text" class="fade-in">
+                See what events are going on!
+            </div>
+            <img
+                src="{{ asset('Website_Images/events.jpg') }}"
+                class="fade-in"
+            />
+            <button
+                onclick="window.location.href = '/event-list'"
+                id="learn-more"
+            >
+                Learn More
+            </button>
+        </div>
 
-    <div id="contact-container">
-        <div id="contact-text">Reach out to us for any questions!</div>
-        <img src="{{ asset('Website_Images/contact.jpg') }}" />
-        <button onclick="window.location.href = '/contact'" id="contact-button">
-            Learn More
-        </button>
+        <div id="container-item">
+            <div id="forum-text" class="fade-in">
+                Reach out to other Temple students!
+            </div>
+            <img
+                src="{{ asset('Website_Images/team-temple-students.jpg') }}"
+                class="fade-in"
+            />
+            <button onclick="window.location.href = '/forums'" id="learn-more">
+                Learn More
+            </button>
+        </div>
+
+        <div id="container-item">
+            <div id="contact-text" class="fade-in">
+                Reach out to us for any questions!
+            </div>
+            <img
+                src="{{ asset('Website_Images/contact.jpg') }}"
+                class="fade-in"
+            />
+            <button onclick="window.location.href = '/contact'" id="learn-more">
+                Learn More
+            </button>
+        </div>
     </div>
 @endsection

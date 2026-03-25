@@ -68,9 +68,10 @@
                     ...Read more.
                 </a>
             </div>
-            <div class="mt-4">
-                {{ $forum->links }}
-            </div>
         @endforeach
+
+        <div class="mt-4">
+            {{ $forum_posts->links() }}
+        </div>
     </div>
 @endsection

@@ -3,14 +3,15 @@
 use Illuminate\Support\Facades\Route;
 // Custome controllers
 use App\Http\Controllers\ForumsController;
-use App\Http\Controllers\ForumController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -35,25 +36,25 @@ Route::get("/user-profile", function () {
     return view('website.user-profile');
 });
 
+// Routes for FORUMS
+// Please follow Controller Function Notation
+Route::get('/forums', [PostController::class, "index"])->name("website.forums");
+ // TODO: Fix route to show individual forum
+Route::post('/forum-add', [PostController::class, "createForumPost"])->name("post.create");
+
+// Routes for EVENTS
+Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
+Route::post("/event-add", [EventController::class, "createEvent"])->name("events.create"); // add event
+
+// Routes for CLUBS / ORGANIZATIONS
+// TODO: Route::post("/club-add", [])
 Route::get("/club-edit", function (){
     return view('website.club-edit');
 });
 
-Route::get("/new-club", function (){
-    return view('website.new-club');
-});
+Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
+Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show"); // for individual club pages
 
-Route::get("/club-list", function() {
-    return view("website.club-list");
-});
-
-// ROUTES FOR FORUMS
-// Please follow Controller Function Notation
-Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
-Route::get('/forum', [ForumController::class, "index"])->name("website.forum");
-
-// EVENTS
-Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
 
 
 require __DIR__.'/auth.php';

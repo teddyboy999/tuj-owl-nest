@@ -2,11 +2,13 @@ const TopNavBar = () => {
     return (
         <div className="m-2 flex h-12 items-center justify-between px-4">
             <div className="flex items-center">
-                <img
-                    src="https://www.tuj.ac.jp/modules/custom/tu_layout/images/brand/t-cherry.svg"
-                    alt="temple-logo"
-                    className="h-10 w-10 object-contain"
-                />
+                <a href="/">
+                    <img
+                        src="https://www.tuj.ac.jp/modules/custom/tu_layout/images/brand/t-cherry.svg"
+                        alt="temple-logo"
+                        className="h-10 w-10 object-contain"
+                    ></img>
+                </a>
             </div>
 
             <ul className="flex space-x-6">

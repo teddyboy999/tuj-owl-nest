@@ -4,13 +4,23 @@ import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 
-function ResponsiveTimePickers() {
+interface ResponsiveTimePickersProps {
+    value: any;
+    onChange: (newValue: any) => void;
+}
+
+function ResponsiveTimePickers({
+    value,
+    onChange,
+}: ResponsiveTimePickersProps) {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DesktopTimePicker']}>
                 <DemoItem>
                     <DesktopTimePicker
                         defaultValue={dayjs('2022-04-17T15:30')}
+                        value={value}
+                        onChange={onChange}
                     />
                 </DemoItem>
             </DemoContainer>

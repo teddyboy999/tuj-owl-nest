@@ -3,10 +3,11 @@ import { Box, Chip, IconButton, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import * as React from 'react';
 import { useState } from 'react';
 
-export default function BasicPopover() {
+function BasicPopover() {
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
         null,
     );
@@ -14,6 +15,32 @@ export default function BasicPopover() {
     const [tags, setTags] = useState<string[]>(['Test']);
     const [currValue, setCurrValue] = useState('');
 
+    const [formData, setFormData] = useState({
+        postTitle: '',
+        postDescription: '',
+    });
+
+    const handleSubmit = async (event: { preventDefault: () => void }) => {
+        event.preventDefault();
+
+        const submissionData = {
+            post_title: formData.postTitle,
+            post_content: formData.postDescription,
+            tags: tags,
+        };
+
+        try {
+            const response = await axios.post('/forum-add', submissionData);
+
+            if (response.status === 201 || response.status === 200) {
+                alert('Forum post created!');
+                handleClose();
+            }
+        } catch (error) {
+            const axiosError = error as any;
+            console.log('Error', axiosError?.response.data);
+        }
+    };
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -31,6 +58,10 @@ export default function BasicPopover() {
 
     const handleDelete = (tagToDelete: string) => {
         setTags((chips) => chips.filter((chip) => chip !== tagToDelete));
+    };
+
+    const handleChange = (event: { target: { name: any; value: any } }) => {
+        setFormData({ ...formData, [event.target.name]: event.target.value });
     };
 
     const open = Boolean(anchorEl);
@@ -57,6 +88,8 @@ export default function BasicPopover() {
                 }}
             >
                 <Box
+                    component="form"
+                    onSubmit={handleSubmit}
                     sx={{
                         p: 3,
                         backgroundColor: 'rgb(230, 219, 171)',
@@ -75,6 +108,9 @@ export default function BasicPopover() {
                         <Typography variant="h6">Title of Post</Typography>
                         <TextField
                             fullWidth
+                            name="postTitle"
+                            value={formData.postTitle}
+                            onChange={handleChange}
                             size="small"
                             placeholder="I want to know..."
                             style={{ backgroundColor: 'rgb(235, 235, 235)' }}
@@ -121,6 +157,9 @@ export default function BasicPopover() {
                         <Typography variant="subtitle2">Message</Typography>
                         <TextField
                             multiline
+                            name="postDescription"
+                            value={formData.postDescription}
+                            onChange={handleChange}
                             rows={4}
                             fullWidth
                             placeholder="Write whats on your mind"
@@ -129,7 +168,7 @@ export default function BasicPopover() {
                     </Box>
 
                     <Box>
-                        <Button variant="contained" fullWidth>
+                        <Button type="submit" variant="contained" fullWidth>
                             Submit
                         </Button>
                     </Box>
@@ -138,3 +177,5 @@ export default function BasicPopover() {
         </div>
     );
 }
+
+export default BasicPopover;

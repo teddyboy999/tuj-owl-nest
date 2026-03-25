@@ -4,7 +4,7 @@
     <div id="top-border">
         <div id="top-nav-bar"></div>
     </div>
-    <div id="events">
+    <div id="events" class="fade-in">
         <h1>Events</h1>
     </div>
 
@@ -43,9 +43,7 @@
                     {{-- Event Affiliation: Club / Society / Org / etc. --}}
                     @if ($event->event_affiliation != null)
                         ,
-                        <span class="font-bold underline">
-                            in Affiliation with:
-                        </span>
+                        <span class="font-bold underline">Affiliation:</span>
                         {{ $event->event_affiliation }}
                     @endif
                 </p>
@@ -61,7 +59,19 @@
                     <ul class="list-inside text-black">
                         <li>
                             <span class="font-semibold">Category:</span>
-                            {{ $event->event_category }}
+                            @if ($event->tags)
+                                @foreach ($event->tags as $tag)
+                                    <span
+                                        class="rounded-full border border-blue-200 bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800"
+                                    >
+                                        {{ $tag }}
+                                    </span>
+                                @endforeach
+                            @else
+                                <span class="text-sm text-gray-400 italic">
+                                    None
+                                </span>
+                            @endif
                         </li>
                         <li>
                             <span class="font-semibold">Date:</span>
@@ -79,6 +89,11 @@
                 </div>
 
                 {{-- Event Description --}}
+                <span
+                    class="mx-2 mb-1 p-2 text-lg font-semibold text-black underline"
+                >
+                    Description:
+                </span>
                 <p class="text-gray-600">
                     {{ $event->event_description }}
                 </p>

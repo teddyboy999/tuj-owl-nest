@@ -434,11 +434,11 @@ input::placeholder {
     color: white;
 }
 #cards {
-    max-width: 700px;
+    max-width: full;
     margin: 0.5em;
 
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
 }
 #club-pic-1 {

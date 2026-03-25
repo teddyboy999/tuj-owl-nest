@@ -6,7 +6,8 @@
     </div>
     <div class="page-container">
         <div class="form-container">
-            <form action="" method="" autocomplete="on">
+            <form action="{{ route('clubs.add') }}" method="POST" autocomplete="on">
+                @csrf {{-- Add csrf tag to protect your application from cross-site request forgeries (CSRF) and prevent a "419 Page Expired" error. --}}
                 <fieldset class="club-form-fieldset">
                     <h2 style="text-align: center;">Create a New Club</h2>
                     <div id="club-name" class="club-name">
@@ -100,6 +101,7 @@
                         </div>
                         
                         <div name="submit-button" id="submit-button" class="submit-club-button"></div>
+
             </fieldset>
         </div> 
     </div>

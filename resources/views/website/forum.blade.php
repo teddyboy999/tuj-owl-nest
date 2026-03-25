@@ -24,7 +24,7 @@
                 />
             </svg>
             <a
-                href="/foru"
+                href=" {{ route("website.forums") }}"
                 class="text-gray-500 hover:text-gray-600 hover:underline"
             >
                 Back

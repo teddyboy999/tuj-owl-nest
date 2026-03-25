@@ -56,13 +56,17 @@ Route::get('/event-list', [EventController::class, "index"])->name("website.even
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
 
 // Routes for CLUBS / ORGANIZATIONS
-// TODO: Route::post("/club-add", [])
-Route::get("/club-edit", function (){
-    return view('website.club-edit');
-})->middleware('auth');
-
 Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
 Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show"); // for individual club pages
+
+Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware("auth")->name("clubs.add");
+
+// TODO: Club - edit route in OrgController
+Route::get("/club-edit", function (){
+    return view('website.club-edit');
+})->middleware('auth')->name("clubs.edit");
+
+
 
 
 

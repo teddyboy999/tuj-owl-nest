@@ -6,6 +6,14 @@
     </div>
     {{-- Outer Container for entire page --}}
     <div class="p-6">
+        {{-- BACK LINK --}}
+        <a
+            href=" {{ route('website.club-list') }}"
+            class="text-gray-500 hover:text-gray-600 hover:underline"
+        >
+            Back
+        </a>
+
         {{-- Banner / Image Scroll layer --}}
         <div class="text-black">BANNER GOES HERE</div>
 

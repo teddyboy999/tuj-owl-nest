@@ -6,7 +6,11 @@
     </div>
     <div class="page-container">
         <div class="form-container">
-            <form action="" method="" autocomplete="on">
+            <form
+                action="{{ route('clubs.add') }}"
+                method="POST"
+                autocomplete="on"
+            >
                 <fieldset class="club-form-fieldset">
                     <h2 style="text-align: center">Edit Club Information</h2>
                     <div id="club-name" class="club-name">
@@ -311,10 +315,9 @@
                         <div class="location-agree-group">
                             <p class="club-label">
                                 Club leaders or appointed members must contact
-                                TUJ Facilities at facilities
-                                @tuj.temple.edu
-                                to reserve a space on campus "every semester"
-                                AFTER submitting this form.
+                                TUJ Facilities at facilities @tuj.temple.edu to
+                                reserve a space on campus "every semester" AFTER
+                                submitting this form.
                             </p>
                             <input
                                 type="checkbox"

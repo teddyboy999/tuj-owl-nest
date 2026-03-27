@@ -31,7 +31,7 @@ const TopNavBar = () => {
                     <a href="/contact">Contact</a>
                 </li>
                 <li>
-                    <a href="/Community">Community</a>
+                    <a href="/community">Community</a>
                 </li>
                 <li className="hover:underline">
                     <a href="/login">Login</a>

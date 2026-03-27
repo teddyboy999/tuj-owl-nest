@@ -59,7 +59,7 @@ Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->nam
 
 Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware("auth")->name("clubs.add");
 
-// Routes for Community
+// Routes for Community / USER PROFILE
 Route::get("/community", [ProfileController::class, "index"])->name("website.community");
 Route::get("/community/{userId}", [ProfileController::class, "show"])->name('community.show');
 

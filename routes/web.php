@@ -43,7 +43,7 @@ Route::get("/new-club", function() {
 // Routes for FORUMS
 // Please follow Controller Function Notation
 Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
-Route::get("/forums/{forumId}", [ForumsController::class, "show"])->name("forums.show"); // individual forum post
+Route::get("/forums/{forumId}", [PostController::class, "show"])->name("forums.show"); // individual forum post
 Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
 
 // For replies to show for each post
@@ -62,7 +62,7 @@ Route::post("/club-add", [OrganizationController::class, "createOrganization"])-
 // Routes for Community / USER PROFILE
 Route::get("/community", [ProfileController::class, "index"])->name("website.community");
 Route::get("/community/{userId}", [ProfileController::class, "show"])->name('community.show');
-
+Route::post('/comment-add', [ProfileController::class, "createComment"])->name('community.create');  
 
 
 

@@ -19,7 +19,7 @@ function BasicPopover() {
     const handleSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
-        const rootElement = document.getElementById('create-post-root');
+        const rootElement = document.getElementById('create-comment-root');
         const forumId = rootElement
             ? rootElement.getAttribute('data-forum-id')
             : null;

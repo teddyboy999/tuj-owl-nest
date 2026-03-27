@@ -20,17 +20,24 @@ class PostController extends Controller
         return view('website.forums', ['forum_reply' => $posts]);
     }
 
-   public function show($id)
-    {
-        $forum = Forum::findOrFail($id);
+    public function show($id)
+        {
+            $forum = Forum::findOrFail($id);
 
-        $posts = Post::where('parent_forum_id', $id)->get();
+            $posts = $this->getForumComments($id, 3);
 
-        return view('website.forum', [
-            'forum' => $forum,
-            'posts' => $posts
-        ]);
-    }
+            return view('website.forum', [
+                'forum' => $forum,
+                'posts' => $posts
+            ]);
+        }
+
+        public function getForumComments($forumId, int $paginate_num)
+        {
+            $posts = Post::where('parent_forum_id', $forumId)->paginate($paginate_num);
+
+            return $posts;
+        }
 
     // CREATES a forum post
     public function createPost(Request $request)

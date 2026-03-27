@@ -51,29 +51,29 @@
     </div>
 
     {{-- Will be the comment section --}}
-    <div name="create-comment" class="px-6 py-4"></div>
+    <div name="create-comment" class="px-6 py-4" id="create-comment-root"></div>
     <div class="mx-4 border-l px-4 pb-4 indent-4">
-        @foreach ($posts as $post)
+        @foreach ($comments as $comment)
             {{-- Inner box for each forum reply --}}
             <div class="mx-4 my-2 grid grid-rows-2 border p-4">
                 {{-- Author Details: GRID-ROW-1 --}}
                 <div class="row-start-1 row-end-1">
                     <p class="text-xl text-black">
                         {{-- Author --}}
-                        {{ $post->post_author }}
+                        {{ $comment->post_author }}
 
                         {{-- Author Email --}}
                         <span class="text-lg font-light text-black">
                             (
-                            <a href="mailto:{{ $post->post_author_email }}">
-                                {{ $post->post_author_email }}
+                            <a href="mailto:{{ $comment->post_author_email }}">
+                                {{ $comment->post_author_email }}
                             </a>
                             )
                         </span>
 
                         {{-- Created At --}}
                         <span class="text-sm font-extralight text-black">
-                            at {{ $post->created_at }}
+                            at {{ $comment->created_at }}
                         </span>
                     </p>
                 </div>
@@ -81,12 +81,14 @@
                 {{-- Post Content: GRID-ROW-2 --}}
                 <div class="row-start-2 row-end-2">
                     <p class="indent-1 text-gray-600">
-                        {{ $post->post_content }}
+                        {{ $comment->post_content }}
                     </p>
                 </div>
             </div>
         @endforeach
 
-        <div class="mt-4"></div>
+        <div class="mt-4">
+            {{ $comments->links() }}
+        </div>
     </div>
 @endsection

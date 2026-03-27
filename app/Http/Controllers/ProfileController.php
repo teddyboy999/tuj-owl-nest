@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Forum;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,11 +33,47 @@ class ProfileController extends Controller
         $userModel = new User;
         $user = $userModel->where("id", $userId)->get();
 
-        return view('website.user-profile', ['user' => $user]);
+        // comments under user
+        $comments = $this->getProfileComments(1, 4);
+
+        return view('website.user-profile', ['user' => $user, 'comments' =>$comments]);
     }
 
+    public function getProfileComments($forumId, int $paginate_num)
+    {
 
+        $posts = Post::where('parent_forum_id', $forumId)->paginate($paginate_num);
 
+        return $posts;
+    }
+
+    public function createComment(Request $request)
+    {
+        $validatedData = $request->validate([
+            "post_author" => "string",
+            "post_content" => "required",
+            "post_author_email" => "string",
+            "parent_forum_id" => "required|integer",
+        ]);
+
+        $user = Auth::user();
+
+        $posts = new Post();
+
+        $posts->post_content = $validatedData['post_content'];
+        $posts->parent_forum_id = $validatedData['parent_forum_id'];
+
+        $posts->post_author = $user->name;
+        $posts->post_author_email = $user->email;
+       
+
+        $posts->save();
+
+        return response()->json([
+            'message' => 'Forum created successfully!',
+            'event'   => $posts
+        ], 201);
+    }
     /**
      * Display the user's profile form.
      */

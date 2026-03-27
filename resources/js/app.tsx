@@ -18,6 +18,7 @@ import CreateSvgIcon from './components/frontend/home-icon';
 import NotificationIcon from './components/frontend/notification-icon';
 import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
+import CreateComment from './components/frontend/submit-comment';
 import CreateEvent from './components/frontend/submit-event';
 import CreateForum from './components/frontend/submit-forum';
 import CreatePost from './components/frontend/submit-post';
@@ -157,6 +158,15 @@ for (let i = 0; i < CreatePostElement.length; i++) {
     createRoot(CreatePostElement[i]).render(
         <StrictMode>
             <CreatePost />
+        </StrictMode>,
+    );
+}
+
+const CreateCommentElement = document.getElementsByName('create-comment');
+for (let i = 0; i < CreateCommentElement.length; i++) {
+    createRoot(CreateCommentElement[i]).render(
+        <StrictMode>
+            <CreateComment />
         </StrictMode>,
     );
 }

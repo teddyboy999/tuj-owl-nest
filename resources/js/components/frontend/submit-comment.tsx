@@ -19,7 +19,7 @@ function BasicPopover() {
     const handleSubmit = async (event: { preventDefault: () => void }) => {
         event.preventDefault();
 
-        const rootElement = document.getElementById('create-post-root');
+        const rootElement = document.getElementById('create-comment-root');
         const forumId = rootElement
             ? rootElement.getAttribute('data-forum-id')
             : null;
@@ -30,7 +30,7 @@ function BasicPopover() {
         };
 
         try {
-            const response = await axios.post('/post-add', submissionData);
+            const response = await axios.post('/comment-add', submissionData);
 
             if (response.status === 201 || response.status === 200) {
                 handleClose();
@@ -66,7 +66,7 @@ function BasicPopover() {
                 variant="contained"
                 onClick={handleClick}
             >
-                Create a Post Reply
+                Comment
             </Button>
             <Popover
                 id={id}
@@ -97,7 +97,7 @@ function BasicPopover() {
                         <CloseIcon />
                     </IconButton>
                     <Box>
-                        <Typography variant="subtitle2">Reply</Typography>
+                        <Typography variant="subtitle2">Comment</Typography>
                         <TextField
                             multiline
                             name="postContent"

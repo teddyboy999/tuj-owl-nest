@@ -86,7 +86,7 @@
     ></div>
 
     {{-- Nested Box for all forum replies to show up --}}
-    <div class="mx-4 border-l px-4 pb-4 indent-4">
+    <div class="mx-4 border-l px-4 pb-20 indent-4">
         <p class="text-3xl font-bold text-black">Replies:</p>
         @foreach ($posts as $post)
             {{-- Inner box for each forum reply --}}

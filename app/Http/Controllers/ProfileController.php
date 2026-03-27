@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,30 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display all user profiles
+     */
+    public function index()
+    {
+        $userModel = new User;
+        $users = $userModel->paginate(30);
+
+        return view('website.community', ['users' => $users]);
+    }
+
+    /**
+     * display specific user's profile
+     */
+    public function show($userId)
+    {
+        $userModel = new User;
+        $user = $userModel->where("id", $userId)->get();
+
+        return view('website.user-profile', ['user' => $user]);
+    }
+
+
+
     /**
      * Display the user's profile form.
      */

@@ -59,10 +59,9 @@ Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->nam
 
 Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware("auth")->name("clubs.add");
 
-// TODO: Club - edit route in OrgController
-Route::get("/club-edit", function (){
-    return view('website.club-edit');
-})->middleware('auth')->name("clubs.edit");
+// Routes for Community
+Route::get("/community", [ProfileController::class, "index"])->name("website.community");
+Route::get("/community/{userId}", [ProfileController::class, "show"])->name('community.show');
 
 
 

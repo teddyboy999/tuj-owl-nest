@@ -16,6 +16,7 @@ import DropDown from './components/frontend/dropdown-function';
 import FileUpload from './components/frontend/file-upload';
 import CreateSvgIcon from './components/frontend/home-icon';
 import NotificationIcon from './components/frontend/notification-icon';
+import ProfileEdit from './components/frontend/profile-edit';
 import TitlebarImageList from './components/frontend/sliding-images';
 import SubmitButton from './components/frontend/submit-button';
 import CreateComment from './components/frontend/submit-comment';
@@ -85,7 +86,11 @@ const DropDownElements = document.getElementsByName('dropdown');
 for (let i = 0; i < DropDownElements.length; i++) {
     createRoot(DropDownElements[i]).render(
         <StrictMode>
-            <DropDown />
+            <DropDown
+                onChange={function (selectedValue: string): void {
+                    throw new Error('Function not implemented.');
+                }}
+            />
         </StrictMode>,
     );
 }
@@ -171,11 +176,25 @@ for (let i = 0; i < CreateCommentElement.length; i++) {
     );
 }
 
+const ProfileEditElement = document.getElementsByName('profile-edit');
+for (let i = 0; i < ProfileEditElement.length; i++) {
+    createRoot(ProfileEditElement[i]).render(
+        <StrictMode>
+            <ProfileEdit />
+        </StrictMode>,
+    );
+}
+
 const DateSetElement = document.getElementsByName('date-set');
 for (let i = 0; i < DateSetElement.length; i++) {
     createRoot(DateSetElement[i]).render(
         <StrictMode>
-            <DatePick />
+            <DatePick
+                value={undefined}
+                onChange={function (newValue: any): void {
+                    throw new Error('Function not implemented.');
+                }}
+            />
         </StrictMode>,
     );
 }
@@ -184,7 +203,12 @@ const TimeSetElement = document.getElementsByName('time-set');
 for (let i = 0; i < TimeSetElement.length; i++) {
     createRoot(TimeSetElement[i]).render(
         <StrictMode>
-            <TimePicker />
+            <TimePicker
+                value={undefined}
+                onChange={function (newValue: any): void {
+                    throw new Error('Function not implemented.');
+                }}
+            />
         </StrictMode>,
     );
 }

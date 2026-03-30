@@ -1,4 +1,6 @@
 const TopNavBar = () => {
+    const user = (window as any).Laravel?.user;
+
     return (
         <div className="m-2 flex h-12 items-center justify-between px-4">
             <div className="flex items-center">
@@ -33,9 +35,28 @@ const TopNavBar = () => {
                 <li>
                     <a href="/community">Community</a>
                 </li>
-                <li className="hover:underline">
-                    <a href="/login">Login</a>
-                </li>
+
+                {user ? (
+                    <li className="hover:underline">
+                        <form method="POST" action="/logout">
+                            <input
+                                type="hidden"
+                                name="_token"
+                                value={(window as any).Laravel.csrfToken}
+                            />
+                            <button
+                                type="submit"
+                                className="text-white-400 text-sm font-bold"
+                            >
+                                Logout ({user.name})
+                            </button>
+                        </form>
+                    </li>
+                ) : (
+                    <li className="hover:underline">
+                        <a href="/login">Login</a>
+                    </li>
+                )}
             </ul>
         </div>
     );

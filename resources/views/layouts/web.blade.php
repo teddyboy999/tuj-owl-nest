@@ -6,6 +6,14 @@
         <title>TUJ Owl Nest</title>
         @viteReactRefresh
         @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
+        <script>
+            window.Laravel = 
+            {
+                csrfToken: '{{ csrf_token() }}',
+                user: @json(Auth::user()),
+                isLoggedIn: {{ Auth::check() ? 'true' : 'false' }}
+            };
+        </script>
     </head>
     <body class="h-screen bg-white">
         <div class="flex flex-col min-h-screen">

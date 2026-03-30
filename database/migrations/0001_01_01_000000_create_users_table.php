@@ -28,6 +28,7 @@ return new class extends Migration
             $table->text("bio")->nullable();
             $table->string("user_major")->nullable();
             $table->integer("age")->nullable();
+            $table->string('profile_photo_path')->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -1,6 +1,12 @@
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
+import * as React from 'react';
+
+// Define the interface for the props
+interface FileUploadProps {
+    onFileSelect: (file: File) => void;
+}
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -14,20 +20,28 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const FileUpload = () => {
+const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect }) => {
+    // This is the specific function that extracts the File object
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            // Pass ONLY the first file (File object) to the parent
+            onFileSelect(files[0]);
+        }
+    };
+
     return (
         <Button
             component="label"
-            role={undefined}
             variant="contained"
-            tabIndex={-1}
             startIcon={<CloudUploadIcon />}
+            fullWidth
         >
-            Upload files
+            Upload Profile Pic
             <VisuallyHiddenInput
                 type="file"
-                onChange={(event) => console.log(event.target.files)}
-                multiple
+                accept="image/*"
+                onChange={handleFileChange}
             />
         </Button>
     );

@@ -31,20 +31,31 @@ class ProfileController extends Controller
     public function show($userId)
     {
         $userModel = new User;
-        $user = $userModel->where("id", $userId)->get();
+        $user = $userModel->where("id", $userId)->firstOrFail();
 
         // comments under user
-        $comments = $this->getProfileComments(1, 4);
+        $comments = $this->getProfileComments($userId, 4);
 
         return view('website.user-profile', ['user' => $user, 'comments' =>$comments]);
     }
 
-    public function getProfileComments($forumId, int $paginate_num)
+    public function showDashboard()
+    {
+        $user = Auth::user();
+        $comments = $this->getProfileComments($user->id, 4);
+
+        return view('dashboard', [
+            'user' => $user,
+            'comments' => $comments
+        ]);
+    }
+
+    public function getProfileComments($userId, int $paginate_num)
     {
 
-        $posts = Post::where('parent_forum_id', $forumId)->paginate($paginate_num);
-
-        return $posts;
+        return Post::where('parent_forum_id', $userId)
+                    ->where('post_type', 'profile')
+                    ->paginate($paginate_num);
     }
 
     public function createComment(Request $request)
@@ -61,10 +72,14 @@ class ProfileController extends Controller
         $posts = new Post();
 
         $posts->post_content = $validatedData['post_content'];
-        $posts->parent_forum_id = $validatedData['parent_forum_id'];
+        $posts->parent_forum_id = $request->parent_forum_id;
+        $posts->post_type = 'profile';
 
         $posts->post_author = $user->name;
         $posts->post_author_email = $user->email;
+
+        $posts->post_likes = 0;
+        $posts->post_dislikes = 0;
        
 
         $posts->save();

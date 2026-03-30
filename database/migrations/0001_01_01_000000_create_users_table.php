@@ -25,6 +25,9 @@ return new class extends Migration
             //$table->string("user_full_name"); // done above
             $table->string("user_year")->nullable(); // not all users have a student year
             $table->string("user_role")->default("user"); // club leader || user / member
+            $table->text("bio")->nullable();
+            $table->string("user_major")->nullable();
+            $table->integer("age")->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

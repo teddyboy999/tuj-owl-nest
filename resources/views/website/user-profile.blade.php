@@ -51,7 +51,12 @@
     </div>
 
     {{-- Will be the comment section --}}
-    <div name="create-comment" class="px-6 py-4" id="create-comment-root"></div>
+    <div
+        id="create-comment-root"
+        name="create-comment"
+        class="px-6 py-4"
+        data-forum-id="{{ $user->id }}"
+    ></div>
     <div class="mx-4 border-l px-4 pb-4 indent-4">
         @foreach ($comments as $comment)
             {{-- Inner box for each forum reply --}}

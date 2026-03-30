@@ -39,7 +39,10 @@ function BasicPopover() {
         } catch (error) {
             const axiosError = error as any;
             if (axiosError.response?.data.message === 'Unauthenticated.') {
-                alert('Not autheniticated. Please login to create an event.');
+                alert('Not autheniticated. Please login to post a reply.');
+            } else {
+                alert('Not autheniticated, Please login to post a reply');
+                // For some reason it's catching a seperate error, so we'll handle with a seperate alert
             }
             console.log('Error', axiosError?.response.data);
         }

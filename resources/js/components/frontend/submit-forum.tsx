@@ -39,7 +39,9 @@ function BasicPopover() {
         } catch (error) {
             const axiosError = error as any;
             if (axiosError.response?.data.message === 'Unauthenticated.') {
-                alert('Not autheniticated. Please login to create an event.');
+                alert(
+                    'Not autheniticated. Please login to create a forum post.',
+                );
             }
             console.log('Error', axiosError?.response.data);
         }

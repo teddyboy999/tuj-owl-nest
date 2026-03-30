@@ -34,9 +34,9 @@ class PostController extends Controller
 
         public function getForumComments($forumId, int $paginate_num)
         {
-            $posts = Post::where('parent_forum_id', $forumId)->paginate($paginate_num);
-
-            return $posts;
+           return Post::where('parent_forum_id', $forumId)
+                    ->where('post_type', 'forum')
+                    ->paginate($paginate_num);
         }
 
     // CREATES a forum post

@@ -13,7 +13,7 @@ const TopNavBar = () => {
                 </a>
             </div>
 
-            <ul className="flex space-x-6">
+            <ul className="flex items-center space-x-6">
                 <li className="hover:underline">
                     <a href="/">Home</a>
                 </li>
@@ -37,21 +37,26 @@ const TopNavBar = () => {
                 </li>
 
                 {user ? (
-                    <li className="hover:underline">
-                        <form method="POST" action="/logout">
-                            <input
-                                type="hidden"
-                                name="_token"
-                                value={(window as any).Laravel.csrfToken}
-                            />
-                            <button
-                                type="submit"
-                                className="text-white-400 text-sm font-bold"
-                            >
-                                Logout ({user.name})
-                            </button>
-                        </form>
-                    </li>
+                    <>
+                        <li className="hover:underline">
+                            <a href="/dashboard">Profile</a>
+                        </li>
+                        <li className="hover:underline">
+                            <form method="POST" action="/logout">
+                                <input
+                                    type="hidden"
+                                    name="_token"
+                                    value={(window as any).Laravel.csrfToken}
+                                />
+                                <button
+                                    type="submit"
+                                    className="text-white-400 text-sm font-bold"
+                                >
+                                    Logout ({user.name})
+                                </button>
+                            </form>
+                        </li>
+                    </>
                 ) : (
                     <li className="hover:underline">
                         <a href="/login">Login</a>

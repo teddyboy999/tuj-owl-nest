@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id("post_id");
             $table->timestamps();
 
-            $table->foreignId("parent_forum_id")->nullable()->constrained("forums");
+            $table->unsignedBigInteger("parent_forum_id")->nullable();
+            $table->string("post_type")->default('forum');
             $table->string("post_author");
             $table->string("post_author_email");
             $table->longText("post_content");

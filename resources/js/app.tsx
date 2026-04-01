@@ -9,12 +9,14 @@ import { createRoot } from 'react-dom/client';
 import { initializeTheme } from './hooks/use-appearance';
 
 // Import your component
+import BannerUpload from './components/frontend/banner-upload';
 import BottomNavBar from './components/frontend/bottom-bar';
 import ContactDropDown from './components/frontend/contact-dropdown';
 import DatePick from './components/frontend/date-set';
 import DropDown from './components/frontend/dropdown-function';
 import FileUpload from './components/frontend/file-upload';
 import CreateSvgIcon from './components/frontend/home-icon';
+import LogoUpload from './components/frontend/logo-upload';
 import NotificationIcon from './components/frontend/notification-icon';
 import ProfileEdit from './components/frontend/profile-edit';
 import TitlebarImageList from './components/frontend/sliding-images';
@@ -209,6 +211,24 @@ for (let i = 0; i < TimeSetElement.length; i++) {
                     throw new Error('Function not implemented.');
                 }}
             />
+        </StrictMode>,
+    );
+}
+
+const BannerUploadElement = document.getElementsByName('banner-upload');
+for (let i = 0; i < BannerUploadElement.length; i++) {
+    createRoot(BannerUploadElement[i]).render(
+        <StrictMode>
+            <BannerUpload />
+        </StrictMode>,
+    );
+}
+
+const LogoUploadElement = document.getElementsByName('logo-upload');
+for (let i = 0; i < LogoUploadElement.length; i++) {
+    createRoot(LogoUploadElement[i]).render(
+        <StrictMode>
+            <LogoUpload />
         </StrictMode>,
     );
 }

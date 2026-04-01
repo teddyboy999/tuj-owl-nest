@@ -233,7 +233,7 @@
                                 Upload club photos
                             </label>
                             <div id="club-pics">
-                                <div name="file-upload">
+                                <div name="banner-upload">
                                     <input
                                         type="file"
                                         id="club-pics-input"
@@ -254,7 +254,7 @@
                                 Upload club logo
                             </label>
                             <div id="club-banner">
-                                <div name="file-upload">
+                                <div name="logo-upload">
                                     <input
                                         type="file"
                                         id="club-banner-input"

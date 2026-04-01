@@ -17,13 +17,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', [ProfileController::class, 'showDashboard'])
+Route::get('/userProfile', [ProfileController::class, 'showDashboard'])
     ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    ->name('userProfile');
 
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    
 
     Route::post('/profile-add', [ProfileController::class, 'update'])->name('profile.update');
 });

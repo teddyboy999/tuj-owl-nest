@@ -46,7 +46,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $comments = $this->getProfileComments($user->id, 4);
 
-        return view('dashboard', [
+        return view('userProfile', [
             'user' => $user,
             'comments' => $comments
         ]);

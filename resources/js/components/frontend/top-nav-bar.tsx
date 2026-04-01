@@ -39,7 +39,7 @@ const TopNavBar = () => {
                 {user ? (
                     <>
                         <li className="hover:underline">
-                            <a href="/dashboard">Profile</a>
+                            <a href="/userProfile">Profile</a>
                         </li>
                         <li className="hover:underline">
                             <form method="POST" action="/logout">

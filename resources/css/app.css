@@ -174,7 +174,7 @@ a:hover {
     text-decoration: underline;
 }
 body {
-    background-color: rgb(246, 226, 226);
+    background-color: #f6e2e2;
 }
 .social-icon {
     fill: white;
@@ -818,4 +818,13 @@ fieldset {
 }
 #num-members {
     width: 69px;
+}
+
+/* login.blade.php */
+#login-text {
+    color: #be233d;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 2px rgb(0, 0, 0);
 }

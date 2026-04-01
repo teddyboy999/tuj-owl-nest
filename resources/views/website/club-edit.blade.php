@@ -1,9 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-    <div id="top-border">
-        <div id="top-nav-bar"></div>
-    </div>
     <div class="page-container">
         <div class="form-container">
             <form

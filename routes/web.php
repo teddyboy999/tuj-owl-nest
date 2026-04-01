@@ -58,6 +58,8 @@ Route::post('/post-add', [PostController::class, "createPost"])->middleware('aut
 
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
+Route::get('/event-list/{eventId}', [EventController::class, "show"])->name("website.event-list.show");
+Route::get('/event-list/{eventId}/join', [EventController::class, "joinEvent"])->middleware(['auth', 'verified'])->name("website.event-list.join");
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
 
 // Routes for CLUBS / ORGANIZATIONS

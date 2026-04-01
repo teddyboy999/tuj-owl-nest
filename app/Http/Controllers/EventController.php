@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventParticipant;
+use App\Models\Forum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class EventController extends Controller
 {
@@ -14,6 +18,48 @@ class EventController extends Controller
         $events = $event->getPaginatedEvents(15);
 
         return view('website.event-list', ['events' => $events]);
+    }
+
+    // show individual event
+    public function show($eventId)
+    {
+        // If your filter is the primary key of your table, you can just use find() to find the record
+        $event = Event::find($eventId);
+
+        // get the forum linked to this event
+        $forum_obj = new Forum();
+        $forum = $forum_obj->find($event->forum_id);
+        $posts = $forum_obj->getChildPosts($event->forum_id, 5); // paginated by 5
+        
+        // TODO: Get members interested in event (needs separate table)
+        $event_participant = new EventParticipant();
+        $attendees = $event_participant->getPaginatedInterestedUsers($eventId, 10);
+
+        return view("website.event", 
+                    ["event" => $event, 
+                     "forum" => $forum, 
+                     "posts" => $posts, 
+                     "users" => $attendees] // users because i copied code from community.blade
+                   );
+    }
+
+    // function that's called when users click "join event" button
+    public function joinEvent($eventId)
+    {
+        $user = Auth::user();
+
+        // if the user is authenticated, then join the event!
+        if ($user)
+        {
+            $event_participant = new EventParticipant();
+            $event_participant->user_id = $user->id;
+            $event_participant->event_id = $eventId;
+
+            $event_participant->save();
+        }
+
+        // just refresh the page
+        return redirect()->route('website.event-list.show', ['eventId' => $eventId]);
     }
 
 
@@ -47,6 +93,17 @@ class EventController extends Controller
         $event->end_time = $validatedData['endTime'];
         $event->tags = $validatedData['tags'];
         $event->event_organizer_email = $validatedData['event_email'];
+
+        // Create new forum for this event
+        $forum = new Forum();
+        $forum->forum_author = $validatedData["event_organizer"];
+        $forum->forum_author_email = $validatedData["event_email"];
+        $forum->forum_title = $validatedData["eventName"] . " Forum";
+        $forum->tags = $validatedData['tags'];
+        $forum->forum_content = $validatedData["description"];
+        $forum->save(); // insert into forum
+
+        $event->forum_id = $forum->id;
 
         $event->save();
 

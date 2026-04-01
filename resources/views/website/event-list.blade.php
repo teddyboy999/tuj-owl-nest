@@ -1,9 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-    <div id="top-border">
-        <div id="top-nav-bar"></div>
-    </div>
     <div id="events" class="fade-in">
         <h1>Events</h1>
     </div>
@@ -16,7 +13,7 @@
 
     <div name="create-event" class="px-6 py-4"></div>
 
-    <div class="mx-4 rounded-sm border-2 p-4 indent-4">
+    <div class="mx-4 mb-6 rounded-sm border-2 p-4 indent-4">
         @foreach ($events as $event)
             {{-- Card Layout for each event to be displayed --}}
             <div class="mx-2 mt-2 mb-2 rounded-lg border-2 p-2">
@@ -94,9 +91,18 @@
                 >
                     Description:
                 </span>
-                <p class="text-gray-600">
+                <p class="text-gray-600 truncate w-3/4">
                     {{ $event->event_description }}
                 </p>
+
+                {{-- Show more button to open the event in a detailed page (and to click join!) --}}
+                <a href="{{ route('website.event-list.show', ['eventId' => $event->id]) }}">
+                    <span
+                        class="mx-2 mb-1 p-2 text-lg font-semibold text-blue-600 underline hover:underline hover:blue-200 visited:text-purple-500"
+                    >   
+                        Show More
+                    </span>
+                </a>
             </div>
         @endforeach
 

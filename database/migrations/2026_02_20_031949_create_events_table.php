@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date("event_date");
             $table->time("start_time");
             $table->time("end_time");
+            $table->foreignId("forum_id"); // forum that's linked to this event
         });
     }
 

@@ -19,19 +19,24 @@ class ForumsController extends Controller
         return view('website.forums', ['forum_posts' => $forumPosts]);
     }
 
-    // show only a single forum based on id
-    public function show($forumId)
+    public function getForum($forumId)
     {
         // If your filter is the primary key of your table, you can just use find() to find the record
         $forum = Forum::find($forumId);
 
         $forums = new Forum;
         $posts = $forums->getChildPosts($forumId, 15);
-        // print_r("<pre>".json_encode($posts, JSON_PRETTY_PRINT)."</pre>");
-        // die();
-        // die();
-        // compact("var_name") is same as ["var_name" => value]
-        return view("website.forum", ["forum" => $forum, "posts" => $posts]);
+
+        return ["forum" => $forum, "posts" => $posts];
+    }
+
+    // show only a single forum based on id
+    public function show($forumId)
+    {
+        $forum = $this->getForum($forumId);
+
+        // $forum is of the format ["forum" => $forum, "posts" => $posts];
+        return view("website.forum", $forum);
     }
 
     // isLoggedIn: checks if the current user is logged in or not, if not logged in, redirects them to the login page

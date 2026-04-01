@@ -44,6 +44,9 @@ Route::get("/user-profile", function () {
 Route::get("/new-club", function() {
     return view('website.new-club');
 });
+Route::get("/club-edit", function() {
+    return view('website.club-edit');
+});
 
 // Routes for FORUMS
 // Please follow Controller Function Notation

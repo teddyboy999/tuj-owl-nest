@@ -16,6 +16,14 @@
             Create New Club
         </button>
     </div>
+    <div id="club-create">
+        <button
+            onclick="window.location.href = '/club-edit'"
+            class="club-create"
+        >
+            Edit Your Club
+        </button>
+    </div>
     <div id="cards">
         {{-- Get All Clubs / Organizations --}}
         @foreach ($clubs as $club)

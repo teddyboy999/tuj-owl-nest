@@ -236,7 +236,7 @@
                                 Upload club photos
                             </label>
                             <div id="club-pics">
-                                <div name="file-upload">
+                                <div name="banner-upload">
                                     <input
                                         type="file"
                                         id="club-pics-input"
@@ -257,7 +257,7 @@
                                 Upload club logo
                             </label>
                             <div id="club-banner">
-                                <div name="file-upload">
+                                <div name="logo-upload">
                                     <input
                                         type="file"
                                         id="club-banner-input"
@@ -315,9 +315,10 @@
                         <div class="location-agree-group">
                             <p class="club-label">
                                 Club leaders or appointed members must contact
-                                TUJ Facilities at facilities @tuj.temple.edu to
-                                reserve a space on campus "every semester" AFTER
-                                submitting this form.
+                                TUJ Facilities at facilities
+                                @tuj.temple.edu
+                                to reserve a space on campus "every semester"
+                                AFTER submitting this form.
                             </p>
                             <input
                                 type="checkbox"

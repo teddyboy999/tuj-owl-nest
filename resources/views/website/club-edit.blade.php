@@ -8,6 +8,7 @@
                 method="POST"
                 autocomplete="on"
             >
+                @csrf
                 <fieldset class="club-form-fieldset">
                     <h2 style="text-align: center">Edit Club Information</h2>
                     <div id="club-name" class="club-name">

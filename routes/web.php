@@ -25,8 +25,6 @@ Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    
-
     Route::post('/profile-add', [ProfileController::class, 'update'])->name('profile.update');
 });
 
@@ -43,37 +41,40 @@ Route::get("/user-profile", function () {
     return view('website.user-profile');
 });
 
-Route::get("/new-club", function() {
-    return view('website.new-club');
-});
-Route::get("/club-edit", function() {
-    return view('website.club-edit');
-});
 
 // Routes for FORUMS
 // Please follow Controller Function Notation
-Route::get('/forums', [ForumsController::class, "index"])->name("website.forums");
+Route::get("/forums", [ForumsController::class, "index"])->name("website.forums");
 Route::get("/forums/{forumId}", [PostController::class, "show"])->name("forums.show"); // individual forum post
+
 Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
+
 
 // For replies to show for each post
 Route::post('/post-add', [PostController::class, "createPost"])->middleware('auth')->name("post.create");
+
 
 // Routes for EVENTS
 Route::get('/event-list', [EventController::class, "index"])->name("website.event-list");
 Route::get('/event-list/{eventId}', [EventController::class, "show"])->name("website.event-list.show");
 Route::get('/event-list/{eventId}/join', [EventController::class, "joinEvent"])->middleware(['auth', 'verified'])->name("website.event-list.join");
+
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
+
 
 // Routes for CLUBS / ORGANIZATIONS
 Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
 Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show"); // for individual club pages
 
-Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware("auth")->name("clubs.add");
+Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware(["auth", "verified"])->name("clubs.add");
+Route::post("/club-edit", function() { return view('website.club-edit'); })->name("club.edit");
+
 
 // Routes for Community / USER PROFILE
 Route::get("/community", [ProfileController::class, "index"])->name("website.community");
+Route::post("/community/filter", [ProfileController::class, "filter"])->middleware(['auth', 'verified'])->name("website.community.filter");
 Route::get("/community/{userId}", [ProfileController::class, "show"])->name('community.show');
+
 Route::post('/comment-add', [ProfileController::class, "createComment"])->name('community.create');  
 
 

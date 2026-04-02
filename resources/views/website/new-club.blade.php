@@ -14,7 +14,7 @@
                         <input
                             type="text"
                             id="club-name-input"
-                            name="club-name-input"
+                            name="name"
                             placeholder="Ex. Coding Club"
                             class="club-input"
                             required
@@ -27,7 +27,7 @@
                     <div id="club-desc">
                         <textarea
                             id="club-desc-input"
-                            name="club-desc-input"
+                            name="description"
                             rows="10"
                             cols="50"
                             placeholder="Ex. This club serves to..."
@@ -45,7 +45,7 @@
                             <input
                                 type="text"
                                 id="leader-name"
-                                name="leader-input"
+                                name="leader_name"
                                 class="club-input"
                                 placeholder="Alan Turing"
                                 required
@@ -54,7 +54,7 @@
                             <input
                                 type="email"
                                 id="leader-email"
-                                name="leader-email"
+                                name="leader_email"
                                 class="club-input"
                                 placeholder="tuu1234@temple.edu"
                                 required
@@ -63,7 +63,7 @@
                             <input
                                 type="text"
                                 id="leader-tuid"
-                                name="leader-tuid"
+                                name="leader_tuid"
                                 class="club-input"
                                 placeholder="912345678"
                                 required
@@ -73,7 +73,7 @@
                             <input
                                 type="radio"
                                 id="UGBP1"
-                                name="leader-program"
+                                name="leader_program"
                                 value="UGBP"
                                 required
                             />
@@ -84,7 +84,7 @@
                             <input
                                 type="radio"
                                 id="SA1"
-                                name="leader-program"
+                                name="leader_program"
                                 value="SA"
                                 required
                             />
@@ -95,7 +95,7 @@
                             <input
                                 type="radio"
                                 id="AEP1"
-                                name="leader-program"
+                                name="leader_program"
                                 value="AEP"
                                 required
                             />
@@ -110,7 +110,7 @@
                             <input
                                 type="text"
                                 id="coleader-input"
-                                name="coleader-input"
+                                name="co_leader_name"
                                 class="club-input"
                                 placeholder="Tony Hoare"
                                 required
@@ -120,7 +120,7 @@
                             <input
                                 type="email"
                                 id="coleader-email"
-                                name="coleader-email"
+                                name="co_leader_name"
                                 class="club-input"
                                 placeholder="tuu1234@temple.edu"
                                 required
@@ -130,7 +130,7 @@
                             <input
                                 type="text"
                                 id="coleader-tuid"
-                                name="coleader-tuid"
+                                name="co_leader_tuid"
                                 class="club-input"
                                 placeholder="912345678"
                                 required
@@ -140,7 +140,7 @@
                             <input
                                 type="radio"
                                 id="UGBP2"
-                                name="coleader-program"
+                                name="co_leader_program"
                                 value="UGBP"
                                 required
                             />
@@ -151,7 +151,7 @@
                             <input
                                 type="radio"
                                 id="SA2"
-                                name="coleader-program"
+                                name="co_leader_program"
                                 value="SA"
                                 required
                             />
@@ -191,7 +191,7 @@
                             <input
                                 type="number"
                                 id="num-members"
-                                name="num-members"
+                                name="member_count"
                                 class="club-input"
                                 placeholder="0"
                                 min="8"

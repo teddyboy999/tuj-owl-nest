@@ -29,10 +29,15 @@
                                 class="rounded-md bg-gray-200 border-2"
                             />
                         </div>
-                        
-                        {{-- SUBMIT button --}}
-                        <div class="flex flex-row-reverse self-end">
-                            <button type="submit" class="px-4 py-2 bg-red-700 rounded-2xl text-color-white hover:underline hover:bg-red-600">
+
+                        <div class="flex flex-row-reverse space-x-2 space-x-reverse">
+                            {{-- CLEAR FILTERS button --}}
+                            <a href="{{ route("website.community") }}" class="text-center px-4 py-4 bg-red-700 rounded-2xl text-white hover:underline hover:bg-red-600">
+                                Clear Filters
+                            </a>
+                            
+                            {{-- SUBMIT button --}}
+                            <button type="submit" class="px-4 py-2 bg-red-700 rounded-2xl text-white hover:underline hover:bg-red-600">
                                 Submit
                             </button>
                         </div>

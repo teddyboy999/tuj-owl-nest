@@ -7,6 +7,42 @@
 
     {{-- Main Container --}}
     <div class="mx-4 my-2 border p-4">
+        {{-- Search and filter features --}}
+        <div class="text-black">
+            <form action="{{ route("website.community.filter") }}" method="POST">
+                @csrf
+                <div class="grid grid-rows-2 space-y-2">
+                    <h1 class="text-2xl font-bold text-black my-2">Search / Filter People</h1>
+                    <div class="grid grid-cols-3">
+                        {{-- Search Field (Can be NAME / EMAIL) --}}
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" placeholder=" Name"
+                                class="rounded-md bg-gray-200 border-2"
+                            />
+                        </div>
+
+                        {{-- Search EMAIL --}}
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" placeholder=" Email"
+                                class="rounded-md bg-gray-200 border-2"
+                            />
+                        </div>
+                        
+                        {{-- SUBMIT button --}}
+                        <div class="flex flex-row-reverse self-end">
+                            <button type="submit" class="px-4 py-2 bg-red-700 rounded-2xl text-color-white hover:underline hover:bg-red-600">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        {{-- List of ALL users --}}
         <div class="grid grid-cols-1">
             @foreach ($users as $user)
                 {{-- Each user's card --}}

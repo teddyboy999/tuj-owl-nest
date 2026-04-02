@@ -28,6 +28,45 @@ class ProfileController extends Controller
     }
 
     /**
+     * Filters users by whatever details the request has
+     * @param Request $request
+     */
+    public function filter(Request $request)
+    {
+        // Get values from request
+        $name = $request->name;
+        $email = $request->email;
+
+        // TEST
+        // echo "REQUEST";
+        // $jsonString_1 = json_encode($request);
+        //echo $jsonString_1;
+
+        // If it's null don't waste time
+        if ( $name === null && $email === null )
+        {
+            return redirect()->route("website.community");
+        }
+
+        // When the request has these fields, filter the records according to these columns
+        $users = auth()->user()
+            ->when($request->has("email"), 
+                fn($query) => $query->where("email", "like", '%' . $email . '%')
+            )
+            ->when($request->has("name"), 
+                fn($query) => $query->where('name', 'like', '%' . $name . '%')
+            )
+        ->latest()
+        ->paginate(30);
+
+        // echo "FILTERED USERS";
+        // $usersJsonString = json_encode($users);
+        // echo $usersJsonString;
+
+        return view('website.community', ['users' => $users]);   
+    }
+
+    /**
      * display specific user's profile
      */
     public function show($userId)

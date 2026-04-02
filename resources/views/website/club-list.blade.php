@@ -21,6 +21,7 @@
             Edit Your Club
         </button>
     </div>
+
     <div id="cards">
         {{-- Get All Clubs / Organizations --}}
         @foreach ($clubs as $club)
@@ -58,5 +59,8 @@
                 </a>
             </article>
         @endforeach
+    </div>
+    <div class="mx-4 mt-4 mb-6">
+        {{ $clubs->links() }}
     </div>
 @endsection

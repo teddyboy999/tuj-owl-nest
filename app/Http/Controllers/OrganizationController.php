@@ -11,7 +11,7 @@ class OrganizationController extends Controller
     public function index()
     {
         $organization = new Organization;
-        $clubs = $organization->getPaginatedOrganizations(15);
+        $clubs = $organization->getPaginatedOrganizations(8);
 
         return view('website.club-list', ['clubs' => $clubs]);
     }
@@ -29,19 +29,41 @@ class OrganizationController extends Controller
     // CREATING new Clubs / Organizations
     public function createOrganization(Request $request)
     {
-        echo "Create orgy request";
-        echo $request;
+        //echo "Create orgy request";
+        //echo $request;
         
         $validatedData = $this->validateRequest($request);    
 
         $organization = new Organization;
-
         $organization->org_name = $validatedData["name"];
+        $organization->org_description = $validatedData["description"];
+
+        $organization->org_leader_temple_id = $validatedData["leader_tuid"];
+        $organization->org_leader_name = $validatedData["leader_name"];
+        $organization->org_leader_email = $validatedData["leader_email"];
+        $organization->org_co_leader_program = $validatedData["leader_program"];
+
+        $organization->org_co_leader_temple_id = $validatedData["co_leader_tuid"];
+        $organization->org_co_leader_name = $validatedData["co_leader_name"];
+        $organization->org_co_leader_email = $validatedData["co_leader_email"];
+        $organization->org_co_leader_program = $validatedData["co_leader_program"];
+
+        $organization->org_type = $validatedData["type"];
+        $organization->org_is_active = $validatedData["is_active"];
+
+        $organization->org_logo_url = $validatedData["logo"];
+        $organization->org_images = $validatedData["org_images"];
+
+        $organization->org_semester = $validatedData["semester"];
+        $organization->org_number_of_members = $validatedData["member_count"];
+        $organization->org_has_show_students = $validatedData["has_showa_students"];
+        $organization->org_needs_locker = $validatedData["needs_locker"];
+
+        $organization->org_email = $validatedData["leader_email"];
 
         $organization->save();
 
-        // TODO: Add id and return that club's specific page
-        return redirect('/club-list')->with('success', 'Event created successfully!');
+        return redirect()->route("clubs.show", ["clubId" => $organization->id])->with('success', 'Organization created successfully!');
     }
 
     public function updateOrganization(Request $request, Organization $organization)

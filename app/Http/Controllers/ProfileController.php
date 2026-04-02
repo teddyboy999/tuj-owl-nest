@@ -37,11 +37,6 @@ class ProfileController extends Controller
         $name = $request->name;
         $email = $request->email;
 
-        // TEST
-        // echo "REQUEST";
-        // $jsonString_1 = json_encode($request);
-        //echo $jsonString_1;
-
         // If it's null don't waste time
         if ( $name === null && $email === null )
         {
@@ -58,10 +53,6 @@ class ProfileController extends Controller
             )
         ->latest()
         ->paginate(30);
-
-        // echo "FILTERED USERS";
-        // $usersJsonString = json_encode($users);
-        // echo $usersJsonString;
 
         return view('website.community', ['users' => $users]);   
     }

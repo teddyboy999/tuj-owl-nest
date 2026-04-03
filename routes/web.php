@@ -76,7 +76,7 @@ Route::get("/club-edit", function() { return view('website.club-edit'); })->midd
 // Routes for Community / USER PROFILE
 Route::get("/community", [ProfileController::class, "index"])->name("website.community");
 Route::post("/community/filter", [ProfileController::class, "filter"])->middleware(['auth', 'verified'])->name("website.community.filter");
-Route::get("/community/{userId}", [ProfileController::class, "show"])->name('community.show');
+Route::get("/community/{userId}", [ProfileController::class, "showDashboard"])->name('community.show');
 
 Route::post('/comment-add', [ProfileController::class, "createComment"])->name('community.create');  
 

@@ -21,7 +21,9 @@
                 <main class="grow">
                     {{-- Top Navigation and stuff --}}
                     <div id="top-border">
-                        <div id="top-nav-bar"></div>
+                        <div id="top-nav-bar"
+                            user-profile-url = "{{  route("userProfile", ["userId" => Auth::user()->id ]) }}"
+                        ></div>
                     </div>   
                     @yield('content')
                 </main>    

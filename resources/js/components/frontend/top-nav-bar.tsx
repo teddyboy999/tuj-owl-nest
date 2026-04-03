@@ -1,4 +1,12 @@
-const TopNavBar = () => {
+// PROPS for data to be passed as variables
+/// I need this because I pass dynamic routes
+interface TopNavBarProps
+{
+    userProfileUrl: string | "/community";
+}
+
+// Define the props in the function call too
+const TopNavBar = ({ userProfileUrl }: TopNavBarProps) => {
     const user = (window as any).Laravel?.user;
 
     return (
@@ -41,7 +49,7 @@ const TopNavBar = () => {
                 {user ? (
                     <>
                         <li className="hover:underline">
-                            <a href="/userProfile">Profile</a>
+                            <a href={userProfileUrl ?? "/userProfile"}>Profile</a>
                         </li>
                         <li className="hover:underline">
                             <form method="POST" action="/logout">

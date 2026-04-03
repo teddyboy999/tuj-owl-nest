@@ -59,9 +59,13 @@ initializeTheme();
 const navbarElement = document.getElementById('top-nav-bar');
 if (navbarElement) {
     const navBarRoot = createRoot(navbarElement);
+
+    // Passing Data: variables
+    const userProfileUrl = navbarElement.getAttribute("user-profile-url");
+
     navBarRoot.render(
         <StrictMode>
-            <TopNavBar />
+            <TopNavBar userProfileUrl={userProfileUrl} />
         </StrictMode>,
     );
 }

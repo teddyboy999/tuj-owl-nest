@@ -17,10 +17,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/userProfile', [ProfileController::class, 'showDashboard'])
-    ->middleware(['auth', 'verified'])
-    ->name('userProfile');
-
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -79,6 +75,10 @@ Route::post("/community/filter", [ProfileController::class, "filter"])->middlewa
 Route::get("/community/{userId}", [ProfileController::class, "showDashboard"])->name('community.show');
 
 Route::post('/comment-add', [ProfileController::class, "createComment"])->name('community.create');  
+
+Route::get('/userProfile/{userId}', [ProfileController::class, 'showDashboard'])
+    ->middleware(['auth', 'verified'])
+    ->name('userProfile');
 
 
 

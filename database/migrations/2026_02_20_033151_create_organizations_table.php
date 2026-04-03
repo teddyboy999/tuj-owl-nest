@@ -53,6 +53,9 @@ return new class extends Migration
 
             // Member details (if any)
             $table->string("org_member_emails")->nullable();
+
+            // Backend Side
+            $table->foreignId("forum_id");
         });
     }
 

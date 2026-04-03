@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Organization;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ClubMembers;
+use App\Models\Forum;
 
 class OrganizationController extends Controller
 {
@@ -23,12 +24,23 @@ class OrganizationController extends Controller
     {
         // If your filter is the primary key of your table, you can just use find() to find the record
         $organization = Organization::find($orgId);
+
+        // Organization Forum (that's created when the org is made)
+        $forum_obj = new Forum();
+        $org_forum = $forum_obj->find($organization->forum_id);
+        $posts = $forum_obj->getChildPosts($organization->forum_id, 5);
         
+        // Get members of the club / organization
         $organization_participant = new ClubMembers();
         $members = $organization_participant->getPaginatedOrgMembers($orgId, 10);
 
         // compact("var_name") is same as ["var_name" => value]
-        return view("website.club", ["club" => $organization, "users" => $members]);
+        return view("website.club", 
+                    ["club" => $organization, 
+                    "users" => $members,
+                    "forum" => $org_forum,
+                    "posts" => $posts
+                    ]);
     }
 
     // CREATING new Clubs / Organizations
@@ -78,6 +90,17 @@ class OrganizationController extends Controller
         // echo "Organization as JSON: ";
         // $jsonStrOrganization = json_encode($organization);
         // echo $jsonStrOrganization;
+
+        // FORUM: Create a forum specific to the organization / club
+        // Create new forum for this event
+        $forum = new Forum();
+        $forum->forum_author = $validatedData["leader_name"];
+        $forum->forum_author_email = $validatedData["leader_email"];
+        $forum->forum_title = $validatedData["name"] . " Forum";
+        $forum->forum_content = $validatedData["description"];
+        $forum->save(); // insert into forum
+
+        $organization->forum_id = $forum->id;
 
         // save
         $organization->save();

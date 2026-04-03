@@ -4,7 +4,7 @@
     <div class="page-container">
         <div class="form-container">
             <form
-                action="{{ route('clubs.add') }}"
+                action="{{ route('club.add') }}"
                 method="POST"
                 autocomplete="on"
             >

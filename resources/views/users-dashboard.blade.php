@@ -1,10 +1,6 @@
 @extends('layouts.web')
 
 @section('content')
-    <div id="top-border">
-        <div id="top-nav-bar"></div>
-    </div>
-
     {{-- Profile Picture border --}}
     <div
         class="mx-4 mt-2 mb-4 flex flex-row items-center justify-start space-x-1.5"

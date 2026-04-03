@@ -3,10 +3,10 @@
 @section('content')
     <div class="page-container">
         <div class="form-container">
-            <form action="{{ route('clubs.add') }}" method="POST" autocomplete="on">
+            <form action="{{ route('club.add') }}" method="POST" autocomplete="on">
                 @csrf {{-- Add csrf tag to protect your application from cross-site request forgeries (CSRF) and prevent a "419 Page Expired" error. --}}
                 <fieldset class="club-form-fieldset">
-                    <h2 style="text-align: center">Edit Club Information</h2>
+                    <h2 style="text-align: center">Club Information</h2>
                     <div id="club-name" class="club-name">
                         <label for="club-name-input" class="club-label">
                             Club Name:
@@ -74,7 +74,7 @@
                                 type="radio"
                                 id="UGBP1"
                                 name="leader_program"
-                                value="UGBP"
+                                value="UGBP1"
                                 required
                             />
                             <label for="UGBP1">
@@ -85,7 +85,7 @@
                                 type="radio"
                                 id="SA1"
                                 name="leader_program"
-                                value="SA"
+                                value="SA1"
                                 required
                             />
                             <label for="SA1">
@@ -96,13 +96,15 @@
                                 type="radio"
                                 id="AEP1"
                                 name="leader_program"
-                                value="AEP"
+                                value="AEP1"
                                 required
                             />
                             <label for="AEP1">
                                 Academic English Program (AEP)
                             </label>
                         </div>
+
+                        {{-- Co-Leader Group --}}
                         <div class="coleader-group">
                             <label for="coleader-input" class="club-label">
                                 Co-leader:
@@ -120,7 +122,7 @@
                             <input
                                 type="email"
                                 id="coleader-email"
-                                name="co_leader_name"
+                                name="co_leader_email"
                                 class="club-input"
                                 placeholder="tuu1234@temple.edu"
                                 required
@@ -137,11 +139,12 @@
                             />
                             TUID
                             <br />
+                            {{-- Co-Leader: Program --}}
                             <input
                                 type="radio"
                                 id="UGBP2"
                                 name="co_leader_program"
-                                value="UGBP"
+                                value="UGBP2"
                                 required
                             />
                             <label for="UGBP2">
@@ -152,7 +155,7 @@
                                 type="radio"
                                 id="SA2"
                                 name="co_leader_program"
-                                value="SA"
+                                value="SA2"
                                 required
                             />
                             <label for="SA2">
@@ -162,8 +165,8 @@
                             <input
                                 type="radio"
                                 id="AEP2"
-                                name="coleader-program"
-                                value="AEP"
+                                name="co_leader_program"
+                                value="AEP2"
                                 required
                             />
                             <label for="AEP2">

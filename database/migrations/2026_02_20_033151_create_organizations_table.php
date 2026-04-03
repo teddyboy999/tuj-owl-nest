@@ -36,8 +36,8 @@ return new class extends Migration
             // Club / Org Extra Details
             $table->string("org_semester"); // which semester (2026-1, 2026-2, 2026-3)
             $table->integer("org_number_of_members");
-            $table->boolean("org_has_showa_students");
-            $table->boolean("org_needs_locker");
+            $table->string("org_has_showa_students");
+            $table->string("org_needs_locker");
 
             // Org Meeting Times
             $table->string("org_meeting_time");
@@ -45,10 +45,14 @@ return new class extends Migration
 
             // Organization Social(s)
             $table->string("org_email");
+            $table->string("org_socials")->nullable();
             $table->string("org_instagram")->nullable();
             $table->string("org_discord")->nullable();
             $table->string("org_twitter")->nullable();
             $table->string("org_website")->nullable();
+
+            // Member details (if any)
+            $table->string("org_member_emails")->nullable();
         });
     }
 

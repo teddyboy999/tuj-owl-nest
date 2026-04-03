@@ -68,8 +68,9 @@ Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->nam
 Route::get('/clubs-list/{clubId}/join', [OrganizationController::class, "joinClub"])->middleware(['auth', 'verified'])->name("website.clubs-list.join");
  // for individual club pages
 
-Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware(["auth", "verified"])->name("clubs.add");
-Route::post("/club-edit", function() { return view('website.club-edit'); })->name("club.edit");
+Route::get("/new-club", function() { return view('website.new-club'); })->middleware(['auth', 'verified'])->name("club.new");
+Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware(["auth", "verified"])->name("club.add");
+Route::get("/club-edit", function() { return view('website.club-edit'); })->middleware(['auth', 'verified'])->name("club.edit");
 
 
 // Routes for Community / USER PROFILE

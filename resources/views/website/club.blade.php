@@ -163,7 +163,7 @@
                     href="{{ route('website.clubs-list.join', ['clubId' => $club->id]) }}"
                     class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
                 >
-                    Join Event
+                    Join Club
                 </a>
             </div>
 

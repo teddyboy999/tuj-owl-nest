@@ -31,7 +31,7 @@ class EventController extends Controller
         $forum = $forum_obj->find($event->forum_id);
         $posts = $forum_obj->getChildPosts($event->forum_id, 5); // paginated by 5
         
-        // TODO: Get members interested in event (needs separate table)
+        // Get members interested in event (needs separate table)
         $event_participant = new EventParticipant();
         $attendees = $event_participant->getPaginatedInterestedUsers($eventId, 10);
 

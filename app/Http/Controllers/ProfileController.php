@@ -80,25 +80,26 @@ class ProfileController extends Controller
 
     public function showDashboard($userId)
     {
-        $user = Auth::user();
+        // Get user first
+        $user = User::find($userId);
 
         // are we seeing the profile of the same user as the one logged in?
         $isCurrentUser = false;
-        if ($userId == $user->id)
+        if ($userId == Auth::user()->id)
         {
             $isCurrentUser = true;
         }
 
         // comments under user
-        $comments = $this->getProfileComments($user->id, 4);
+        $comments = $this->getProfileComments($userId, 4);
 
         // CLUBS: Get clubs that the user is enrolled in
         $participant = new ClubMembers();
-        $club_ids = $participant->where("user_id", $user->id)->get("club_id");
+        $club_ids = $participant->where("user_id", $userId)->get("club_id");
         $clubs = Organization::whereIn("id", $club_ids)->paginate(4);
 
         // EVENTS: Get events that the user has joined as a participant / attendee
-        $event_ids = EventParticipant::where("user_id", $user->id)->get("event_id");
+        $event_ids = EventParticipant::where("user_id", $userId)->get("event_id");
         $events = Event::whereIn("id", $event_ids)->paginate(2);
 
         return view('users-dashboard', [

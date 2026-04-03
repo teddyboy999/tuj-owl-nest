@@ -76,6 +76,7 @@ Route::get("/community/{userId}", [ProfileController::class, "showDashboard"])->
 
 Route::post('/comment-add', [ProfileController::class, "createComment"])->name('community.create');  
 
+// Route to see any user profile
 Route::get('/userProfile/{userId}', [ProfileController::class, 'showDashboard'])
     ->middleware(['auth', 'verified'])
     ->name('userProfile');

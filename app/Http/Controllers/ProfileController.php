@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\OrganizationParticipant;
 use App\Models\User;
 use App\Models\Post;
-use App\Models\Forum;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,6 +67,8 @@ class ProfileController extends Controller
 
         // comments under user
         $comments = $this->getProfileComments($userId, 4);
+        
+
 
         return view('website.user-profile', ['user' => $user, 'comments' =>$comments]);
     }
@@ -76,7 +78,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         $comments = $this->getProfileComments($user->id, 4);
 
-        return view('userProfile', [
+        return view('users-dashboard', [
             'user' => $user,
             'comments' => $comments
         ]);

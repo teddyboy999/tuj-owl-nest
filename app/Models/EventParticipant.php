@@ -8,6 +8,8 @@ use App\Models\User;
 // Model to represent the table to show which participant is interested in what event
 class EventParticipant extends Model
 {
+    protected $fillable = ['user_id', 'event_id'];
+
     // gets paginated participants according to the event id
     public function getPaginatedInterestedUsers($eventId, $paginate_num)
     {

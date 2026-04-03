@@ -51,9 +51,14 @@ class EventController extends Controller
         // if the user is authenticated, then join the event!
         if ($user)
         {
-            $event_participant = new EventParticipant();
-            $event_participant->user_id = $user->id;
-            $event_participant->event_id = $eventId;
+            //$event_participant = new EventParticipant();
+            //$event_participant->user_id = $user->id;
+            //$event_participant->event_id = $eventId;
+
+            $event_participant = EventParticipant::createOrFirst(
+                ["user_id" => $user->id],
+                ["event_id" => $eventId],
+            );
 
             $event_participant->save();
         }

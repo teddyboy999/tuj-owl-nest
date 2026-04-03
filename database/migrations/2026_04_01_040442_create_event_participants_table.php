@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             
-            $table->foreignId("user_id")->unique();
+            $table->foreignId("user_id");
             $table->foreignId("event_id"); // event they're interested in
         });
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Organization;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ClubMembers;
 
 class OrganizationController extends Controller
 {
@@ -22,8 +24,13 @@ class OrganizationController extends Controller
         // If your filter is the primary key of your table, you can just use find() to find the record
         $organization = Organization::find($postId);
 
+
+        
+        $organization_participant = new ClubMembers();
+        $members = $organization_participant->getPaginatedOrgMembers($postId, 10);
+
         // compact("var_name") is same as ["var_name" => value]
-        return view("website.club", ["club" => $organization]);
+        return view("website.club", ["club" => $organization, "users" => $members]);
     }
 
     // CREATING new Clubs / Organizations
@@ -64,6 +71,25 @@ class OrganizationController extends Controller
         $organization->save();
 
         return redirect()->route("clubs.show", ["clubId" => $organization->id])->with('success', 'Organization created successfully!');
+    }
+
+    
+    public function joinClub($clubId)
+    {
+        $user = Auth::user();
+
+        // if the user is authenticated, then join the event!
+        if ($user)
+        {
+            $club_participant = new ClubMembers();
+            $club_participant->user_id = $user->id;
+            $club_participant->club_id = $clubId;
+
+            $club_participant->save();
+        }
+
+        // just refresh the page
+        return redirect()->route('clubs.show', ['clubId' => $clubId]);
     }
 
     public function updateOrganization(Request $request, Organization $organization)

@@ -24,7 +24,7 @@ class PostController extends Controller
         {
             $forum = Forum::findOrFail($id);
 
-            $posts = $this->getForumComments($id, 3);
+            $posts = $this->getForumComments($id, 10);
 
             return view('website.forum', [
                 'forum' => $forum,

@@ -131,11 +131,11 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $posts = new Post();
-
         $posts->post_content = $validatedData['post_content'];
         $posts->parent_forum_id = $request->parent_forum_id;
         $posts->post_type = 'profile';
 
+        $posts->post_author_id = $user->id;
         $posts->post_author = $user->name;
         $posts->post_author_email = $user->email;
 
@@ -146,7 +146,7 @@ class ProfileController extends Controller
         $posts->save();
 
         return response()->json([
-            'message' => 'Forum created successfully!',
+            'message' => 'Comment created successfully!',
             'event'   => $posts
         ], 201);
     }

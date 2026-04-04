@@ -22,7 +22,11 @@
                     {{-- Top Navigation and stuff --}}
                     <div id="top-border">
                         <div id="top-nav-bar"
-                            user-profile-url = "{{  route("userProfile", ["userId" => Auth::user()->id ]) }}"
+                            @if (Auth::user())
+                                user-profile-url = "{{  route("userProfile", ["userId" => Auth::user()->id ]) }}"
+                            @else
+                                user-profile-url = "{{ route("dashboard") }}"
+                            @endif
                         ></div>
                     </div>   
                     @yield('content')

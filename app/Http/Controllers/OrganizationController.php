@@ -7,6 +7,7 @@ use App\Models\Organization;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ClubMembers;
 use App\Models\Forum;
+use App\Models\User;
 
 class OrganizationController extends Controller
 {
@@ -32,7 +33,19 @@ class OrganizationController extends Controller
         
         // Get members of the club / organization
         $organization_participant = new ClubMembers();
-        $members = $organization_participant->getPaginatedOrgMembers($orgId, 10);
+        //$members = User::find( ClubMembers::where("club_id", 1)->get() ); // WORKS
+
+
+        
+        // WORKS
+        //return ClubMembers::where("club_id", 1)->get("user_id");
+        //return User::whereIn("id", [1, 2])->get(); // WORKS
+
+        $members = User::whereIn("id", ClubMembers::where("club_id", 1)->get("user_id"))->paginate(1); 
+
+        //return User::find( ClubMembers::where("club_id", 1)->get("user_id") ); // WORKS
+        //return User::findMany( ClubMembers::where("club_id", 1)->paginate(1)->get("user_id") );
+        //$members = $organization_participant->getPaginatedOrgMembers($orgId, 10);
 
         // compact("var_name") is same as ["var_name" => value]
         return view("website.club", 

@@ -14,7 +14,7 @@ class ClubMembers extends Model
     // gets paginated participants according to the event id
     public function getPaginatedOrgMembers($clubId, $paginate_num)
     {
-        $userIds = $this->where("club_id", $clubId)->paginate($paginate_num)->value("user_id");
+        $userIds = $this->where("club_id", $clubId)->paginate($paginate_num)->get("user_id");
 
         $users = User::findMany($userIds);
 

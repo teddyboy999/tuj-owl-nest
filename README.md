@@ -4,6 +4,36 @@ A community platform for clubs, student organizations, academic societies, and a
 
 ---
 
+# Group Members
+
+Alonzo Rico, Bhushith Gujjala Hari, James Donelly
+
+---
+
+# Installation
+
+---
+
+Before running any commands, we need to make sure the proper dependencies are installed.
+
+Ensure to download the following dependencies:
+- Git
+- Node.js (npm)
+- Composer
+- Laravel Herd
+- SQL
+
+Once downloaded, ensure the commands run. To test, use a code editor (preferably Visual Studio Code) and open a terminal using "New Terminal".
+
+In that terminal, run a command for each dependency and see if an error is thrown. If one is thrown, particularly a "cmdlet not recognized error", follow these steps to resolve.
+
+- To do this, navigate to your Program Files and locate Git, npm, or composer (whichever one is causing the error.
+- Then, look for the bin file and copy the path.
+- Afterwards, in your Windows Serach Bar, search for Environment Variables.
+- Once open, select Environment Variables. At the top, you will see lots of paths, look for "Path" and double click.
+- More paths will appear, from here click "New" and you will be prompted with a new path.
+- Paste the path to the Bin and save your changes
+
 # GIT Details
 
 ## Clone this Git Repository

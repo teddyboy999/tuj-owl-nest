@@ -85,6 +85,23 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('website.forum', ['post' => $post])->with('success', 'Event updated successfully.');
+        return redirect()->route('website.forums', ['post' => $post])->with('success', 'Event updated successfully.');
+    }
+
+    public function destroy($postId)
+    {
+        $post = Post::findOrFail($postId);
+
+        // Get the forum we were referring to
+        $forumId = $post->parent_forum_id;
+        $forum = Forum::find($forumId);
+
+        $forums = new Forum;
+        $posts = $forums->getChildPosts($forumId, 15);
+
+        // Finally delete the forum
+        $post->delete();
+
+        return redirect()->route("forums.show", ['forum' => $forum, 'posts' => $posts])->with("success", "Deleted post successfully!");
     }
 }

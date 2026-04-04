@@ -46,9 +46,9 @@ Route::get("/forums/{forumId}", [PostController::class, "show"])->name("forums.s
 Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
 Route::delete("/forums/{forumId}", [ForumsController::class, "destroy"])->middleware(['auth', 'verified'])->name("forums.destroy");
 
-
 // For replies to show for each post
 Route::post('/post-add', [PostController::class, "createPost"])->middleware('auth')->name("post.create");
+Route::delete('/forums/{forumId}/delete/{postId}', [PostController::class, "destroy"])->middleware('auth')->name("post.delete");
 
 
 // Routes for EVENTS

@@ -3,7 +3,7 @@
 @section('content')
     <!-- BACK LINK -->
     <div
-        class="mb-2 ml-6 flex w-fit flex-row items-center justify-center p-4"
+        class="mb-2 flex w-fit flex-row items-center justify-center p-4"
     >
         <svg
             xmlns="http://www.w3.org/2000/svg"

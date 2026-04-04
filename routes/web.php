@@ -44,6 +44,7 @@ Route::get("/forums", [ForumsController::class, "index"])->name("website.forums"
 Route::get("/forums/{forumId}", [PostController::class, "show"])->name("forums.show"); // individual forum post
 
 Route::post('/forum-add', [ForumsController::class, "createForum"])->middleware('auth')->name("forums.create");
+Route::delete("/forums/{forumId}", [ForumsController::class, "destroy"])->middleware(['auth', 'verified'])->name("forums.destroy");
 
 
 // For replies to show for each post
@@ -56,6 +57,7 @@ Route::get('/event-list/{eventId}', [EventController::class, "show"])->name("web
 Route::get('/event-list/{eventId}/join', [EventController::class, "joinEvent"])->middleware(['auth', 'verified'])->name("website.event-list.join");
 
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
+Route::delete("/event-list/{eventId}", [EventController::class, "destroy"])->middleware(['auth', 'verified'])->name("events.delete"); // delete event
 
 
 // Routes for CLUBS / ORGANIZATIONS
@@ -67,6 +69,7 @@ Route::get('/clubs-list/{clubId}/join', [OrganizationController::class, "joinClu
 Route::get("/new-club", function() { return view('website.new-club'); })->middleware(['auth', 'verified'])->name("club.new");
 Route::post("/club-add", [OrganizationController::class, "createOrganization"])->middleware(["auth", "verified"])->name("club.add");
 Route::get("/club-edit", function() { return view('website.club-edit'); })->middleware(['auth', 'verified'])->name("club.edit");
+Route::delete("clubs-list/{clubId}", [OrganizationController::class, "destroy"])->middleware(["auth", "verified"])->name("club.destroy");
 
 
 // Routes for Community / USER PROFILE

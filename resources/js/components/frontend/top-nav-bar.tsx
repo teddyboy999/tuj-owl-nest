@@ -10,7 +10,7 @@ const TopNavBar = ({ userProfileUrl }: TopNavBarProps) => {
     const user = (window as any).Laravel?.user;
 
     return (
-        <div className="m-2 flex h-12 items-center justify-between px-4">
+        <div className="mb-2 flex h-12 items-center justify-between px-4">
             <div className="flex items-center">
                 <a href="/">
                     <img

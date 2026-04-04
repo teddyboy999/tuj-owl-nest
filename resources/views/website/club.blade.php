@@ -11,8 +11,7 @@
             Back
         </a>
 
-        {{-- Banner / Image Scroll layer --}}
-        <div class="text-black">BANNER GOES HERE</div>
+        {{-- FUTURE IMPLEMENTATION: Banner / Image Scroll layer --}}
 
         {{-- LOGO AND TITLE --}}
         <div class="mt-2 mb-4 flex flex-row space-x-1.5">
@@ -150,83 +149,87 @@
 
 
         {{-- Club Forum --}}
-        <div class="mx-4 my-2 mt-4 mb-4 flex flex-col border p-2">
-            {{-- Title Box --}}
-            <div class="mx-2 mt-2 flex flex-col p-2">
-                {{-- Forum Post Title --}}
-                <p class="text-4xl font-bold text-black">
-                    <span class="font=bold">(FORUM)</span>
-                    {{ $forum->forum_title }}
-                </p>
+        @if($forum)
+            <div class="mx-4 my-2 mt-4 mb-4 flex flex-col border p-2">
+                {{-- Title Box --}}
+                <div class="mx-2 mt-2 flex flex-col p-2">
+                    {{-- Forum Post Title --}}
+                    <p class="text-4xl font-bold text-black">
+                        <span class="font=bold">(FORUM)</span>
+                        {{ $forum->forum_title }}
+                    </p>
 
-                {{-- Author and Author Email --}}
-                <p class="mt-0.5 mb-0.5 indent-3 text-gray-600">
-                    <span class="font-light underline">By:</span>
-                    {{ $forum->forum_author }} (
-                    <a
-                        class="hover:text-black hover:underline"
-                        href="mailto:{{ $forum->forum_author_email }}"
-                    >
-                        {{ $forum->forum_author_email }}
-                    </a>
-                    ),
-                    <span class="font-light underline">Created at:</span>
-                    {{ $forum->created_at }}
-                </p>
+                    {{-- Author and Author Email --}}
+                    <p class="mt-0.5 mb-0.5 indent-3 text-gray-600">
+                        <span class="font-light underline">By:</span>
+                        {{ $forum->forum_author }} (
+                        <a
+                            class="hover:text-black hover:underline"
+                            href="mailto:{{ $forum->forum_author_email }}"
+                        >
+                            {{ $forum->forum_author_email }}
+                        </a>
+                        ),
+                        <span class="font-light underline">Created at:</span>
+                        {{ $forum->created_at }}
+                    </p>
 
-                {{-- Created At (Timestamps) --}}
-                <p class="mt-0.5 mb-1 indent-3 text-gray-400"></p>
-            </div>
+                    {{-- Created At (Timestamps) --}}
+                    <p class="mt-0.5 mb-1 indent-3 text-gray-400"></p>
+                </div>
 
-            <div
-                id="create-post-root"
-                name="create-post"
-                class="px-6 py-4"
-                data-forum-id="{{ $forum->id }}"
-            ></div>
+                <div
+                    id="create-post-root"
+                    name="create-post"
+                    class="px-6 py-4"
+                    data-forum-id="{{ $forum->id }}"
+                ></div>
 
-            {{-- Nested Box for all forum replies to show up --}}
-            <div class="mx-4 border-l px-4 indent-1 mb-4">
-                <p class="text-3xl font-bold text-black">Replies:</p>
-                @foreach ($posts as $post)
-                    {{-- Inner box for each forum reply --}}
-                    <div class="mx-4 my-2 grid grid-rows-2 border p-4">
-                        {{-- Author Details: GRID-ROW-1 --}}
-                        <div class="row-start-1 row-end-1">
-                            <p class="text-xl text-black">
-                                {{-- Author --}}
-                                {{ $post->post_author }}
+                {{-- Nested Box for all forum replies to show up --}}
+                <div class="mx-4 border-l px-4 indent-1 mb-4">
+                    <p class="text-3xl font-bold text-black">Replies:</p>
+                    @foreach ($posts as $post)
+                        {{-- Inner box for each forum reply --}}
+                        <div class="mx-4 my-2 grid grid-rows-2 border p-4">
+                            {{-- Author Details: GRID-ROW-1 --}}
+                            <div class="row-start-1 row-end-1">
+                                <p class="text-xl text-black">
+                                    {{-- Author --}}
+                                    {{ $post->post_author }}
 
-                                {{-- Author Email --}}
-                                <span class="text-lg font-light text-black">
-                                    (
-                                    <a href="mailto:{{ $post->post_author_email }}">
-                                        {{ $post->post_author_email }}
-                                    </a>
-                                    )
-                                </span>
+                                    {{-- Author Email --}}
+                                    <span class="text-lg font-light text-black">
+                                        (
+                                        <a href="mailto:{{ $post->post_author_email }}">
+                                            {{ $post->post_author_email }}
+                                        </a>
+                                        )
+                                    </span>
 
-                                {{-- Created At --}}
-                                <span class="text-sm font-extralight text-black">
-                                    at {{ $post->created_at }}
-                                </span>
-                            </p>
+                                    {{-- Created At --}}
+                                    <span class="text-sm font-extralight text-black">
+                                        at {{ $post->created_at }}
+                                    </span>
+                                </p>
+                            </div>
+
+                            {{-- Post Content: GRID-ROW-2 --}}
+                            <div class="row-start-2 row-end-2">
+                                <p class="indent-4 text-gray-600">
+                                    {{ $post->post_content }}
+                                </p>
+                            </div>                
                         </div>
+                    @endforeach
 
-                        {{-- Post Content: GRID-ROW-2 --}}
-                        <div class="row-start-2 row-end-2">
-                            <p class="indent-4 text-gray-600">
-                                {{ $post->post_content }}
-                            </p>
-                        </div>                
+                    <div class="mt-4">
+                        {{ $posts->links() }}
                     </div>
-                @endforeach
-
-                <div class="mt-4">
-                    {{ $posts->links() }}
                 </div>
             </div>
-        </div>
+
+        @endif
+
 
 
 
@@ -305,4 +308,26 @@
             </div>
         </div>
     </div>
+
+    {{-- CLUB DELETE BUTTON --}}
+    <div class="mb-8 py-4 ml-2">
+        @if(Auth::user())
+            {{-- Check if the event's organizer_id matches with the current logged in user --}}
+            @if (Auth::user()->id == $club->org_leader_id)
+                <form action="{{ route("club.destroy", ["clubId" => $club->id]) }}" method="POST">
+                    @csrf 
+                    @method('DELETE')
+
+                    <button 
+                        type="submit"
+                        onclick="alert('Are you sure you want to delete this CLUB and ALL of its posts? This action cannot be undone! Your club will be gone forever (a long time)!')"
+                        class="p-4 text-white hover:underline bg-red-600 hover:bg-red-500 max-w-48"
+                    >
+                        DELETE THIS CLUB
+                    </button>
+                </form>
+            @endif
+        @endif 
+    </div>
+
 @endsection

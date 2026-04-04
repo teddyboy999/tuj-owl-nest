@@ -16,6 +16,7 @@ return new class extends Migration
 
             // TODO: Implement this
             // $table->foreignId("user_id")->constrainted(table: "users", column: "id"); // to access user profiles publicly
+            $table->foreignId("forum_author_id");
             $table->string("forum_author");
             $table->string("forum_author_email");
             $table->string("forum_title");

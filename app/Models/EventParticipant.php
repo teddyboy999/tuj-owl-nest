@@ -13,9 +13,8 @@ class EventParticipant extends Model
     // gets paginated participants according to the event id
     public function getPaginatedInterestedUsers($eventId, $paginate_num)
     {
-        $userIds = $this->where("event_id", $eventId)->paginate($paginate_num)->value("user_id");
-
-        $users = User::findMany($userIds);
+        $userIds = $this->where("event_id", $eventId)->get("user_id"); // first get the user ids of everyone interested in the event
+        $users = User::whereIn("id", $userIds)->paginate($paginate_num); // then get their users, paginated 
 
         return $users;
     }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             
+            $table->foreignId("event_organizer_id");
             $table->string("event_organizer"); // user 
             $table->string("event_organizer_email");
             $table->string("event_affiliation")->nullable(); // club || society || organization

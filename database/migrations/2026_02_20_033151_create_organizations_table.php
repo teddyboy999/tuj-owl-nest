@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Organization Detail(s)
+            $table->foreignId("org_leader_id");
             $table->string("org_name")->unique();
             $table->longText("org_description");
             $table->string("org_leader_temple_id")->unique();

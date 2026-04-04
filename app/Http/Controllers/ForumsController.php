@@ -6,6 +6,8 @@ use App\Models\Forum; // to import the model
 use Illuminate\Support\Facades\Auth; // for the details of the logged in user
 use Illuminate\Http\Request;
 
+use App\Models\Post;
+
 // To handle fetching of forums
 class ForumsController extends Controller
 {
@@ -52,8 +54,10 @@ class ForumsController extends Controller
     // create a new forum
     public function createForum(Request $request)
     {
-        // TODO: Redict user if not logged in
-        // $this->redirectUserToLogin();
+        if (!Auth::user())
+        {
+            return redirect()->route("login");   
+        }
 
         // Validate request data
         $validatedData = $request->validate([
@@ -67,12 +71,10 @@ class ForumsController extends Controller
         // Get current user
         $user = Auth::user();
 
-        echo "USER DETAILS";
-        echo $user;
-
         // add to Forum table
         $forums = new Forum();
 
+        $forums->forum_author_id = $user->id;
         $forums->forum_title = $validatedData['forum_title'];
         $forums->forum_content = $validatedData['forum_content'];
         $forums->tags = $validatedData['tags'];         
@@ -86,5 +88,19 @@ class ForumsController extends Controller
             'message' => 'Forum created successfully!',
             'event'   => $forums
         ], 201);
+    }
+
+    public function destroy($forumId)
+    {
+        $forum = Forum::findOrFail($forumId);
+
+        // Delete all child posts linked to this forum
+        $childPosts = Post::where("parent_forum_id", $forumId);
+        $childPosts->delete();
+
+        // Finally, delete this forum
+        $forum->delete();
+
+        return redirect()->route("website.forums")->with("success", "Forum successfully deleted!");
     }
 }

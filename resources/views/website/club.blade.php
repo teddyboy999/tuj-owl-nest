@@ -150,7 +150,7 @@
 
         {{-- Club Forum --}}
         @if($forum)
-            @includeIf('website.forum', ['forum' => $forum, 'posts' => $posts ?? null])
+            @includeIf('website.forum_content', ['forum' => $forum, 'posts' => $posts ?? null])
         @endif
 
         

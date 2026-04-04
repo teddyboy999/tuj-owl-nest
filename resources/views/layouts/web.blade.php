@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>TUJ Owl Nest</title>
         @viteReactRefresh
-        @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/app.tsx'])
+        @vite(["resources/js/app.js", "resources/css/app.css", "resources/js/app.tsx"])
         <script>
             window.Laravel = {
                 csrfToken: '{{ csrf_token() }}',
                 user: @json(Auth::user()),
-                isLoggedIn: {{ Auth::check() ? 'true' : 'false' }},
+                isLoggedIn: {{ Auth::check() ? "true" : "false" }},
             };
         </script>
     </head>
@@ -22,10 +22,18 @@
                     <div id="top-border">
                         <div
                             id="top-nav-bar"
-                            user-profile-url="{{ route('userProfile', ['userId' => Auth::user()->id]) }}"
+                            @if (Auth::user())
+                                user-profile-url
+                                =
+                                "{{ route("userProfile", ["userId" => Auth::user()->id]) }}"
+                            @else
+                                user-profile-url
+                                =
+                                "{{ route("dashboard") }}"
+                            @endif
                         ></div>
                     </div>
-                    @yield('content')
+                    @yield("content")
                 </main>
             </div>
 

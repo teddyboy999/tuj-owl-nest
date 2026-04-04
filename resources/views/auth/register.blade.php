@@ -4,7 +4,7 @@
 
         <!-- BACK LINK -->
         <div
-            class="mb-4 -ml-6 flex w-fit flex-row items-center justify-center p-2"
+            class="mb-4 flex w-fit flex-row items-center justify-center p-2"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"

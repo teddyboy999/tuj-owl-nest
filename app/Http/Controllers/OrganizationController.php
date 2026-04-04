@@ -7,6 +7,7 @@ use App\Models\Organization;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ClubMembers;
 use App\Models\Forum;
+use App\Models\User;
 
 class OrganizationController extends Controller
 {
@@ -43,6 +44,37 @@ class OrganizationController extends Controller
                     ]);
     }
 
+    /**
+     * Filters users by whatever details the request has
+     * @param Request $request
+     */
+    public function filter(Request $request)
+    {
+        // Get values from request
+        $name = $request->name;
+        $email = $request->email;
+
+        // If it's null don't waste time
+        if ( $name === null && $email === null )
+        {
+            return redirect()->route("website.club-list");
+        }
+
+        // When the request has these fields, filter the records according to these columns
+        $org = new Organization();
+        $clubs = $org
+            ->when($request->has("email"), 
+                fn($query) => $query->where("org_email", "like", '%' . $email . '%')
+            )
+            ->when($request->has("name"), 
+                fn($query) => $query->where('org_name', 'like', '%' . $name . '%')
+            )
+        ->latest()
+        ->paginate(30);
+
+        return view('website.club-list', ['clubs' => $clubs]);   
+    }
+
     // CREATING new Clubs / Organizations
     public function createOrganization(Request $request)
     {
@@ -51,6 +83,7 @@ class OrganizationController extends Controller
         $validatedData = $this->validateRequest($request);    
 
         $organization = new Organization;
+        $organization->org_leader_id = Auth::user()->id;
         $organization->org_name = $validatedData["name"];
         $organization->org_description = $validatedData["description"];
         $organization->org_email = $validatedData["leader_email"];
@@ -94,6 +127,7 @@ class OrganizationController extends Controller
         // FORUM: Create a forum specific to the organization / club
         // Create new forum for this event
         $forum = new Forum();
+        $forum->forum_author_id = Auth::user()->id;
         $forum->forum_author = $validatedData["leader_name"];
         $forum->forum_author_email = $validatedData["leader_email"];
         $forum->forum_title = $validatedData["name"] . " Forum";
@@ -137,6 +171,23 @@ class OrganizationController extends Controller
         return redirect('/club-list')->with('success', 'Event created successfully!');
     }
 
+    public function destroy($orgId)
+    {
+        $organization = Organization::findOrFail($orgId);
+
+        // Remove every record from ClubMembers Table
+        ClubMembers::where("club_id", $orgId)->delete();
+
+        // Delete the forum linked to this club as well
+        Forum::where("id", $organization->forum_id)->delete();
+
+        // Finally delete the organization
+        $organization->delete();
+
+        return redirect()->route("website.club-list")->with("success", "Club deleted successfully!");
+    }
+
+    // HELPER METHODS
     public function validateRequest(Request $request): array
     {
         // Validate request data

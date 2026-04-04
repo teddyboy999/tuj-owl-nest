@@ -1,6 +1,30 @@
 @extends('layouts.web')
 
 @section('content')
+    <!-- BACK LINK -->
+    <div
+        class="mb-4 flex w-fit flex-row items-center justify-center p-2"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e3e3e3"
+        >
+            <path
+                d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"
+            />
+        </svg>
+        <a
+            href="{{ route('website.community') }}"
+            class="text-gray-500 hover:text-gray-600 hover:underline"
+        >
+            Back
+        </a>
+    </div>
+
+
     {{-- Profile Picture border --}}
     <div
         class="mx-4 mt-2 mb-4 flex flex-row items-center justify-start space-x-1.5"

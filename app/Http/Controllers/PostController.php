@@ -24,7 +24,7 @@ class PostController extends Controller
         {
             $forum = Forum::findOrFail($id);
 
-            $posts = $this->getForumComments($id, 3);
+            $posts = $this->getForumComments($id, 10);
 
             return view('website.forum', [
                 'forum' => $forum,
@@ -53,6 +53,7 @@ class PostController extends Controller
         $user = Auth::user();
 
         $posts = new Post();
+        $posts->post_author_id = Auth::user()->id;
 
         $posts->post_content = $validatedData['post_content'];
         $posts->parent_forum_id = $validatedData['parent_forum_id'];
@@ -85,6 +86,23 @@ class PostController extends Controller
 
         $post->save();
 
-        return redirect()->route('website.forum', ['post' => $post])->with('success', 'Event updated successfully.');
+        return redirect()->route('website.forums', ['post' => $post])->with('success', 'Event updated successfully.');
+    }
+
+    public function destroy($forumId, $postId)
+    {
+        $post = Post::where("post_id", $postId)->firstOrFail();
+
+        // Get the forum we were referring to
+        $forumId = $post->parent_forum_id;
+        $forum = Forum::find($forumId);
+
+        $forums = new Forum;
+        $posts = $forums->getChildPosts($forumId, 15);
+
+        // Finally delete the forum
+        Post::where("post_id", $postId)->delete();
+
+        return redirect()->route("forums.show", ['forumId' => $forumId, 'forum' => $forum, 'posts' => $posts])->with("success", "Deleted post successfully!");
     }
 }

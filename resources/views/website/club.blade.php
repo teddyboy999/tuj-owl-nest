@@ -11,8 +11,7 @@
             Back
         </a>
 
-        {{-- Banner / Image Scroll layer --}}
-        <div class="text-black">BANNER GOES HERE</div>
+        {{-- FUTURE IMPLEMENTATION: Banner / Image Scroll layer --}}
 
         {{-- LOGO AND TITLE --}}
         <div class="mt-2 mb-4 flex flex-row space-x-1.5">
@@ -309,4 +308,26 @@
             </div>
         </div>
     </div>
+
+    {{-- CLUB DELETE BUTTON --}}
+    <div class="mb-8 py-4 ml-2">
+        @if(Auth::user())
+            {{-- Check if the event's organizer_id matches with the current logged in user --}}
+            @if (Auth::user()->id == $club->org_leader_id)
+                <form action="{{ route("club.destroy", ["clubId" => $club->id]) }}" method="POST">
+                    @csrf 
+                    @method('DELETE')
+
+                    <button 
+                        type="submit"
+                        onclick="alert('Are you sure you want to delete this CLUB and ALL of its posts? This action cannot be undone! Your club will be gone forever (a long time)!')"
+                        class="p-4 text-white hover:underline bg-red-600 hover:bg-red-500 max-w-48"
+                    >
+                        DELETE THIS CLUB
+                    </button>
+                </form>
+            @endif
+        @endif 
+    </div>
+
 @endsection

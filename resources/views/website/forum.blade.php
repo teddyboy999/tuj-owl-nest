@@ -125,8 +125,8 @@
     <div class="mb-8 py-4 ml-2">
         @if(Auth::user())
             {{-- Check if the event's organizer_id matches with the current logged in user --}}
-            @if (Auth::user()->id == $forum->event_organizer_id)
-                <form action="{{ route("events.delete", ["eventId" => $event->id]) }}" method="POST">
+            @if (Auth::user()->id == $forum->forum_author_id)
+                <form action="{{ route("forums.destroy", ["forumId" => $forum->id]) }}" method="POST">
                     @csrf 
                     @method('DELETE')
 

@@ -52,6 +52,7 @@ class OrganizationController extends Controller
         $validatedData = $this->validateRequest($request);    
 
         $organization = new Organization;
+        $organization->org_leader_id = Auth::user()->id;
         $organization->org_name = $validatedData["name"];
         $organization->org_description = $validatedData["description"];
         $organization->org_email = $validatedData["leader_email"];
@@ -95,6 +96,7 @@ class OrganizationController extends Controller
         // FORUM: Create a forum specific to the organization / club
         // Create new forum for this event
         $forum = new Forum();
+        $forum->forum_author_id = Auth::user()->id;
         $forum->forum_author = $validatedData["leader_name"];
         $forum->forum_author_email = $validatedData["leader_email"];
         $forum->forum_title = $validatedData["name"] . " Forum";

@@ -54,8 +54,10 @@ class ForumsController extends Controller
     // create a new forum
     public function createForum(Request $request)
     {
-        // TODO: Redict user if not logged in
-        // $this->redirectUserToLogin();
+        if (!Auth::user())
+        {
+            return redirect()->route("login");   
+        }
 
         // Validate request data
         $validatedData = $request->validate([
@@ -68,9 +70,6 @@ class ForumsController extends Controller
         
         // Get current user
         $user = Auth::user();
-
-        echo "USER DETAILS";
-        echo $user;
 
         // add to Forum table
         $forums = new Forum();

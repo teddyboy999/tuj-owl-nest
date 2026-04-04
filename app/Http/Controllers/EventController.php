@@ -73,7 +73,7 @@ class EventController extends Controller
     public function createEvent(Request $request)
     {
         // Redirect to login page if not logged in
-        if (Auth::guest())
+        if (Auth::guest() || !Auth::user())
         {
             return redirect()->route('login');
         }
@@ -108,6 +108,7 @@ class EventController extends Controller
 
         // Create new forum for this event
         $forum = new Forum();
+        $forum->forum_author_id = Auth::user()->id;
         $forum->forum_author = $validatedData["event_organizer"];
         $forum->forum_author_email = $validatedData["event_email"];
         $forum->forum_title = $validatedData["eventName"] . " Forum";

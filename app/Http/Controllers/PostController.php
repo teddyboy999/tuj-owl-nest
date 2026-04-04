@@ -89,9 +89,9 @@ class PostController extends Controller
         return redirect()->route('website.forums', ['post' => $post])->with('success', 'Event updated successfully.');
     }
 
-    public function destroy($postId)
+    public function destroy($forumId, $postId)
     {
-        $post = Post::findOrFail($postId);
+        $post = Post::where("post_id", $postId)->firstOrFail();
 
         // Get the forum we were referring to
         $forumId = $post->parent_forum_id;
@@ -101,8 +101,8 @@ class PostController extends Controller
         $posts = $forums->getChildPosts($forumId, 15);
 
         // Finally delete the forum
-        $post->delete();
+        Post::where("post_id", $postId)->delete();
 
-        return redirect()->route("forums.show", ['forum' => $forum, 'posts' => $posts])->with("success", "Deleted post successfully!");
+        return redirect()->route("forums.show", ['forumId' => $forumId, 'forum' => $forum, 'posts' => $posts])->with("success", "Deleted post successfully!");
     }
 }

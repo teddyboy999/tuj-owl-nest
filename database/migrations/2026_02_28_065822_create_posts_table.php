@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger("parent_forum_id")->nullable();
+            $table->foreignId("post_author_id");
             $table->string("post_type")->default('forum');
             $table->string("post_author");
             $table->string("post_author_email");

@@ -53,6 +53,7 @@ class PostController extends Controller
         $user = Auth::user();
 
         $posts = new Post();
+        $posts->post_author_id = Auth::user()->id;
 
         $posts->post_content = $validatedData['post_content'];
         $posts->parent_forum_id = $validatedData['parent_forum_id'];

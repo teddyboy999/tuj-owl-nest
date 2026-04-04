@@ -120,4 +120,25 @@
             {{ $posts->links() }}
         </div>
     </div>
+
+    {{-- FORUM DELETE BUTTON --}}
+    <div class="mb-8 py-4 ml-2">
+        @if(Auth::user())
+            {{-- Check if the event's organizer_id matches with the current logged in user --}}
+            @if (Auth::user()->id == $forum->event_organizer_id)
+                <form action="{{ route("events.delete", ["eventId" => $event->id]) }}" method="POST">
+                    @csrf 
+                    @method('DELETE')
+
+                    <button 
+                        type="submit"
+                        onclick="alert('Are you sure you want to delete this forum and ALL of its child posts? This action cannot be undone! Your forum will be gone forever (a long time)!')"
+                        class="p-4 text-white hover:underline bg-red-600 hover:bg-red-500 max-w-48"
+                    >
+                        DELETE THIS FORUM
+                    </button>
+                </form>
+            @endif
+        @endif 
+    </div>
 @endsection

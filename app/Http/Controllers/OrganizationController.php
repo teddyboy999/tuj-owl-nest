@@ -142,13 +142,14 @@ class OrganizationController extends Controller
     {
         $organization = Organization::findOrFail($orgId);
 
-        $organization->delete();
-
         // Remove every record from ClubMembers Table
         ClubMembers::where("club_id", $orgId)->delete();
 
         // Delete the forum linked to this club as well
-        
+        Forum::where("id", $organization->forum_id)->delete();
+
+        // Finally delete the organization
+        $organization->delete();
 
         return redirect()->route("website.club-list")->with("success", "Club deleted successfully!");
     }

@@ -87,4 +87,13 @@ class ForumsController extends Controller
             'event'   => $forums
         ], 201);
     }
+
+    public function destroy($forumId)
+    {
+        $forum = Forum::findOrFail($forumId);
+
+        $forum->delete();
+
+        return redirect()->route("website.forums")->with("success", "Forum successfully deleted!");
+    }
 }

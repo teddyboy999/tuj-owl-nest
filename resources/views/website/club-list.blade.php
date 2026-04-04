@@ -22,12 +22,52 @@
         </button>
     </div>
 
+    {{-- Search and filter features --}}
+    <div class="mx-4 my-2 border p-4">
+        <div class="text-black">
+            <form action="{{ route("website.club-list.filter") }}" method="POST">
+                @csrf
+                <div class="grid grid-rows-2 space-y-2">
+                    <h1 class="text-2xl font-bold text-black my-2">Search / Filter Clubs</h1>
+                    <div class="grid grid-cols-3">
+                        {{-- Search Field (Can be NAME / EMAIL) --}}
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" placeholder=" Name"
+                                class="rounded-md bg-gray-200 border-2"
+                            />
+                        </div>
+
+                        {{-- Search EMAIL --}}
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" placeholder=" Email"
+                                class="rounded-md bg-gray-200 border-2"
+                            />
+                        </div>
+
+                        <div class="flex flex-row-reverse space-x-2 space-x-reverse">
+                            {{-- CLEAR FILTERS button --}}
+                            <a href="{{ route("website.club-list") }}" class="text-center px-4 py-4 bg-red-700 rounded-2xl text-white hover:underline hover:bg-red-600">
+                                Clear Filters
+                            </a>
+                            
+                            {{-- SUBMIT button --}}
+                            <button type="submit" class="px-4 py-2 bg-red-700 rounded-2xl text-white hover:underline hover:bg-red-600">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div id="cards">
         {{-- Get All Clubs / Organizations --}}
         @foreach ($clubs as $club)
             <article id="card">
                 {{-- Check if the logo exists or not, otherwise, we display the placeholder TUJ logo --}}
-
                 @if (is_null($club->org_logo_url))
                     <img
                         src="{{ asset('Website_Images/tuj_logo.png') }}"

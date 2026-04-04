@@ -44,6 +44,37 @@ class OrganizationController extends Controller
                     ]);
     }
 
+    /**
+     * Filters users by whatever details the request has
+     * @param Request $request
+     */
+    public function filter(Request $request)
+    {
+        // Get values from request
+        $name = $request->name;
+        $email = $request->email;
+
+        // If it's null don't waste time
+        if ( $name === null && $email === null )
+        {
+            return redirect()->route("website.club-list");
+        }
+
+        // When the request has these fields, filter the records according to these columns
+        $org = new Organization();
+        $clubs = $org
+            ->when($request->has("email"), 
+                fn($query) => $query->where("org_email", "like", '%' . $email . '%')
+            )
+            ->when($request->has("name"), 
+                fn($query) => $query->where('org_name', 'like', '%' . $name . '%')
+            )
+        ->latest()
+        ->paginate(30);
+
+        return view('website.club-list', ['clubs' => $clubs]);   
+    }
+
     // CREATING new Clubs / Organizations
     public function createOrganization(Request $request)
     {

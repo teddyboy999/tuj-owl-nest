@@ -64,6 +64,7 @@ Route::delete("/event-list/{eventId}", [EventController::class, "destroy"])->mid
 
 // Routes for CLUBS / ORGANIZATIONS
 Route::get("/club-list", [OrganizationController::class, "index"])->name("website.club-list");
+Route::post("/clubs-list/filter", [OrganizationController::class, "filter"])->middleware(['auth', 'verified'])->name("website.club-list.filter");
 Route::get("/clubs-list/{clubId}", [OrganizationController::class, "show"])->name("clubs.show");
 Route::get('/clubs-list/{clubId}/join', [OrganizationController::class, "joinClub"])->middleware(['auth', 'verified'])->name("website.clubs-list.join");
  // for individual club pages

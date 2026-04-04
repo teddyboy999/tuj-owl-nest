@@ -72,6 +72,12 @@ class EventController extends Controller
     /// adds an event to the table if it doesn't already exist
     public function createEvent(Request $request)
     {
+        // Redirect to login page if not logged in
+        if (Auth::guest())
+        {
+            return redirect()->route('login');
+        }
+
         // Validate request data
         $validatedData = $request->validate([
             'eventName' => 'required|string|max:255',
@@ -90,6 +96,7 @@ class EventController extends Controller
 
 
         $event->event_title = $validatedData['eventName'];
+        $event->event_organizer_id = Auth::user()->id;
         $event->event_organizer = $validatedData['event_organizer'];
         $event->event_description = $validatedData['description'];
         $event->event_affiliation = $validatedData['affiliation'];
@@ -138,6 +145,16 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect()->route('events-list', $event->id)->with('success', 'Event updated successfully.');
+        return redirect()->route('website.event-list', $event->id)->with('success', 'Event updated successfully.');
+    }
+
+    // DELETE Existing Events
+    public function destroy($eventId)
+    {
+        $event = Event::findOrFail($eventId);
+
+        $event->delete();
+
+        return redirect()->route("website.event-list")->with("success", "Event Deleted successfully!");
     }
 }

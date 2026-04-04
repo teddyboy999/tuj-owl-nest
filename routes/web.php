@@ -56,6 +56,7 @@ Route::get('/event-list/{eventId}', [EventController::class, "show"])->name("web
 Route::get('/event-list/{eventId}/join', [EventController::class, "joinEvent"])->middleware(['auth', 'verified'])->name("website.event-list.join");
 
 Route::post("/event-add", [EventController::class, "createEvent"])->middleware(['auth', 'verified'])->name("events.create"); // add event
+Route::delete("/event-list/{eventId}", [EventController::class, "destroy"])->middleware(['auth', 'verified'])->name("events.delete"); // delete event
 
 
 // Routes for CLUBS / ORGANIZATIONS

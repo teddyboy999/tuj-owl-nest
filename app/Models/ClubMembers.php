@@ -11,12 +11,11 @@ class ClubMembers extends Model
     // fillable to define mass_assignment
     protected $fillable = ['user_id', 'club_id'];
 
-    // gets paginated participants according to the event id
+    // Get all the members related to the club
     public function getPaginatedOrgMembers($clubId, $paginate_num)
     {
-        $userIds = $this->where("club_id", $clubId)->paginate($paginate_num)->get("user_id");
-
-        $users = User::findMany($userIds);
+        $userIds = $this->where("club_id", $clubId)->get("user_id"); // first get the user ids of everyone in the club
+        $users = User::whereIn("id", $userIds)->paginate($paginate_num); // then get their users, paginated 
 
         return $users;
     }

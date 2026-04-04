@@ -82,40 +82,66 @@
     {{-- Nested Box for all forum replies to show up --}}
     <div class="mx-4 border-l px-4 pb-20 indent-4">
         <p class="text-3xl font-bold text-black">Replies:</p>
-        @foreach ($posts as $post)
-            {{-- Inner box for each forum reply --}}
-            <div class="mx-4 my-2 grid grid-rows-2 border p-4">
-                {{-- Author Details: GRID-ROW-1 --}}
-                <div class="row-start-1 row-end-1">
-                    <p class="text-xl text-black">
-                        {{-- Author --}}
-                        {{ $post->post_author }}
+        @if ($posts)
+            @foreach ($posts as $post)
+                {{-- Inner box for each forum reply --}}
+                <div class="mx-4 my-2 grid grid-cols-2 border p-4">
+                    <div class="grid grid-rows-3 col-start-1 col-end-1">
+                        {{-- Author Details: GRID-ROW-1 --}}
+                        <div class="row-start-1 row-end-1">
+                            <p class="text-xl text-black">
+                                {{-- Author --}}
+                                {{ $post->post_author }}
 
-                        {{-- Author Email --}}
-                        <span class="text-lg font-light text-black">
-                            (
-                            <a href="mailto:{{ $post->post_author_email }}">
-                                {{ $post->post_author_email }}
-                            </a>
-                            )
-                        </span>
+                                {{-- Author Email --}}
+                                <span class="text-lg font-light text-black">
+                                    (
+                                    <a href="mailto:{{ $post->post_author_email }}">
+                                        {{ $post->post_author_email }}
+                                    </a>
+                                    )
+                                </span>
 
-                        {{-- Created At --}}
-                        <span class="text-sm font-extralight text-black">
-                            at {{ $post->created_at }}
-                        </span>
-                    </p>
+                                {{-- Created At --}}
+                                <span class="text-sm font-extralight text-black">
+                                    at {{ $post->created_at }}
+                                </span>
+                            </p>
+                        </div>
+
+                        {{-- Post Content: GRID-ROW-2 --}}
+                        <div class="row-start-2 row-end-2">
+                            <p class="indent-1 text-gray-600">
+                                {{ $post->post_content }}
+                            </p>
+                        </div>     
+                    </div>
+                    
+
+                    {{-- POST DELETE BUTTON --}}
+                    <div class="col-start-2 col-end-2 ml-auto">
+                        @if(Auth::user())
+                            {{-- Check if the event's organizer_id matches with the current logged in user --}}
+                            @if (Auth::user()->id == $post->post_author_id)
+                                <form action="{{ route("post.destroy", ["forumId" => $forum->id, "postId" => $post->post_id]) }}" method="POST">
+                                    @csrf 
+                                    @method('DELETE')
+
+                                    <button 
+                                        type="submit"
+                                        onclick="alert('Are you sure you want to delete this Post? This action cannot be undone! Your post will be gone forever (a long time)!')"
+                                        class="text-sm text-white hover:underline bg-red-600 hover:bg-red-500 max-w-20"
+                                    >
+                                        DELETE THIS POST
+                                    </button>
+                                </form>
+                            @endif
+                        @endif 
+                    </div>
                 </div>
-
-                {{-- Post Content: GRID-ROW-2 --}}
-                <div class="row-start-2 row-end-2">
-                    <p class="indent-1 text-gray-600">
-                        {{ $post->post_content }}
-                    </p>
-                </div>                
-            </div>
-        @endforeach
-
+            @endforeach
+        @endif
+        
         <div class="mt-4">
             {{ $posts->links() }}
         </div>

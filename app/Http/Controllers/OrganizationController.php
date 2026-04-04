@@ -138,6 +138,22 @@ class OrganizationController extends Controller
         return redirect('/club-list')->with('success', 'Event created successfully!');
     }
 
+    public function destroy($orgId)
+    {
+        $organization = Organization::findOrFail($orgId);
+
+        $organization->delete();
+
+        // Remove every record from ClubMembers Table
+        ClubMembers::where("club_id", $orgId)->delete();
+
+        // Delete the forum linked to this club as well
+        
+
+        return redirect()->route("website.club-list")->with("success", "Club deleted successfully!");
+    }
+
+    // HELPER METHODS
     public function validateRequest(Request $request): array
     {
         // Validate request data

@@ -153,6 +153,14 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($eventId);
 
+        // Remove every record from Event Participants Table
+        EventParticipant::where("event_id", $eventId)->delete();
+
+        // Also delete the forum linked to this event
+        $event_forum = Forum::findOrFail($event->id);
+        $event_forum->delete();
+
+        // Finally delete the event
         $event->delete();
 
         return redirect()->route("website.event-list")->with("success", "Event Deleted successfully!");

@@ -2,9 +2,7 @@
 
 @section('content')
     <!-- BACK LINK -->
-    <div
-        class="mb-4 flex w-fit flex-row items-center justify-center p-2"
-    >
+    <div class="mb-4 flex w-fit flex-row items-center justify-center p-2">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"
@@ -12,9 +10,7 @@
             width="24px"
             fill="#e3e3e3"
         >
-            <path
-                d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"
-            />
+            <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
         </svg>
         <a
             href="{{ route('website.community') }}"
@@ -23,7 +19,6 @@
             Back
         </a>
     </div>
-
 
     {{-- Profile Picture border --}}
     <div
@@ -58,14 +53,6 @@
         @if ($isCurrentUser)
             <div class="ml-auto flex flex-col items-end space-y-2">
                 <div name="profile-edit"></div>
-                {{-- Socials --}}
-                <div id="profile-pic-container" class="ml-auto w-20">
-                    <img
-                        src="{{ asset('Website_Images/instagram.jpg') }}"
-                        id="profile-pic"
-                        alt="profile-pic"
-                    />
-                </div>
             </div>
         @endif
     </div>
@@ -86,14 +73,11 @@
         </p>
     </div>
 
-
     {{-- Active clubs section --}}
-    <h1 class="m-2 p-4 text-black text-3xl font-bold">
-        Joined Clubs
-    </h1>
-    @if ( is_null($clubs) ||  count($clubs) == 0)
+    <h1 class="m-2 p-4 text-3xl font-bold text-black">Joined Clubs</h1>
+    @if (is_null($clubs) || count($clubs) == 0)
         {{-- don't show anything pretty much --}}
-        <div class="text-xl text-gray-600 mt-2 mb-2 ml-6 px-4">
+        <div class="mt-2 mb-2 ml-6 px-4 text-xl text-gray-600">
             No Clubs joined yet.
         </div>
     @else
@@ -131,16 +115,12 @@
             @endforeach
         </div>
     @endif
-    
-
 
     {{-- Events User is participating in --}}
-    <h1 class="m-2 p-4 text-black text-3xl font-bold">
-        Events Joined
-    </h1>
-    @if ( is_null($events) ||  count($events) == 0)
+    <h1 class="m-2 p-4 text-3xl font-bold text-black">Events Joined</h1>
+    @if (is_null($events) || count($events) == 0)
         {{-- don't show anything pretty much --}}
-        <div class="text-xl text-gray-600 mt-2 mb-2 ml-6 px-4">
+        <div class="mt-2 mb-2 ml-6 px-4 text-xl text-gray-600">
             No Events joined yet.
         </div>
     @else
@@ -157,7 +137,9 @@
                     <p class="p-2 indent-2 text-black">
                         {{-- Name and Email --}}
                         <span>
-                            <span class="font-bold underline">Organized By:</span>
+                            <span class="font-bold underline">
+                                Organized By:
+                            </span>
                             {{ $event->event_organizer }} (
                             <a
                                 class="font-light text-gray-600 hover:text-black hover:underline"
@@ -196,7 +178,7 @@
                             </li>
                             <li>
                                 <span class="font-semibold">Date:</span>
-                                {{ $event->event_date }} ; 
+                                {{ $event->event_date }} ;
                                 <span class="font-semibold">Start Time:</span>
                                 {{ $event->start_time }} ;
                                 <span class="font-semibold">End Time:</span>
@@ -211,15 +193,17 @@
                     >
                         Description:
                     </span>
-                    <p class="text-gray-600 truncate w-3/4">
+                    <p class="w-3/4 truncate text-gray-600">
                         {{ $event->event_description }}
                     </p>
 
                     {{-- Show more button to open the event in a detailed page (and to click join!) --}}
-                    <a href="{{ route('website.event-list.show', ['eventId' => $event->id]) }}">
+                    <a
+                        href="{{ route('website.event-list.show', ['eventId' => $event->id]) }}"
+                    >
                         <span
-                            class="mx-2 mb-1 p-2 text-lg font-semibold text-blue-600 underline hover:underline hover:blue-200 visited:text-purple-500"
-                        >   
+                            class="hover:blue-200 mx-2 mb-1 p-2 text-lg font-semibold text-blue-600 underline visited:text-purple-500 hover:underline"
+                        >
                             Show More
                         </span>
                     </a>
@@ -231,26 +215,19 @@
         </div>
     @endif
 
-
-
-
-
     {{-- Will be the comment section --}}
-    <h1 class="m-2 p-4 text-black text-3xl font-bold">
-        Profile Comments
-    </h1>
+    <h1 class="m-2 p-4 text-3xl font-bold text-black">Profile Comments</h1>
     <div
         id="create-comment-root"
         name="create-comment"
-        class="px-6 ml-4"
+        class="ml-4 px-6"
         data-forum-id="{{ $user->id }}"
     ></div>
-    @if ( is_null($comments) ||  count($comments) == 0)
+    @if (is_null($comments) || count($comments) == 0)
         {{-- don't show anything pretty much --}}
-        <div class="text-xl text-gray-600 mt-2 mb-8 ml-6 px-4">
+        <div class="mt-2 mb-8 ml-6 px-4 text-xl text-gray-600">
             No Comments yet.
         </div>
-        
     @else
         <div class="mx-4 border-l px-4 pb-4 indent-4">
             @foreach ($comments as $comment)
@@ -265,7 +242,9 @@
                             {{-- Author Email --}}
                             <span class="text-lg font-light text-black">
                                 (
-                                <a href="mailto:{{ $comment->post_author_email }}">
+                                <a
+                                    href="mailto:{{ $comment->post_author_email }}"
+                                >
                                     {{ $comment->post_author_email }}
                                 </a>
                                 )

@@ -13,14 +13,6 @@
             Create New Club
         </button>
     </div>
-    <div id="club-create">
-        <button
-            onclick="window.location.href = '/club-edit'"
-            class="club-create"
-        >
-            Edit Your Club
-        </button>
-    </div>
 
     {{-- Search and filter features --}}
     <div class="mx-4 my-2 border p-4">

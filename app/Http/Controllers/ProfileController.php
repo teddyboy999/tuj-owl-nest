@@ -80,6 +80,11 @@ class ProfileController extends Controller
 
     public function showDashboard($userId)
     {
+        if (!Auth::user())
+        {
+            return redirect()->route("login");
+        }
+
         // Get user first
         $user = User::find($userId);
 
